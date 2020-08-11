@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ImageView
+        android:id="@+id/healthcheckup"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="260dp"
+        android:layout_marginLeft="20dp"
+        android:background="@drawable/healthcheckup"/>
+
+    <ImageView
+        android:id="@+id/healthreport"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignTop="@+id/healthcheckup"
+        android:layout_marginLeft="300dp"
+        android:background="@drawable/healthreport" />
+
+    <ImageView
+        android:id="@+id/symptomconsultation"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="440dp"
+        android:background="@drawable/symptomconsultation" />
+
+    <ImageView
+        android:id="@+id/symptomprediction"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignTop="@id/symptomconsultation"
+        android:layout_marginLeft="250dp"
+        android:layout_marginTop="0dp"
+        android:background="@drawable/symptomprediction" />
+
+    <TextView
+        android:id="@+id/cross"
+        android:layout_width="40dp"
+        android:layout_height="60dp"
+        android:padding="3dp"
+        android:text="X"
+        android:textSize="40dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="600dp"/>
+
+
+</RelativeLayout>
