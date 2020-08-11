@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -11,8 +12,14 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+import org.litepal.LitePal;
+import org.litepal.crud.LitePalSupport;
 
+import java.io.File;
+import java.util.List;
+
+public class MainActivity extends AppCompatActivity {
+    private static final String TAG = "MainActivity";
     private Button SignIn;
     private Button LogIn;
     private TextView toLogIn ;
@@ -25,6 +32,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        importDatabases();
+
+        List<HospitalWeb> list = LitePal.findAll(HospitalWeb.class);
+        Log.d(TAG, "hospitalName: " + list.get(0).getName());
 
         SignIn = (Button)findViewById(R.id.SignIn);
         SignIn.setOnClickListener(new View.OnClickListener(){
@@ -85,4 +97,15 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
+    private void importDatabases(){
+        File file = new File("/data"
+                + Environment.getDataDirectory().getAbsolutePath() + "/"
+                + "com.example.app3" + "/databases" + "/HospitalWebsite.db");
+        if (!file.isFile()){
+            new DBManager(this).openDatabase();
+        }
+
+    }
+
 }
