@@ -6,6 +6,7 @@ import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -14,6 +15,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -66,6 +68,7 @@ public class ContactBaiduMap extends AppCompatActivity {
     private EditText searchEditText;
     private ListView listView;
     private int screen_y;
+    private ArrayList<Hospital> singleHospital;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +90,15 @@ public class ContactBaiduMap extends AppCompatActivity {
 
         listView = (ListView) findViewById(R.id.list_view);
         listView.setVisibility(View.INVISIBLE);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(ContactBaiduMap.this, HospitalWebView.class);
+                intent.putExtra("医院名称", hospitalList.get(i).getName());
+                startActivity(intent);
+            }
+        });
+
         mapView = (MapView) findViewById(R.id.baidu_map_view2);
         baiduMap = mapView.getMap();
         searchEditText = (EditText) findViewById(R.id.search_text_view);
@@ -108,7 +120,8 @@ public class ContactBaiduMap extends AppCompatActivity {
                     poiSearch.searchInCity(new PoiCitySearchOption()
                             .city(city)
                             .keyword("医院")
-                            .pageNum(10));
+                            .pageCapacity(20)
+                            .pageNum(0));
                 }
                 closeKeyboard();
                 searchEditText.setText("");
@@ -126,7 +139,8 @@ public class ContactBaiduMap extends AppCompatActivity {
                     poiSearch.searchInCity(new PoiCitySearchOption()
                             .city(bdLocation.getCity())
                             .keyword("医院")
-                            .pageNum(10));
+                            .pageCapacity(30)
+                            .pageNum(0));
                 }
                 closeKeyboard();
                 searchEditText.setText("");
@@ -168,18 +182,26 @@ public class ContactBaiduMap extends AppCompatActivity {
             @Override
             public boolean onMarkerClick(Marker marker) {
                 LatLng markerLatLng = marker.getPosition();
-                int clickedHospitalIndex = -1;
+//                int clickedHospitalIndex = -1;
                 for (PoiInfo info : hospitalPoiList){
-                    clickedHospitalIndex++;
+//                    clickedHospitalIndex++;
                     LatLng infoLatLng = info.getLocation();
                     if (markerLatLng.latitude == infoLatLng.latitude && markerLatLng.longitude == infoLatLng.longitude){
-                        ArrayList<Hospital> singleHospital = new ArrayList<>();
-                        singleHospital.add(hospitalList.get(clickedHospitalIndex));
+//                        singleHospital = new ArrayList<>();
+//                        singleHospital.add(hospitalList.get(clickedHospitalIndex));
+//                        HospitalAdapter adapter = new HospitalAdapter(ContactBaiduMap.this,
+//                                R.layout.hospital_item, singleHospital);
+//                        listView.setVisibility(View.VISIBLE);
+//                        listView.setAdapter(adapter);
+//                        startAnimation();
+                        hospitalList = new ArrayList<>();
+                        poiSearch.searchPoiDetail((new PoiDetailSearchOption()).poiUids(info.uid));
                         HospitalAdapter adapter = new HospitalAdapter(ContactBaiduMap.this,
-                                R.layout.hospital_item, singleHospital);
+                                R.layout.hospital_item, hospitalList);
                         listView.setVisibility(View.VISIBLE);
                         listView.setAdapter(adapter);
                         startAnimation();
+
                     }
                 }
 
@@ -274,7 +296,7 @@ public class ContactBaiduMap extends AppCompatActivity {
             public void onGetPoiResult(PoiResult result){
                 hospitalPoiList = result.getAllPoi();
                 if (hospitalPoiList == null || hospitalPoiList.get(0).uid.equals("") ){
-                    Toast.makeText(ContactBaiduMap.this, "未检索到任何信息,请确定城市名",
+                    Toast.makeText(ContactBaiduMap.this, "未检索到任何信息，请稍后再次查询",
                             Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -350,16 +372,6 @@ public class ContactBaiduMap extends AppCompatActivity {
         translateAnimation.startNow();//动画开始执行 放在最后即可
     }
 
-    private void startAnimation2(){
-        Animation translateAnimation = new TranslateAnimation(0,0,
-                0,screen_y / 2);
-        translateAnimation.setDuration(1000);
-        translateAnimation.setFillEnabled(true);//使其可以填充效果从而不回到原地
-        translateAnimation.setFillAfter(true);//不回到起始位置
-        //如果不添加setFillEnabled和setFillAfter则动画执行结束后会自动回到远点
-        listView.setAnimation(translateAnimation);//给imageView添加的动画效果
-        translateAnimation.startNow();//动画开始执行 放在最后即可
-    }
 
     class MyLocationListener extends BDAbstractLocationListener {
         @Override

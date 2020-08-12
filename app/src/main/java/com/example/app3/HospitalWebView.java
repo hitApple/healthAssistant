@@ -11,18 +11,53 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
+import android.widget.TextView;
+
+import org.litepal.LitePal;
+
+import java.util.List;
 
 import static android.webkit.WebSettings.*;
 
 public class HospitalWebView extends AppCompatActivity {
 
     private static final String TAG = "HospitalWebView";
+    private TextView nameTextView;
     private WebView webView;
     private ProgressBar progressBar;
+    private String url;
+    private boolean isFound = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.hospital_detail);
+        url = getIntent().getStringExtra("医院名称");
+        nameTextView = (TextView) findViewById(R.id.hospital_title);
+        nameTextView.setText(url);
+
+        List<HospitalWeb> list = LitePal.findAll(HospitalWeb.class);
+//        Log.d(TAG, "onCreate: " + list.size());
+//        for (int i = 0; i < 10; i++){
+//            HospitalWeb hospitalWeb = list.get(i);
+//            Log.d(TAG, "onCreate: " + hospitalWeb.getName());
+//
+//        }
+        for (HospitalWeb hospitalWeb : list){
+            if (hospitalWeb.getName() != null && hospitalWeb.getName().equals(url)){
+                url = hospitalWeb.getWebsite();
+                isFound = true;
+                break;
+            }
+        }
+
+        if (!isFound){
+            TextView isFoundTextView = (TextView) findViewById(R.id.tip_text_view);
+            isFoundTextView.setVisibility(View.VISIBLE);
+            findViewById(R.id.progress_bar).setVisibility(View.GONE);
+            return;
+        }
+
         webView = (WebView) findViewById(R.id.hospital_web_view);
         progressBar = (ProgressBar)findViewById(R.id.progress_bar);
 
@@ -61,7 +96,7 @@ public class HospitalWebView extends AppCompatActivity {
                 progressBar.setVisibility(View.GONE);
             }
         });
-        webView.loadUrl("http://www.wfph.cn/");
+        webView.loadUrl(url);
 
     }
 

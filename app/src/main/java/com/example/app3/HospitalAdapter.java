@@ -26,8 +26,21 @@ public class HospitalAdapter extends ArrayAdapter<Hospital> {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         Hospital hospital = getItem(position);
-        @SuppressLint("ViewHolder") View view = LayoutInflater.from(getContext()).inflate(resourceId,
-                parent, false);
+        View view;
+//        ViewHolder viewHolder;
+        if (convertView == null){
+            view = LayoutInflater.from(getContext()).inflate(resourceId, parent, false);
+//            viewHolder = new ViewHolder();
+//            viewHolder.hospitalName = (TextView) view.findViewById(R.id.hospital_name);
+//            viewHolder.hospitalTel = (TextView) view.findViewById(R.id.hospital_tel);
+//            viewHolder.hospitalAddress = (TextView) view.findViewById(R.id.hospital_address);
+//            viewHolder.hospitalDistance = (TextView) view.findViewById(R.id.hospital_distance);
+//            viewHolder.hospitalTime = (TextView) view.findViewById(R.id.hospital_time);
+//            view.setTag(viewHolder);
+        } else{
+            view = convertView;
+//            viewHolder = (ViewHolder) view.getTag();
+        }
         TextView hospitalName = (TextView) view.findViewById(R.id.hospital_name);
         TextView hospitalTel = (TextView) view.findViewById(R.id.hospital_tel);
         TextView hospitalAddress = (TextView) view.findViewById(R.id.hospital_address);
@@ -61,4 +74,13 @@ public class HospitalAdapter extends ArrayAdapter<Hospital> {
 
         return view;
     }
+
+//    private class ViewHolder{
+//        TextView hospitalName;
+//        TextView hospitalTel;
+//        TextView hospitalAddress;
+//        TextView hospitalDistance;
+//        TextView hospitalTime;
+//    }
+
 }

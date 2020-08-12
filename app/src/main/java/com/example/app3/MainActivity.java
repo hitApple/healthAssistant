@@ -97,13 +97,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button button2 = (Button) findViewById(R.id.jumpToWebView);
-        button2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, HospitalWebView.class));
-            }
-        });
         /**********************************测试用button***************************************/
     }
 
