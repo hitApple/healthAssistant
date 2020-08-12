@@ -24,8 +24,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-<!--        android:theme="@style/AppTheme"-->
+        <activity android:name=".HospitalWebView">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
 
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <!-- android:theme="@style/AppTheme" -->
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -41,9 +47,7 @@
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-        </activity>
-
-        <!-- 百度地图ak及服务声明 -->
+        </activity> <!-- 百度地图ak及服务声明 -->
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="zKedPCmWkjk5pSH62VGxxo6eFFrtUyoO" />
@@ -52,8 +56,6 @@
             android:name="com.baidu.location.f"
             android:enabled="true"
             android:process=":remote" />
-        <!-- 百度地图ak及服务声明 -->
-
     </application>
 
 </manifest>

@@ -88,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        /**********************************测试用button***************************************/
         Button button = (Button) findViewById(R.id.jumpToBaiduMap);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,8 +97,20 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        Button button2 = (Button) findViewById(R.id.jumpToWebView);
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, HospitalWebView.class));
+            }
+        });
+        /**********************************测试用button***************************************/
     }
 
+
+    /**
+     * 将存储在assets文件夹中的数据库文件移动到相应位置
+     */
     private void importDatabases(){
         File file = new File("/data"
                 + Environment.getDataDirectory().getAbsolutePath() + "/"

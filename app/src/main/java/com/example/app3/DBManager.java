@@ -18,7 +18,7 @@ public class DBManager {
     private static final String DB_PATH = "/data"
             + Environment.getDataDirectory().getAbsolutePath() + "/"
             + PACKAGE_NAME + "/databases";  //存放数据库的位置
-    private SQLiteDatabase database;
+//    private SQLiteDatabase database;
     private Context context;
 
     public DBManager(Context context) {
@@ -58,7 +58,7 @@ public class DBManager {
         return null;
     }
 
-    public void closeDatabase() {
-        this.database.close();
-    }
+//    public void closeDatabase() {
+//        this.database.close();
+//    }
 }
