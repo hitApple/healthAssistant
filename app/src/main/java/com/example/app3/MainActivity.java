@@ -79,14 +79,20 @@ public class MainActivity extends AppCompatActivity {
         });
 
         /*********************************测试用button**************************************/
-        Button button = (Button) findViewById(R.id.jumpToBaiduMap);
-        button.setOnClickListener(new View.OnClickListener() {
+        Button button1 = (Button) findViewById(R.id.jumpToBaiduMap);
+        button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MainActivity.this, ContactBaiduMap.class));
             }
         });
-
+        Button button2 = (Button) findViewById(R.id.jumpToCalorieView);
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, CalorieView.class));
+            }
+        });
         /*********************************测试用button**************************************/
     }
 

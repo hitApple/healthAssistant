@@ -1,5 +1,6 @@
 package com.example.app3;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -183,9 +184,23 @@ public class ContactBaiduMap extends AppCompatActivity {
             String [] permissions = permissionList.toArray(new String[permissionList.size()]);
             ActivityCompat.requestPermissions(ContactBaiduMap.this, permissions, 1);
             //申请权限之后再次创建该活动
-            this.recreate();
+//            this.recreate();
         } else{//如果权限全部申请完毕
             requestLocation();
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == 1) {
+            for (int result : grantResults) {
+                if (result != PackageManager.PERMISSION_GRANTED) {
+                    Toast.makeText(this, "Fail to request permission", Toast.LENGTH_SHORT).show();
+                    finish();
+                    return;
+                }
+            }
         }
     }
 
