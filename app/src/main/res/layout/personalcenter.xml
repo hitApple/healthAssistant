@@ -1,253 +1,274 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/background">
 
-    <LinearLayout
+    <RelativeLayout
+        android:id="@+id/full"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="9dp">
-
-        <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginLeft="15dp"
-            android:background="@drawable/setting" />
-
-        <TextView
-            android:layout_width="303dp"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:id="@+id/personal_1"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="个人中心"
-            android:textColor="#FFFAFA"
-            android:textSize="35dp" />
+            android:layout_marginTop="9dp">
 
-        <ImageView
-            android:id="@+id/message"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:background="@drawable/message" />
-        <ImageView
-            android:id="@+id/message_unread"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:background="@drawable/message_unread"
-            android:visibility="gone"/>
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="15dp"
+                android:background="@drawable/setting" />
+
+            <TextView
+                android:layout_width="290dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="个人中心"
+                android:textColor="#FFFAFA"
+                android:textSize="29dp" />
+
+            <ImageView
+                android:id="@+id/message"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/message" />
+            <ImageView
+                android:id="@+id/message_unread"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/message_unread"
+                android:visibility="gone"/>
 
 
-    </LinearLayout>
+        </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="157dp">
+        <LinearLayout
+            android:id="@+id/personal_2"
+            android:layout_below="@+id/personal_1"
+            android:layout_width="match_parent"
+            android:layout_height="157dp">
 
-        <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginTop="40dp"
-            android:background="@drawable/setting" />
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/setting" />
 
-        <TextView
-            android:id="@+id/username"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="用户昵称"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="10dp"
-            android:textSize="34dp" />
+            <TextView
+                android:id="@+id/username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="用户昵称"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="10dp"
+                android:textSize="29dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/uploadavatar"
+                    android:layout_width="122dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="50dp"
+                    android:background="@drawable/uploadavatar" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/picture"
+                        android:layout_width="56dp"
+                        android:layout_height="54dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="35dp"
+                        android:background="@drawable/image" />
+
+                    <ImageView
+                        android:id="@+id/camera"
+                        android:layout_width="56dp"
+                        android:layout_height="56dp"
+                        android:layout_centerVertical="true"
+
+                        android:background="@drawable/camera" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/personal_3"
+            android:layout_below="@+id/personal_2"
+            android:layout_width="match_parent"
+            android:layout_height="56dp">
+
+            <TextView
+                android:layout_width="193dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="13dp"
+                android:text="   个人信息"
+                android:textSize="30dp"
+                android:layout_marginTop="10dp"/>
+            <View
+                android:layout_width="4dp"
+                android:layout_height="match_parent"
+                android:background="#4876FF"
+                android:layout_gravity="center_horizontal"/>
+            <TextView
+                android:layout_width="193dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="13dp"
+                android:text="  我的医生"
+                android:layout_marginTop="10dp"
+                android:textSize="30dp" />
+        </LinearLayout>
+        <!--分割线-->
+        <View
+            android:id="@+id/personal_4"
+            android:layout_below="@+id/personal_3"
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:background="#4876FF"/>
+
+        <RelativeLayout
+            android:id="@+id/par"
+            android:layout_below="@+id/personal_4"
+            android:layout_width="match_parent"
+            android:layout_height="405dp">
+            <LinearLayout
+                android:id="@+id/doctor1"
+                android:layout_width="180dp"
+                android:layout_height="50dp"
+                android:background="@drawable/buttonblue"
+                android:layout_marginTop="40dp"
+                android:layout_marginLeft="15dp">
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/doctorinformation"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="医生信息"
+                    android:textSize="26dp"
+                    android:textColor="#FFFAFA"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/doctor2"
+                android:layout_width="180dp"
+                android:layout_height="50dp"
+                android:background="@drawable/buttonblue"
+
+
+                android:layout_alignTop="@id/doctor1"
+                android:layout_marginLeft="200dp">
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/doctorinformation"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="医生信息"
+                    android:textSize="26dp"
+                    android:textColor="#FFFAFA"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/doctor3"
+                android:layout_width="180dp"
+                android:layout_height="50dp"
+                android:background="@drawable/buttonblue"
+                android:layout_marginTop="130dp"
+                android:layout_alignLeft="@id/doctor1"
+                >
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/doctorinformation"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="医生信息"
+                    android:textSize="26dp"
+                    android:textColor="#FFFAFA"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/doctor4"
+                android:layout_width="180dp"
+                android:layout_height="50dp"
+                android:background="@drawable/buttonblue"
+                android:layout_alignRight="@id/doctor2"
+                android:layout_alignTop="@id/doctor3">
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/doctorinformation"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="医生信息"
+                    android:textSize="26dp"
+                    android:textColor="#FFFAFA"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/doctor5"
+                android:layout_width="180dp"
+                android:layout_height="50dp"
+                android:background="@drawable/buttonblue"
+                android:layout_marginTop="220dp"
+                android:layout_alignLeft="@id/doctor1">
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/doctorinformation"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="医生信息"
+                    android:textSize="26dp"
+                    android:textColor="#FFFAFA"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/doctor6"
+                android:layout_width="180dp"
+                android:layout_height="50dp"
+                android:background="@drawable/buttonblue"
+                android:layout_alignTop="@id/doctor5"
+                android:layout_alignRight="@id/doctor2">
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/doctorinformation"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="医生信息"
+                    android:textSize="26dp"
+                    android:textColor="#FFFAFA"/>
+            </LinearLayout>
+
+        </RelativeLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <ImageView
-                android:id="@+id/uploadavatar"
-                android:layout_width="122dp"
-                android:layout_height="40dp"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="50dp"
-                android:background="@drawable/uploadavatar" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent">
-
-                <ImageView
-                    android:id="@+id/picture"
-                    android:layout_width="56dp"
-                    android:layout_height="54dp"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="35dp"
-                    android:background="@drawable/image" />
-
-                <ImageView
-                    android:id="@+id/camera"
-                    android:layout_width="56dp"
-                    android:layout_height="56dp"
-                    android:layout_centerVertical="true"
-
-                    android:background="@drawable/camera" />
-            </LinearLayout>
-
+            android:layout_below="@+id/par">
+            <include
+                layout="@layout/bottomfunctionbar"/>
         </LinearLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="65dp">
-
-        <TextView
-            android:layout_width="193dp"
-            android:layout_height="65dp"
-            android:layout_marginLeft="13dp"
-            android:text="   个人信息"
-            android:textSize="35dp"
-            android:layout_marginTop="10dp"/>
-        <View
-            android:layout_width="4dp"
-            android:layout_height="match_parent"
-            android:background="#4876FF"
-            android:layout_gravity="center_horizontal"/>
-        <TextView
-            android:layout_width="193dp"
-            android:layout_height="65dp"
-            android:layout_marginLeft="13dp"
-            android:text="  我的医生"
-            android:layout_marginTop="10dp"
-            android:textSize="35dp" />
-    </LinearLayout>
-    <!--分割线-->
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="4dp"
-        android:background="#4876FF"/>
-
-    <RelativeLayout
-        android:id="@+id/par"
-        android:layout_width="match_parent"
-        android:layout_height="388dp">
-        <LinearLayout
-            android:id="@+id/doctor1"
-            android:layout_width="180dp"
-            android:layout_height="50dp"
-            android:background="@drawable/buttonblue"
-            android:layout_marginTop="40dp"
-            android:layout_marginLeft="20dp">
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/doctorinformation"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="医生信息"
-                android:textSize="26dp"
-                android:textColor="#FFFAFA"/>
-        </LinearLayout>
-        <LinearLayout
-            android:id="@+id/doctor2"
-            android:layout_width="180dp"
-            android:layout_height="50dp"
-            android:background="@drawable/buttonblue"
-
-
-            android:layout_alignTop="@id/doctor1"
-            android:layout_marginLeft="220dp">
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/doctorinformation"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="医生信息"
-                android:textSize="26dp"
-                android:textColor="#FFFAFA"/>
-        </LinearLayout>
-        <LinearLayout
-            android:id="@+id/doctor3"
-            android:layout_width="180dp"
-            android:layout_height="50dp"
-            android:background="@drawable/buttonblue"
-            android:layout_marginTop="130dp"
-            android:layout_alignLeft="@id/doctor1"
-            >
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/doctorinformation"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="医生信息"
-                android:textSize="26dp"
-                android:textColor="#FFFAFA"/>
-        </LinearLayout>
-        <LinearLayout
-            android:id="@+id/doctor4"
-            android:layout_width="180dp"
-            android:layout_height="50dp"
-            android:background="@drawable/buttonblue"
-            android:layout_alignRight="@id/doctor2"
-            android:layout_alignTop="@id/doctor3">
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/doctorinformation"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="医生信息"
-                android:textSize="26dp"
-                android:textColor="#FFFAFA"/>
-        </LinearLayout>
-        <LinearLayout
-            android:id="@+id/doctor5"
-            android:layout_width="180dp"
-            android:layout_height="50dp"
-            android:background="@drawable/buttonblue"
-            android:layout_marginTop="220dp"
-            android:layout_alignLeft="@id/doctor1">
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/doctorinformation"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="医生信息"
-                android:textSize="26dp"
-                android:textColor="#FFFAFA"/>
-        </LinearLayout>
-        <LinearLayout
-            android:id="@+id/doctor6"
-            android:layout_width="180dp"
-            android:layout_height="50dp"
-            android:background="@drawable/buttonblue"
-            android:layout_alignTop="@id/doctor5"
-            android:layout_alignRight="@id/doctor2">
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/doctorinformation"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="医生信息"
-                android:textSize="26dp"
-                android:textColor="#FFFAFA"/>
-        </LinearLayout>
-
     </RelativeLayout>
-    <LinearLayout
+
+    <include
+        layout="@layout/plus"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <include
-            layout="@layout/bottomfunctionbar"/>
-    </LinearLayout>
+        android:layout_height="match_parent"
+        android:visibility="gone"/>
 
 
 </LinearLayout>

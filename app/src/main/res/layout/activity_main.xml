@@ -299,13 +299,6 @@
         app:layout_constraintRight_toRightOf="parent"
         android:text="百度地图"/>
 
-    <Button
-        android:id="@+id/jumpToWebView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:text="医院网站"/>
 
     <!--测试用button--><!--测试用button--><!--测试用button--><!--测试用button--><!--测试用button-->
 

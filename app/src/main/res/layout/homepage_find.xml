@@ -5,100 +5,103 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     android:background="@drawable/homepage_background">
-    <LinearLayout
+    <RelativeLayout
+        android:id="@+id/full"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal">
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:background="@drawable/buttongray">
-            <ImageView
-                android:id="@+id/homepage_find_searchicon"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:background="@drawable/search"
-                />
-            <EditText
-                android:id="@+id/homepage_find_search"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                android:visibility="gone"/>
-        </LinearLayout>
-
-        <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginLeft="25dp"
-            android:background="@drawable/message" />
-
-    </LinearLayout>
-
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="565dp">
-
+        android:layout_height="wrap_content">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/xinagmu1"
-                android:layout_width="350dp"
-                android:layout_height="150dp"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="30dp"
-                android:background="@drawable/buttonwhite"
-                android:text="qwe"
-                android:textSize="30dp" />
-
-            <TextView
-                android:id="@+id/xinagmu2"
-                android:layout_width="350dp"
-                android:layout_height="250dp"
-                android:layout_alignLeft="@+id/xinagmu1"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/buttonwhite"
-                android:text="qwe"
-                android:textSize="30dp" />
-
-            <TextView
-
-                android:id="@+id/xinagmu3"
-                android:layout_width="350dp"
-                android:layout_height="142dp"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="30dp"
-                android:background="@drawable/buttonwhite"
-                android:text="qwe"
-                android:textSize="30dp" />
-
-            <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom">
+                android:layout_height="match_parent"
+                android:background="@drawable/buttongray">
+                <ImageView
+                    android:id="@+id/homepage_find_searchicon"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:background="@drawable/search"
+                    />
+                <EditText
+                    android:id="@+id/homepage_find_search"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:background="@null" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="36dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="20dp"
+                android:background="@drawable/message" />
 
         </LinearLayout>
 
-    </ScrollView>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="620dp"
+            android:layout_marginTop="40dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/xinagmu1"
+                    android:layout_width="350dp"
+                    android:layout_height="190dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="30dp"
+                    android:background="@drawable/buttonwhite"
+                    android:text="qwe"
+                    android:textSize="30sp" />
+
+                <TextView
+                    android:id="@+id/xinagmu2"
+                    android:layout_width="350dp"
+                    android:layout_height="250dp"
+                    android:layout_alignLeft="@+id/xinagmu1"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/buttonwhite"
+                    android:text="qwe"
+                    android:textSize="30sp" />
+
+                <TextView
+
+                    android:id="@+id/xinagmu3"
+                    android:layout_width="350dp"
+                    android:layout_height="190dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="30dp"
+                    android:background="@drawable/buttonwhite"
+                    android:text="qwe"
+                    android:textSize="30sp" />
+
+            </LinearLayout>
+
+        </ScrollView>
+
+
+        <include
+            layout="@layout/bottomfunctionbar"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_alignParentBottom="true" />
+    </RelativeLayout>
 
 
     <include
-        layout="@layout/bottomfunctionbar"
+        layout="@layout/plus"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_gravity="bottom" />
-
-    <!--    <activity
-            android:name="com.example.app3.HomePage_find">
-        </activity>-->
-
+        android:layout_height="match_parent"
+        android:visibility="gone"/>
 </LinearLayout>

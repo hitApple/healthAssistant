@@ -44,7 +44,8 @@ public class HospitalWebView extends AppCompatActivity {
 //
 //        }
         for (HospitalWeb hospitalWeb : list){
-            if (hospitalWeb.getName() != null && hospitalWeb.getName().equals(url)){
+            if ( hospitalWeb.getName() != null && (hospitalWeb.getName().contains(url) ||
+                    url.contains(hospitalWeb.getName())) ){
                 url = hospitalWeb.getWebsite();
                 isFound = true;
                 break;

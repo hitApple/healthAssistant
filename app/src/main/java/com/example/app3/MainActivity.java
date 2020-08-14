@@ -13,7 +13,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.litepal.LitePal;
-import org.litepal.crud.LitePalSupport;
 
 import java.io.File;
 import java.util.List;
@@ -38,32 +37,17 @@ public class MainActivity extends AppCompatActivity {
         List<HospitalWeb> list = LitePal.findAll(HospitalWeb.class);
         Log.d(TAG, "hospitalName: " + list.get(0).getName());
 
-        SignIn = (Button)findViewById(R.id.SignIn);
-        SignIn.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-                findViewById(R.id.Log_In).setVisibility(View.GONE);
-                findViewById(R.id.SignInUI).setVisibility(View.VISIBLE);
-            }
-        });
-        LogIn = (Button)findViewById(R.id.LogIn);
-        LogIn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent it = new Intent(MainActivity.this,health_checkup.class);
-                startActivity(it);
-            }
-        });
 
-        toLogIn = (TextView) findViewById(R.id.toLogIn);
+        toLogIn = findViewById(R.id.toLogIn);
         toLogIn.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 findViewById(R.id.SignInUI).setVisibility(View.GONE);
                 findViewById(R.id.Log_In).setVisibility(View.VISIBLE);
             }
         });
-        password = (EditText) findViewById(R.id.password);
-        eyeview_on = (ImageView) findViewById(R.id.eyeview_on);
-        eyeview_off = (ImageView) findViewById(R.id.eyeview_off);
+        password =  findViewById(R.id.password);
+        eyeview_on = findViewById(R.id.eyeview_on);
+        eyeview_off = findViewById(R.id.eyeview_off);
         eyeview_on.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 findViewById(R.id.eyeview_on).setVisibility(View.GONE);
@@ -78,17 +62,23 @@ public class MainActivity extends AppCompatActivity {
                 password.setInputType(0x90);//密码可见
             }
         });
-
+        //登录按钮
         LogIn = findViewById(R.id.LogIn);
         LogIn.setOnClickListener(new View.OnClickListener() {
-            @Override
             public void onClick(View view) {
-                Intent in = new Intent(MainActivity.this,HomePage_find.class) ;
-                startActivity(in);
+                startActivity(new Intent(MainActivity.this,HomePage_find.class));
+            }
+        });
+        //注册
+        SignIn = findViewById(R.id.SignIn);
+        SignIn.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                findViewById(R.id.Log_In).setVisibility(View.GONE);
+                findViewById(R.id.SignInUI).setVisibility(View.VISIBLE);
             }
         });
 
-        /**********************************测试用button***************************************/
+        /*********************************测试用button**************************************/
         Button button = (Button) findViewById(R.id.jumpToBaiduMap);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,13 +87,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        /**********************************测试用button***************************************/
+        /*********************************测试用button**************************************/
     }
 
 
     /**
      * 将存储在assets文件夹中的数据库文件移动到相应位置
-     */
+    **/
     private void importDatabases(){
         File file = new File("/data"
                 + Environment.getDataDirectory().getAbsolutePath() + "/"
