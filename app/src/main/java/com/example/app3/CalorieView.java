@@ -48,6 +48,7 @@ public class CalorieView extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calorie_view);
 
@@ -77,8 +78,6 @@ public class CalorieView extends AppCompatActivity {
             }
         });
 
-
-
     }
 
     @Override
@@ -96,29 +95,9 @@ public class CalorieView extends AppCompatActivity {
                         assert imageUri != null;
                         final InputStream imageStream = getContentResolver().openInputStream(imageUri);
                         bitmap = BitmapFactory.decodeStream(imageStream);
-                        Log.d(TAG, "onActivityResult: I have gotten a photo!");
+//                        Log.d(TAG, "onActivityResult: I have gotten a photo!");
 
-                        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-                        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
-                        searchImage = new SearchImage(outputStream.toByteArray());
-                        searchImage.start();
-                        progressBar.setVisibility(View.VISIBLE);
-                        long startTime = System.currentTimeMillis();
-                        while (searchImage.isAlive()){
-                            if (System.currentTimeMillis() - startTime >= 5000){
-                                isOutOfTime = true;
-                                break;
-                            }
-                        }
-                        progressBar.setVisibility(View.GONE);
-                        if (isOutOfTime){
-                            return;
-                        }
-                        SearchImage.SearchResult[] searchResults = searchImage.getSearchResults();
-//                        for (SearchImage.SearchResult searchResult : searchResults){
-//                            searchResult.print();
-//                        }
-                        textView.setText(searchResults[0].toString());
+                        startSearchImage(bitmap);
                     } catch (FileNotFoundException | JSONException e) {
                         e.printStackTrace();
                     }
@@ -139,28 +118,7 @@ public class CalorieView extends AppCompatActivity {
                         if (bitmap == null){
                             return;
                         }
-                        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-                        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
-                        searchImage = new SearchImage(outputStream.toByteArray());
-                        searchImage.start();
-                        progressBar.setVisibility(View.VISIBLE);
-                        isOutOfTime = false;
-                        long startTime2 = System.currentTimeMillis();
-                        while (searchImage.isAlive()){
-                            if (System.currentTimeMillis() - startTime2 >= 5000){
-                                isOutOfTime = true;
-                                break;
-                            }
-                        }
-                        progressBar.setVisibility(View.GONE);
-                        if (isOutOfTime){
-                            return;
-                        }
-                        SearchImage.SearchResult[] searchResults = searchImage.getSearchResults();
-                        textView.setText(searchResults[0].toString());
-//                        for (SearchImage.SearchResult searchResult : searchResults){
-//                            searchResult.print();
-//                        }
+                        startSearchImage(bitmap);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -170,6 +128,29 @@ public class CalorieView extends AppCompatActivity {
             default:
                 break;
         }
+    }
+
+    private void startSearchImage(Bitmap bitmap)
+            throws JSONException {
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
+        SearchImage searchImage = new SearchImage(outputStream.toByteArray());
+        searchImage.start();
+        progressBar.setVisibility(View.VISIBLE);
+        boolean isOutOfTime = false;
+        long startTime2 = System.currentTimeMillis();
+        while (searchImage.isAlive()){
+            if (System.currentTimeMillis() - startTime2 >= 5000){
+                isOutOfTime = true;
+                break;
+            }
+        }
+        progressBar.setVisibility(View.GONE);
+        if (isOutOfTime){
+            return;
+        }
+        SearchImage.SearchResult[] searchResults = searchImage.getSearchResults();
+        textView.setText(searchResults[0].toString());
     }
 
     private void getPermissions() {
