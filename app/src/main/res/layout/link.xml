@@ -7,23 +7,79 @@
         android:id="@+id/full"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <ScrollView
+        <RelativeLayout
+            android:id="@+id/link_top_title"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <LinearLayout
+            android:layout_height="wrap_content"
+            android:background="#4876FF">
+            <TextView
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="消息"
+                android:layout_centerHorizontal="true"
+                android:textSize="40dp">
+            </TextView>
+        </RelativeLayout>
+
+
+
+        <ScrollView
+            android:id="@+id/link_center_message"
+            android:layout_below="@+id/link_top_title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp">
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-            </LinearLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp">
+                    <ImageView
+                        android:id="@+id/link1"
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/logo"/>
+                    <TextView
+                        android:id="@+id/doctor1"
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@+id/link1"
+                        android:text="医生1"
+                        android:textSize="40dp"/>
+                    <ImageView
+                        android:id="@+id/ifMessage"
+                        android:visibility="gone"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:background="@drawable/logo"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@+id/doctor1"/>
+                    <view
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="#F2F2F9"
+                        android:layout_alignParentBottom="true"/>
+
+                </RelativeLayout>
+            </RelativeLayout>
         </ScrollView>
 
-
-        <include
-            layout="@layout/bottomfunctionbar"
-            android:id="@+id/bottomFun"
+        <RelativeLayout
             android:layout_alignParentBottom="true"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"/>
+            android:background="#FFFFFf"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+            <include
+                android:id="@+id/homepage_find_bottom"
+                layout="@layout/bottomfunctionbar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentBottom="true" />
+        </RelativeLayout>
 
     </RelativeLayout>
     <include

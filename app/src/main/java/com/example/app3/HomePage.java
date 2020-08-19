@@ -1,10 +1,12 @@
 package com.example.app3;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class HomePage extends AppCompatActivity {
@@ -62,5 +64,40 @@ public class HomePage extends AppCompatActivity {
             }
         });
 
+        Intent intent = getIntent();
+        try {
+            memberWelcome(intent.getStringExtra("phone"));
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
+
+    private static final String[] memberPhones = {
+            "15689712036", "19861807360", "13184116753","15689711359","13954159704"
+    };
+
+    private void memberWelcome(String phone) throws InterruptedException {
+        if (phone == null){
+            return;
+        }
+        for (String string : memberPhones){
+            if (phone.equals(string)){
+                AlertDialog.Builder dialog = new AlertDialog.Builder(HomePage.this);
+                dialog.setTitle("欢迎！");
+                dialog.setMessage("检测到您为健康助手的测试人员\n本程序在这里诚挚的欢迎您!\n感谢您为健康助手所做的突出贡献!");
+                dialog.setCancelable(true);
+                dialog.setPositiveButton("谢谢", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+                dialog.show();
+                break;
+            }
+        }
     }
 }
