@@ -124,7 +124,7 @@ public class SearchImage extends Thread{
                 } else if (tempString.contains("name")){
                     searchResults[i].name = tempString.substring(8, tempString.length() - 1);
                     if (searchResults[i].name.contains("非菜")){
-                        searchResults[i].description = "该物品可能不是一道菜，或本程序无法识别";
+                        searchResults[i].description = "该物品有" + Double.parseDouble(searchResults[i].probability) * 100 + "%的可能不是一道菜，或本程序无法识别";
                     }
                     stringsIndex++;
                     break;
