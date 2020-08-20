@@ -482,6 +482,8 @@ public class ContactBaiduMap extends AppCompatActivity {
 }
 
 
+
+
 /****************************************废弃代码**************************************************/
 //                List<PoiDetailInfo> list = poiDetailSearchResult.getPoiDetailInfoList();
 //                Log.d(TAG, "getDetail: " + list.get(0).getDetail());
