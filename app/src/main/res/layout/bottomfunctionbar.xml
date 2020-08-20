@@ -1,73 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="60dp">
+    android:layout_height="60dp"
+    android:background="#FFFFFF">
     <RelativeLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp">
+>
+
 
         <ImageView
             android:id="@+id/homepage"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:background="@drawable/homepage_icon"/>
-        <TextView
+            android:background="@drawable/homepage_icon"
+            android:layout_marginLeft="0dp"/>
+<!--        <TextView
             android:layout_width="60dp"
             android:layout_height="20dp"
             android:text="  首页"
             android:textSize="15dp"
             android:layout_alignLeft="@+id/homepage"
-            android:layout_marginTop="40dp"/>
+            android:layout_marginTop="40dp"/>-->
 
         <ImageView
             android:id="@+id/find"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:background="@drawable/find"
-            android:layout_marginLeft="85dp"/>
-        <TextView
+            android:layout_toRightOf="@+id/homepage"
+            android:layout_marginLeft="20dp"/>
+<!--        <TextView
             android:layout_width="60dp"
             android:layout_height="20dp"
             android:text="  发现"
             android:textSize="15dp"
             android:layout_alignLeft="@+id/find"
-            android:layout_marginTop="40dp"/>
+            android:layout_marginTop="40dp"/>-->
 
         <ImageView
             android:id="@+id/plus"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:background="@drawable/plus"
-            android:layout_marginLeft="170dp"/>
+            android:layout_toRightOf="@+id/find"
+            android:layout_marginLeft="20dp"/>
 
         <ImageView
             android:id="@+id/link"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:background="@drawable/link"
-            android:layout_marginLeft="255dp"/>
-        <TextView
+            android:layout_toRightOf="@+id/plus"
+            android:layout_marginLeft="20dp"/>
+<!--        <TextView
             android:layout_width="60dp"
             android:layout_height="20dp"
             android:text=" 联系"
             android:textSize="15dp"
             android:layout_alignLeft="@+id/link"
-            android:layout_marginTop="40dp"/>
+            android:layout_marginTop="40dp"/>-->
 
         <ImageView
             android:id="@+id/me"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:background="@drawable/me"
-            android:layout_marginLeft="340dp"/>
-        <TextView
+            android:layout_toRightOf="@+id/link"
+            android:layout_marginLeft="20dp"/>
+<!--        <TextView
             android:layout_width="60dp"
             android:layout_height="20dp"
             android:text=" 我的"
             android:textSize="15dp"
             android:layout_alignLeft="@+id/me"
-            android:layout_marginTop="40dp"/>
+            android:layout_marginTop="40dp"/>-->
 
 
     </RelativeLayout>

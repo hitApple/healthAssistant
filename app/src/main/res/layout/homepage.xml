@@ -1,24 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <RelativeLayout
 
         android:id="@+id/full"
+        android:layout_alignParentBottom="true"
+        android:background="#FFFFFf"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="50dp">
         <include
+            android:id="@+id/homepage_find_bottom"
             layout="@layout/bottomfunctionbar"
-            android:id="@+id/bottomFun"
-            android:layout_alignParentBottom="true"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_width="wrap_content"/>
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true" />
     </RelativeLayout>
     <include
-        android:visibility="gone"
         layout="@layout/plus"
+        android:id="@+id/plus_ui"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         />
-</LinearLayout>
+</RelativeLayout>

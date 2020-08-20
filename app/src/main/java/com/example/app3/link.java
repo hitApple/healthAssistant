@@ -2,6 +2,7 @@ package com.example.app3;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Display;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -23,6 +24,20 @@ public class link extends AppCompatActivity {
         link = findViewById(R.id.link);
         me = findViewById(R.id.me);
 
+        Display display = getWindowManager().getDefaultDisplay();
+        int width = display.getWidth();
+        int height = display.getHeight();
+        findViewById(R.id.homepage).getLayoutParams().width= width/7;
+        findViewById(R.id.homepage).getLayoutParams().height= width/7;
+        findViewById(R.id.find).getLayoutParams().width= width/7;
+        findViewById(R.id.find).getLayoutParams().height= width/7;
+        findViewById(R.id.plus).getLayoutParams().width= width/7;
+        findViewById(R.id.plus).getLayoutParams().height= width/7;
+        findViewById(R.id.link).getLayoutParams().width= width/7;
+        findViewById(R.id.link).getLayoutParams().height= width/7;
+        findViewById(R.id.me).getLayoutParams().width= width/7;
+        findViewById(R.id.me).getLayoutParams().height= width/7;
+
         homepage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -38,19 +53,27 @@ public class link extends AppCompatActivity {
         plus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(link.this,plus.class));
+                findViewById(R.id.full).setVisibility(View.GONE);
+                findViewById(R.id.plus_ui).setVisibility(View.VISIBLE);
             }
         });
         link.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(link.this,link.class));
+                /*startActivity(new Intent(link.this,link.class));*/
             }
         });
         me.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(link.this,me.class));
+            }
+        });
+        findViewById(R.id.cross).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                findViewById(R.id.full).setVisibility(View.VISIBLE);
+                findViewById(R.id.plus_ui).setVisibility(View.GONE);
             }
         });
     }
