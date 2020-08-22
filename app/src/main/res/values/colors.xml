@@ -5,4 +5,7 @@
     <color name="colorAccent">#03DAC5</color>
 
     <color name="wave_color">#10aa8c</color>
+
+    <color name="white_one">#FFFFFF</color>
+    <color name="text_one">#333333</color>
 </resources>

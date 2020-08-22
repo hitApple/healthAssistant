@@ -17,10 +17,10 @@
             layout="@layout/log_in"
             />
 
-        <include
+<!--        <include
             android:id="@+id/SignInUI"
             layout="@layout/sign_in"
-            android:visibility="gone"/>
+            android:visibility="gone"/>-->
 
     <!--        <LinearLayout
             android:layout_width="match_parent"

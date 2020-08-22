@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -11,55 +12,48 @@
     <RelativeLayout
         android:id="@+id/full"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <LinearLayout
-            android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/homepage_find_searchicon"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:background="@drawable/search"
+            android:contentDescription="TODO" />
+        <EditText
+            android:layout_toRightOf="@+id/homepage_find_searchicon"
+            android:id="@+id/homepage_find_search"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/buttongreen"/>
+
+
+        <ImageView
+            android:layout_toRightOf="@+id/homepage_find_search"
+            android:layout_width="36dp"
             android:layout_height="40dp"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:background="@drawable/buttongray">
-                <ImageView
-                    android:id="@+id/homepage_find_searchicon"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:background="@drawable/search"
-                    />
-                <EditText
-                    android:id="@+id/homepage_find_search"
-                    android:layout_width="300dp"
-                    android:layout_height="wrap_content"
-                    android:background="@null" />
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/message" />
 
-            </LinearLayout>
 
-            <ImageView
-                android:layout_width="36dp"
-                android:layout_height="40dp"
-                android:layout_marginLeft="20dp"
-                android:background="@drawable/message" />
-
-        </LinearLayout>
 
 
         <ScrollView
+
             android:layout_width="match_parent"
-            android:layout_height="620dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="40dp">
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-
                 <TextView
                     android:id="@+id/xinagmu1"
-                    android:layout_width="350dp"
-                    android:layout_height="190dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
                     android:layout_marginLeft="30dp"
                     android:layout_marginTop="30dp"
+                    android:layout_marginRight="30dp"
                     android:background="@drawable/buttonwhite"
                     android:text="qwe"
                     android:textSize="30sp" />
@@ -68,8 +62,9 @@
                     android:id="@+id/xinagmu2"
                     android:layout_width="350dp"
                     android:layout_height="250dp"
+                    android:layout_below="@+id/xinagmu1"
                     android:layout_alignLeft="@+id/xinagmu1"
-                    android:layout_marginLeft="30dp"
+                    android:layout_alignRight="@+id/xinagmu1"
                     android:layout_marginTop="20dp"
                     android:background="@drawable/buttonwhite"
                     android:text="qwe"
@@ -79,29 +74,43 @@
 
                     android:id="@+id/xinagmu3"
                     android:layout_width="350dp"
-                    android:layout_height="190dp"
-                    android:layout_marginLeft="30dp"
+                    android:layout_height="250dp"
+                    android:layout_alignLeft="@+id/xinagmu1"
+                    android:layout_alignRight="@+id/xinagmu1"
+                    android:layout_below="@+id/xinagmu2"
                     android:layout_marginTop="30dp"
+                    android:layout_marginBottom="60dp"
                     android:background="@drawable/buttonwhite"
                     android:text="qwe"
                     android:textSize="30sp" />
+            </RelativeLayout>
 
-            </LinearLayout>
 
         </ScrollView>
 
-
-        <include
-            layout="@layout/bottomfunctionbar"
+        <RelativeLayout
+            android:layout_alignParentBottom="true"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_alignParentBottom="true" />
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF">
+            <include
+                android:id="@+id/homepage_find_bottom"
+                layout="@layout/bottomfunctionbar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true" />
+        </RelativeLayout>
     </RelativeLayout>
 
 
     <include
+        android:id="@+id/plus_ui"
         layout="@layout/plus"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
         android:visibility="gone"/>
-</LinearLayout>
+</RelativeLayout>
