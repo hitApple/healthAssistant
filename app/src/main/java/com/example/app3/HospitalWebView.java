@@ -1,8 +1,7 @@
 package com.example.app3;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.app.ProgressDialog;
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -10,14 +9,17 @@ import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import org.litepal.LitePal;
 
 import java.util.List;
 
-import static android.webkit.WebSettings.*;
+import static android.webkit.WebSettings.ZoomDensity;
 
 public class HospitalWebView extends AppCompatActivity {
 
@@ -25,24 +27,43 @@ public class HospitalWebView extends AppCompatActivity {
     private TextView nameTextView;
     private WebView webView;
     private ProgressBar progressBar;
-    private String url;
     private boolean isFound = false;
+    private String url;
+    public static String hospitalName;
 
+    @SuppressLint("SetJavaScriptEnabled")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.hospital_detail);
-        url = getIntent().getStringExtra("医院名称");
+
+        try {
+            url = getIntent().getStringExtra("医院名称");
+            if (url == null || url.equals("")){
+                throw new Exception();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return;
+        }
+
+        hospitalName = url;
+
+        Button contactDoctor = (Button) findViewById(R.id.contact_doctor);
+        contactDoctor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HospitalWebView.this, DoctorsOfHospital.class);
+                intent.putExtra("医院名称", hospitalName);
+                startActivity(intent);
+            }
+        });
+
         nameTextView = (TextView) findViewById(R.id.hospital_title);
         nameTextView.setText(url);
 
         List<HospitalWeb> list = LitePal.findAll(HospitalWeb.class);
-//        Log.d(TAG, "onCreate: " + list.size());
-//        for (int i = 0; i < 10; i++){
-//            HospitalWeb hospitalWeb = list.get(i);
-//            Log.d(TAG, "onCreate: " + hospitalWeb.getName());
-//
-//        }
+
         for (HospitalWeb hospitalWeb : list){
             if ( hospitalWeb.getName() != null && (hospitalWeb.getName().contains(url) ||
                     url.contains(hospitalWeb.getName())) ){
@@ -102,12 +123,12 @@ public class HospitalWebView extends AppCompatActivity {
     }
 
 
-    public void loadUrl(String url)
-    {
-        if(webView != null)
-        {
-            webView.loadUrl(url);
-            webView.reload();
-        }
-    }
+//    public void loadUrl(String url)
+//    {
+//        if(webView != null)
+//        {
+//            webView.loadUrl(url);
+//            webView.reload();
+//        }
+//    }
 }

@@ -23,7 +23,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
-    public static String mPhone;
+    public static String mPhone = "15689712036";;
     private Button SignIn;
     private Button LogIn;
 
@@ -87,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else{
                     mPhone = user.getText().toString();
+                    startService(new Intent(MainActivity.this, LoginStatusService.class));
                     Toast.makeText(MainActivity.this, result[0], Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(MainActivity.this, HomePage.class);
                     intent.putExtra("phone", user.getText().toString());

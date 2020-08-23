@@ -35,7 +35,7 @@ public class HomePage extends AppCompatActivity {
     private RelativeLayout link;
     private RelativeLayout me;
 
-    private Button homepage_sign_in;
+    private ImageView homepage_sign_in;
 
 
     private TextView tvDate;
@@ -146,17 +146,45 @@ public class HomePage extends AppCompatActivity {
 /*        DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
         int width = dm.widthPixels;
-        int height = dm.heightPixels;
-        findViewById(R.id.homepage).getLayoutParams().width= (int) (width/7);
-        findViewById(R.id.homepage).getLayoutParams().height= (int) (width/7);
-        findViewById(R.id.find).getLayoutParams().width= (int) (width/7);
-        findViewById(R.id.find).getLayoutParams().height= (int) (width/7);
-        findViewById(R.id.plus).getLayoutParams().width= (int) (width/7);
-        findViewById(R.id.plus).getLayoutParams().height= (int) (width/7);
-        findViewById(R.id.link).getLayoutParams().width= (int) (width/7);
-        findViewById(R.id.link).getLayoutParams().height= (int) (width/7);
-        findViewById(R.id.me).getLayoutParams().width= (int) (width/7);
-        findViewById(R.id.me).getLayoutParams().height= (int) (width/7);*/
+        int height = dm.heightPixels;*/
+
+        setWidthAndHeight();
+
+
+
+    }
+
+    public void setWidthAndHeight(){
+
+        int w = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
+        int h = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
+        findViewById(R.id.eightsystem).measure(w, h);
+        int height = findViewById(R.id.eightsystem).getMeasuredHeight();
+        int width = findViewById(R.id.eightsystem).getMeasuredWidth();
+
+        findViewById(R.id.homepage_urinary_system).getLayoutParams().width = width/5;
+        findViewById(R.id.homepage_urinary_system).getLayoutParams().height = width/5;
+
+        findViewById(R.id.homepage_digestive_system).getLayoutParams().width = width/5;
+        findViewById(R.id.homepage_digestive_system).getLayoutParams().height = width/5;
+
+        findViewById(R.id.homepage_circulatory_system).getLayoutParams().width = width/5;
+        findViewById(R.id.homepage_circulatory_system).getLayoutParams().height = width/5;
+
+        findViewById(R.id.homepage_endocrine_system).getLayoutParams().width = width/5;
+        findViewById(R.id.homepage_endocrine_system).getLayoutParams().height = width/5;
+
+        findViewById(R.id.homepage_nervous_system).getLayoutParams().width = width/5;
+        findViewById(R.id.homepage_nervous_system).getLayoutParams().height = width/5;
+
+        findViewById(R.id.homepage_reproductive_system).getLayoutParams().width = width/5;
+        findViewById(R.id.homepage_reproductive_system).getLayoutParams().height = width/5;
+
+        findViewById(R.id.homepage_respiratory_system).getLayoutParams().width = width/5;
+        findViewById(R.id.homepage_respiratory_system).getLayoutParams().height = width/5;
+
+        findViewById(R.id.homepage_exercise_system).getLayoutParams().width = width/5;
+        findViewById(R.id.homepage_exercise_system).getLayoutParams().height = width/5;
 
     }
 
@@ -178,8 +206,9 @@ public class HomePage extends AppCompatActivity {
                         Toast.LENGTH_SHORT).show();
                 boo = System.currentTimeMillis();
             } else {
+                stopService(new Intent(HomePage.this, LoginStatusService.class));
                 finish();
-                System.exit(0);
+//                System.exit(0);
             }
         }
         return false;

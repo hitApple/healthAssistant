@@ -3,31 +3,271 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/homepage_background">
 
     <RelativeLayout
-
+        android:layout_marginTop="10dp"
         android:id="@+id/full"
-
         android:layout_alignParentBottom="true"
-        android:background="#FFFFFf"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        >
 
-        <Button
+        <RelativeLayout
+            android:background="@drawable/buttongray"
+            android:id="@+id/homepage_title_find"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginLeft="20dp">
+
+            <ImageView
+
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/search"/>
+            <EditText
+                android:id="@+id/homepage_search"
+                android:layout_width="260dp"
+                android:layout_height="40dp"
+                android:background="@null"
+                />
+
+
+        </RelativeLayout>
+
+
+
+        <ImageView
+            android:id="@+id/homepage_sign_in"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/camera"
+            android:layout_marginRight="10dp"
+            android:layout_alignParentRight="true"/>
+
+
+        <RelativeLayout
+            android:id="@+id/eightsystem"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_below="@+id/homepage_title_find"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="签到"
-            android:id="@+id/homepage_sign_in"/>
+            android:layout_centerHorizontal="true">
+
+            <ImageView
+                android:id="@+id/homepage_urinary_system"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/urinarysystem"/>
+            <ImageView
+                android:id="@+id/homepage_digestive_system"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/homepage_urinary_system"
+                android:background="@drawable/digestivesystem"/>
+            <ImageView
+                android:id="@+id/homepage_circulatory_system"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/homepage_digestive_system"
+                android:background="@drawable/circulatorysystem"/>
+            <ImageView
+                android:id="@+id/homepage_endocrine_system"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_toRightOf="@+id/homepage_circulatory_system"
+                android:background="@drawable/endocrinesystem"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/homepage_nervous_system"
+                android:layout_below="@+id/homepage_circulatory_system"
+                android:background="@drawable/nervoussystem"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/homepage_reproductive_system"
+                android:layout_alignTop="@+id/homepage_nervous_system"
+                android:layout_toRightOf="@+id/homepage_nervous_system"
+                android:background="@drawable/reproductivesystem"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/homepage_respiratory_system"
+                android:layout_alignTop="@+id/homepage_nervous_system"
+                android:layout_toRightOf="@+id/homepage_reproductive_system"
+                android:background="@drawable/respiratorysystem"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/homepage_exercise_system"
+                android:layout_alignTop="@+id/homepage_nervous_system"
+                android:layout_toRightOf="@+id/homepage_respiratory_system"
+                android:background="@drawable/exercisesystem"/>
+        </RelativeLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/eightsystem">
+
+            <RelativeLayout
+                android:layout_marginTop="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/homepage_title_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/buttonwhite"
+                    android:text="标题一"
+
+                    android:paddingLeft="15dp"
+                    android:textSize="25dp"/>
+                <TextView
+
+                    android:id="@+id/homepage_title_1_content"
+                    android:layout_below="@+id/homepage_title_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="丁狗子死哪去了"
+                    android:padding="10dp"
+                    android:layout_marginTop="-5dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="#FFFFFF"
+                    />
+
+                <TextView
+                    android:layout_marginTop="20dp"
+                    android:id="@+id/homepage_title_2"
+                    android:layout_below="@id/homepage_title_1_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/buttonwhite"
+                    android:text="标题二"
+
+                    android:paddingLeft="15dp"
+                    android:textSize="25dp"/>
+                <TextView
+                    android:id="@+id/homepage_title_2_content"
+                    android:layout_below="@+id/homepage_title_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="好像有人在叫我"
+                    android:padding="10dp"
+                    android:layout_marginTop="-5dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="#FFFFFF"
+                    />
+
+                <TextView
+                    android:layout_marginTop="20dp"
+                    android:id="@+id/homepage_title_3"
+                    android:layout_below="@id/homepage_title_2_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/buttonwhite"
+                    android:text="标题三"
+
+                    android:paddingLeft="15dp"
+                    android:textSize="25dp"/>
+                <TextView
+                    android:id="@+id/homepage_title_3_content"
+                    android:layout_below="@+id/homepage_title_3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="真的有人再叫我"
+                    android:padding="10dp"
+                    android:layout_marginTop="-5dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="#FFFFFF"
+                    />
+
+                <TextView
+                    android:layout_marginTop="20dp"
+                    android:id="@+id/homepage_title_4"
+                    android:layout_below="@id/homepage_title_3_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/buttonwhite"
+                    android:text="标题四"
+
+                    android:paddingLeft="15dp"
+                    android:textSize="25dp"/>
+                <TextView
+                    android:id="@+id/homepage_title_4_content"
+                    android:layout_below="@+id/homepage_title_4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="管他哩"
+                    android:padding="10dp"
+                    android:layout_marginTop="-5dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="#FFFFFF"
+                    />
+
+                <TextView
+                    android:layout_marginTop="20dp"
+                    android:id="@+id/homepage_title_5"
+                    android:layout_below="@id/homepage_title_4_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/buttonwhite"
+                    android:text="标题五"
+
+                    android:paddingLeft="15dp"
+                    android:textSize="25dp"/>
 
 
+                <TextView
+                    android:id="@+id/homepage_title_5_content"
+                    android:layout_below="@+id/homepage_title_5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="我还是去死吧"
+                    android:padding="10dp"
+                    android:layout_marginTop="-5dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="#FFFFFF"
+                    />
+
+                <TextView
+                    android:layout_below="@id/homepage_title_5_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="50dp"/>
+            </RelativeLayout>
+
+        </ScrollView>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#FFFFFF">
         <include
             android:id="@+id/homepage_find_bottom"
             layout="@layout/bottomfunctionbar"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="65dp"
             android:layout_centerHorizontal="true"
-            android:layout_alignParentBottom="true" />
+ />
     </RelativeLayout>
     <include
         layout="@layout/plus"

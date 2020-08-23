@@ -57,11 +57,11 @@
                         android:background="@drawable/logo"
                         android:layout_centerVertical="true"
                         android:layout_toRightOf="@+id/doctor1"/>
-<!--                    <view-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="2dp"-->
-<!--                        android:background="#F2F2F9"-->
-<!--                        android:layout_alignParentBottom="true"/>-->
+                    <view
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="#F2F2F9"
+                        android:layout_alignParentBottom="true"/>
 
                 </RelativeLayout>
             </RelativeLayout>
