@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import java.io.IOException;
 
-public class Sign_In extends AppCompatActivity {
+public class Sign_In extends BaseActivity {
 
     private EditText phone;
     private EditText password;

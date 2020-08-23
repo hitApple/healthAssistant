@@ -21,6 +21,7 @@ public class DoctorAdapter extends RecyclerView.Adapter<DoctorAdapter.ViewHolder
         TextView doctorTel;
         TextView doctorDepartment;
         TextView doctorDescription;
+        TextView doctorLoginStatus;
 
         public ViewHolder(View view){
             super(view);
@@ -29,6 +30,7 @@ public class DoctorAdapter extends RecyclerView.Adapter<DoctorAdapter.ViewHolder
             doctorTel = (TextView) view.findViewById(R.id.doctor_tel);
             doctorDepartment = (TextView) view.findViewById(R.id.doctor_department);
             doctorDescription = (TextView) view.findViewById(R.id.doctor_description);
+            doctorLoginStatus = (TextView) view.findViewById(R.id.doctor_login_status);
         }
     }
 
@@ -50,7 +52,7 @@ public class DoctorAdapter extends RecyclerView.Adapter<DoctorAdapter.ViewHolder
                 intent.putExtra("room", "room_" + MainActivity.mPhone);
                 intent.putExtra("stream1", "stream_" + MainActivity.mPhone);
                 intent.putExtra("stream2", "stream_" +
-                        holder.doctorTel.getText().toString());
+                        holder.doctorTel.getText().toString().substring(4));
                 view.getContext().startActivity(intent);
             }
         });
@@ -64,6 +66,7 @@ public class DoctorAdapter extends RecyclerView.Adapter<DoctorAdapter.ViewHolder
         holder.doctorTel.setText(doctor.getPhone());
         holder.doctorDepartment.setText(doctor.getDepartment());
         holder.doctorDescription.setText(doctor.getDescription());
+        holder.doctorLoginStatus.setText(doctor.getLoginStatus());
     }
 
     @Override

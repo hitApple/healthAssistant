@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class MainActivitySignIn extends AppCompatActivity {
+public class MainActivitySignIn extends BaseActivity {
 
     private TextView tvDate;
     private CalendarRecycleView<BaseDateEntity> rcDate;

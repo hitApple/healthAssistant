@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Calendar;
 
-public class health_checkup extends AppCompatActivity {
+public class health_checkup extends BaseActivity {
 
     private Button submit;
     private TextView user_time;

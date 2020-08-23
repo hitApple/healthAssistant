@@ -254,21 +254,22 @@
             </RelativeLayout>
 
         </ScrollView>
+
+        <RelativeLayout1
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_alignParentBottom="true"
+            android:background="#FFFFFF">
+            <include
+                android:id="@+id/homepage_find_bottom"
+                layout="@layout/bottomfunctionbar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true" />
+        </RelativeLayout1>
     </RelativeLayout>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="#FFFFFF">
-        <include
-            android:id="@+id/homepage_find_bottom"
-            layout="@layout/bottomfunctionbar"
-            android:layout_width="wrap_content"
-            android:layout_height="65dp"
-            android:layout_centerHorizontal="true"
- />
-    </RelativeLayout>
+
     <include
         layout="@layout/plus"
         android:id="@+id/plus_ui"

@@ -280,7 +280,7 @@
             android:layout_alignParentBottom="true"
             android:background="#FFFFFf"
             android:layout_width="match_parent"
-            android:layout_height="65dp">
+            android:layout_height="60dp">
             <include
                 android:id="@+id/homepage_find_bottom"
                 layout="@layout/bottomfunctionbar"

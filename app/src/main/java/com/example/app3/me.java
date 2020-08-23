@@ -29,7 +29,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 
-public class me extends AppCompatActivity {
+public class me extends BaseActivity {
 
     //请求码
     private static final int PERMISSION_REQUEST_CODE = 1;
@@ -97,22 +97,16 @@ public class me extends AppCompatActivity {
         homepage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(me.this,HomePage.class));
-/*                homepage.setBackgroundColor(-3355444);
-                find.setBackgroundColor(-1);
-                link.setBackgroundColor(-1);
-                me.setBackgroundColor(-1);*/
+                startActivity(new Intent(me.this,HomePage_find.class));
+
 
             }
         });
         find.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(me.this,HomePage_find.class));
-/*                homepage.setBackgroundColor(-1);
-                find.setBackgroundColor(-3355444);
-                link.setBackgroundColor(-1);
-                me.setBackgroundColor(-1);*/
+                startActivity(new Intent(me.this,HomePage.class));
+
 
             }
         });
@@ -126,22 +120,15 @@ public class me extends AppCompatActivity {
         link.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(me.this,link.class));
-/*                homepage.setBackgroundColor(-1);
-                find.setBackgroundColor(-1);
-                link.setBackgroundColor(-3355444);
-                me.setBackgroundColor(-1);*/
+                startActivity(new Intent(me.this,ContactBaiduMap.class));
+
 
             }
         });
         me.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-/*                homepage.setBackgroundColor(-1);
-                find.setBackgroundColor(-1);
-                link.setBackgroundColor(-1);
-                me.setBackgroundColor(-3355444);*/
-                /*startActivity(new Intent(me.this,me.class));*/
+
             }
         });
         findViewById(R.id.cross).setOnClickListener(new View.OnClickListener() {
@@ -295,6 +282,20 @@ public class me extends AppCompatActivity {
     /**
      * 退出程序
      */
+/*
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            Intent home = new Intent(Intent.ACTION_MAIN);
+            home.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            home.addCategory(Intent.CATEGORY_HOME);
+            startActivity(home);
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+*/
+
     long boo = 0;
     public boolean onKeyDown(int keyCode, android.view.KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
@@ -303,8 +304,11 @@ public class me extends AppCompatActivity {
                         Toast.LENGTH_SHORT).show();
                 boo = System.currentTimeMillis();
             } else {
-                finish();
-                System.exit(0);
+                Intent home = new Intent(Intent.ACTION_MAIN);
+                home.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                home.addCategory(Intent.CATEGORY_HOME);
+                startActivity(home);
+                return true;
             }
         }
         return false;

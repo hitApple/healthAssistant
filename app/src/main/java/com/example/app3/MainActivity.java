@@ -21,7 +21,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
     private static final String TAG = "MainActivity";
     public static String mPhone = "15689712036";;
     private Button SignIn;
@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
                     mPhone = user.getText().toString();
                     startService(new Intent(MainActivity.this, LoginStatusService.class));
                     Toast.makeText(MainActivity.this, result[0], Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(MainActivity.this, HomePage.class);
+                    Intent intent = new Intent(MainActivity.this, HomePage_find.class);
                     intent.putExtra("phone", user.getText().toString());
                     finish();
                     startActivity(intent);

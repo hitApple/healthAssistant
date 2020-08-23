@@ -21,7 +21,7 @@ import java.util.List;
 
 import static android.webkit.WebSettings.ZoomDensity;
 
-public class HospitalWebView extends AppCompatActivity {
+public class HospitalWebView extends BaseActivity {
 
     private static final String TAG = "HospitalWebView";
     private TextView nameTextView;

@@ -21,7 +21,7 @@ import im.zego.zegoexpress.constants.ZegoUpdateType;
 import im.zego.zegoexpress.entity.ZegoCanvas;
 import im.zego.zegoexpress.entity.ZegoUser;
 
-public class VideoCall extends AppCompatActivity {
+public class VideoCall extends BaseActivity {
 
     String[] permissionNeeded = {
             "android.permission.CAMERA",

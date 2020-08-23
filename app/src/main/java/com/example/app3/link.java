@@ -15,7 +15,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class link extends AppCompatActivity {
+public class link extends BaseActivity {
     private RelativeLayout homepage;
     private RelativeLayout find;
     private RelativeLayout plus;
@@ -61,7 +61,7 @@ public class link extends AppCompatActivity {
         homepage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(link.this,HomePage.class));
+                startActivity(new Intent(link.this,HomePage_find.class));
 /*                homepage.setBackgroundColor(-3355444);
                 find.setBackgroundColor(-1);
                 link.setBackgroundColor(-1);
@@ -72,7 +72,8 @@ public class link extends AppCompatActivity {
         find.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(link.this,HomePage_find.class));
+
+                startActivity(new Intent(link.this,HomePage.class));
 /*                homepage.setBackgroundColor(-1);
                 find.setBackgroundColor(-3355444);
                 link.setBackgroundColor(-1);
@@ -116,6 +117,8 @@ public class link extends AppCompatActivity {
                 findViewById(R.id.plus_ui).setVisibility(View.GONE);
             }
         });
+
+
     }
     /**
      * 退出程序

@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class HomePage_find extends AppCompatActivity {
+public class HomePage_find extends BaseActivity  {
 
     private RelativeLayout homepage;
     private RelativeLayout find;
@@ -27,33 +27,6 @@ public class HomePage_find extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.homepage_find);
-/*        DisplayMetrics dm = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(dm);
-        int width = dm.widthPixels;
-        int height = dm.heightPixels;
-   //     findViewById(R.id.full).getLayoutParams().width= (int) (width*0.9F);
- //       findViewById(R.id.qwerty).getLayoutParams().height= (int) (height*0.6F);
-*//*
-        findViewById(R.id.qwerty).getLayoutParams().width= (int) (width*0.6F);
-        findViewById(R.id.xinagmu1).getLayoutParams().width= (int) (width*0.7F);
-        findViewById(R.id.homepage_find_bottom).getLayoutParams().width= (int) (width*0.9F);
-
-*//*
-
-        findViewById(R.id.homepage).getLayoutParams().width= (int) (width/7);
-        findViewById(R.id.homepage).getLayoutParams().height= (int) (width/7);
-        findViewById(R.id.find).getLayoutParams().width= (int) (width/7);
-        findViewById(R.id.find).getLayoutParams().height= (int) (width/7);
-        findViewById(R.id.plus).getLayoutParams().width= (int) (width/7);
-        findViewById(R.id.plus).getLayoutParams().height= (int) (width/7);
-        findViewById(R.id.link).getLayoutParams().width= (int) (width/7);
-        findViewById(R.id.link).getLayoutParams().height= (int) (width/7);
-        findViewById(R.id.me).getLayoutParams().width= (int) (width/7);
-        findViewById(R.id.me).getLayoutParams().height= (int) (width/7);*/
-
-
-
-
 
         homepage_find_searchicon = findViewById(R.id.homepage_find_searchicon);
         homepage_find_searchicon.setOnClickListener(new View.OnClickListener() {
@@ -69,29 +42,22 @@ public class HomePage_find extends AppCompatActivity {
         link = findViewById(R.id.link);
         me = findViewById(R.id.me);
 
-        homepage.setBackgroundColor(-1);
-        find.setBackgroundColor(-3355444);
+        homepage.setBackgroundColor(-3355444);
+        find.setBackgroundColor(-1);
         link.setBackgroundColor(-1);
         me.setBackgroundColor(-1);
         homepage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(HomePage_find.this,HomePage.class));
-/*                homepage.setBackgroundColor(-3355444);
-                find.setBackgroundColor(-1);
-                link.setBackgroundColor(-1);
-                me.setBackgroundColor(-1);*/
+               /* startActivity(new Intent(HomePage_find.this,HomePage.class));*/
 
             }
         });
         find.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-    /*          startActivity(new Intent(HomePage_find.this,HomePage_find.class));*/
-/*                homepage.setBackgroundColor(-1);
-                find.setBackgroundColor(-3355444);
-                link.setBackgroundColor(-1);
-                me.setBackgroundColor(-1);*/
+              startActivity(new Intent(HomePage_find.this,HomePage.class));
+
 
             }
         });
@@ -105,11 +71,8 @@ public class HomePage_find extends AppCompatActivity {
         link.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(HomePage_find.this,link.class));
-/*                homepage.setBackgroundColor(-1);
-                find.setBackgroundColor(-1);
-                link.setBackgroundColor(-3355444);
-                me.setBackgroundColor(-1);*/
+                startActivity(new Intent(HomePage_find.this,ContactBaiduMap.class));
+
 
             }
         });
@@ -117,10 +80,7 @@ public class HomePage_find extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(HomePage_find.this,me.class));
-/*                homepage.setBackgroundColor(-1);
-                find.setBackgroundColor(-1);
-                link.setBackgroundColor(-1);
-                me.setBackgroundColor(-3355444);*/
+
 
             }
         });
@@ -135,6 +95,19 @@ public class HomePage_find extends AppCompatActivity {
     /**
      * 退出程序
      */
+
+/*    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            Intent home = new Intent(Intent.ACTION_MAIN);
+            home.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            home.addCategory(Intent.CATEGORY_HOME);
+            startActivity(home);
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }*/
     long boo = 0;
     public boolean onKeyDown(int keyCode, android.view.KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
@@ -143,8 +116,12 @@ public class HomePage_find extends AppCompatActivity {
                         Toast.LENGTH_SHORT).show();
                 boo = System.currentTimeMillis();
             } else {
-                finish();
-                System.exit(0);
+                Intent home = new Intent(Intent.ACTION_MAIN);
+                home.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                home.addCategory(Intent.CATEGORY_HOME);
+                startActivity(home);
+//                ActivityCollector.finishAll();
+//                return true;
             }
         }
         return false;

@@ -28,7 +28,7 @@ import java.util.List;
 
 
 
-public class HomePage extends AppCompatActivity {
+public class HomePage extends BaseActivity {
     private RelativeLayout homepage;
     private RelativeLayout find;
     private RelativeLayout plus;
@@ -77,29 +77,22 @@ public class HomePage extends AppCompatActivity {
         link = findViewById(R.id.link);
         me = findViewById(R.id.me);
 
-        homepage.setBackgroundColor(-3355444);
-        find.setBackgroundColor(-1);
+        homepage.setBackgroundColor(-1);
+        find.setBackgroundColor(-3355444);
         link.setBackgroundColor(-1);
         me.setBackgroundColor(-1);
         homepage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-/*                homepage.setBackgroundColor(-3355444);
-                find.setBackgroundColor(-1);
-                link.setBackgroundColor(-1);
-                me.setBackgroundColor(-1);*/
-                /*startActivity(new Intent(HomePage.this,HomePage.class));*/
+
+                startActivity(new Intent(HomePage.this,HomePage_find.class));
             }
         });
         find.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-/*                homepage.setBackgroundColor(-1);
-                find.setBackgroundColor(-3355444);
-                link.setBackgroundColor(-1);
-                me.setBackgroundColor(-1);*/
-                startActivity(new Intent(HomePage.this,HomePage_find.class));
+
             }
         });
         plus.setOnClickListener(new View.OnClickListener() {
@@ -112,20 +105,13 @@ public class HomePage extends AppCompatActivity {
         link.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-/*                homepage.setBackgroundColor(-1);
-                find.setBackgroundColor(-1);
-                link.setBackgroundColor(-3355444);
-                me.setBackgroundColor(-1);*/
-                startActivity(new Intent(HomePage.this,link.class));
+                startActivity(new Intent(HomePage.this,ContactBaiduMap.class));
             }
         });
         me.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-/*                homepage.setBackgroundColor(-1);
-                find.setBackgroundColor(-1);
-                link.setBackgroundColor(-1);
-                me.setBackgroundColor(-3355444);*/
+
                 startActivity(new Intent(HomePage.this,me.class));
             }
         });
@@ -183,7 +169,7 @@ public class HomePage extends AppCompatActivity {
         findViewById(R.id.homepage_respiratory_system).getLayoutParams().width = width/5;
         findViewById(R.id.homepage_respiratory_system).getLayoutParams().height = width/5;
 
-        findViewById(R.id.homepage_exercise_system).getLayoutParams().width = width/5;
+        findViewById(R.id.homepage_exercise_system).getLayoutParams().width = width/4;
         findViewById(R.id.homepage_exercise_system).getLayoutParams().height = width/5;
 
     }
@@ -198,6 +184,19 @@ public class HomePage extends AppCompatActivity {
     /**
      * 退出程序
      */
+
+/*    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            Intent home = new Intent(Intent.ACTION_MAIN);
+            home.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            home.addCategory(Intent.CATEGORY_HOME);
+            startActivity(home);
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }*/
     long boo = 0;
     public boolean onKeyDown(int keyCode, android.view.KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
@@ -206,9 +205,12 @@ public class HomePage extends AppCompatActivity {
                         Toast.LENGTH_SHORT).show();
                 boo = System.currentTimeMillis();
             } else {
-                stopService(new Intent(HomePage.this, LoginStatusService.class));
-                finish();
-//                System.exit(0);
+                Intent home = new Intent(Intent.ACTION_MAIN);
+                home.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                home.addCategory(Intent.CATEGORY_HOME);
+                startActivity(home);
+//                ActivityCollector.finishAll();
+                return true;
             }
         }
         return false;

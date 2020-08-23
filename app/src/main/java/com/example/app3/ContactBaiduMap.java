@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
@@ -20,6 +21,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.baidu.location.BDAbstractLocationListener;
@@ -47,10 +49,11 @@ import com.baidu.mapapi.search.poi.PoiResult;
 import com.baidu.mapapi.search.poi.PoiSearch;
 import com.baidu.mapapi.utils.DistanceUtil;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class ContactBaiduMap extends AppCompatActivity {
+public class ContactBaiduMap extends BaseActivity {
 
     private static final String TAG = "ContactBaiduMap";
 
@@ -68,6 +71,13 @@ public class ContactBaiduMap extends AppCompatActivity {
     private ListView listView;
     private int screen_y;
 
+
+    private RelativeLayout homepage;
+    private RelativeLayout find;
+    private RelativeLayout plus;
+    private RelativeLayout link;
+    private RelativeLayout me;
+
     /**************************************以下为各种方法和内部类************************************/
 
     /***********************************活动的生命周期管理************************************/
@@ -76,6 +86,7 @@ public class ContactBaiduMap extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+
 
         //百度地图api需要的初始化操作
         mLocationClient = new LocationClient(getApplicationContext());
@@ -118,6 +129,70 @@ public class ContactBaiduMap extends AppCompatActivity {
         baiduMap.setOnMarkerClickListener(markerClickListener);
 
         baiduMap.setMyLocationEnabled(true);
+
+
+
+
+        homepage = findViewById(R.id.homepage);
+        find = findViewById(R.id.find);
+        plus = findViewById(R.id.plus);
+        link = findViewById(R.id.link);
+        me = findViewById(R.id.me);
+
+
+        homepage.setBackgroundColor(-1);
+        find.setBackgroundColor(-1);
+        link.setBackgroundColor(-3355444);
+        me.setBackgroundColor(-1);
+        homepage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ContactBaiduMap.this,HomePage_find.class));
+
+
+            }
+        });
+        find.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                startActivity(new Intent(ContactBaiduMap.this,HomePage.class));
+
+                startActivity(new Intent(ContactBaiduMap.this,HomePage_find.class));
+            }
+        });
+        plus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                findViewById(R.id.full).setVisibility(View.GONE);
+                findViewById(R.id.plus_ui).setVisibility(View.VISIBLE);
+            }
+        });
+        link.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+        me.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ContactBaiduMap.this,me.class));
+
+
+            }
+        });
+        findViewById(R.id.cross).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                findViewById(R.id.full).setVisibility(View.VISIBLE);
+                findViewById(R.id.plus_ui).setVisibility(View.GONE);
+            }
+        });
+
+
+
+
     }
 
     @Override
@@ -476,6 +551,45 @@ public class ContactBaiduMap extends AppCompatActivity {
             }
         }
     }
+
+
+
+    /**
+     * 退出程序
+     */
+/*    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            Intent home = new Intent(Intent.ACTION_MAIN);
+            home.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            home.addCategory(Intent.CATEGORY_HOME);
+            startActivity(home);
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }*/
+
+    long boo = 0;
+    public boolean onKeyDown(int keyCode, android.view.KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if ((System.currentTimeMillis() - boo) > 2000) {
+                Toast.makeText(getApplicationContext(), "再按一次返回键退出程序",
+                        Toast.LENGTH_SHORT).show();
+                boo = System.currentTimeMillis();
+            } else {
+                Intent home = new Intent(Intent.ACTION_MAIN);
+                home.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                home.addCategory(Intent.CATEGORY_HOME);
+                startActivity(home);
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+
 
     /****************************************监听器相关*********************************************/
 

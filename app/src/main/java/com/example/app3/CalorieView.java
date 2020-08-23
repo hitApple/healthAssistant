@@ -29,7 +29,7 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.ArrayList;
 
-public class CalorieView extends AppCompatActivity {
+public class CalorieView extends BaseActivity {
 
     private static final String TAG = "CalorieView";
 

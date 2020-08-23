@@ -1,65 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ContactBaiduMap">
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/full"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
 
-    <Button
-        android:id="@+id/search"
-        app:layout_constraintRight_toRightOf="@id/search_text_view"
-        app:layout_constraintTop_toTopOf="@id/search_text_view"
-        app:layout_constraintBottom_toBottomOf="@id/search_text_view"
-        android:layout_width="80dp"
-        android:layout_height="0dp"
-        android:text="搜索"/>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".ContactBaiduMap">
 
-    <com.baidu.mapapi.map.MapView
 
-        android:id="@+id/baidu_map_view2"
+            <Button
+                android:id="@+id/search"
+                app:layout_constraintRight_toRightOf="@id/search_text_view"
+                app:layout_constraintTop_toTopOf="@id/search_text_view"
+                app:layout_constraintBottom_toBottomOf="@id/search_text_view"
+                android:layout_width="80dp"
+                android:layout_height="0dp"
+                android:text="搜索"/>
+
+            <com.baidu.mapapi.map.MapView
+
+                android:id="@+id/baidu_map_view2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clickable="true"
+                android:focusable="true"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="-16dp" />
+
+            <EditText
+                android:id="@+id/search_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginEnd="80dp"
+                android:paddingEnd="40dp"
+                android:hint="请输入要搜索的城市"
+                android:paddingTop="5dp"
+                android:background="#fff"
+                android:layout_marginRight="80dp"
+                android:paddingRight="40dp" />
+
+            <Button
+                android:id="@+id/search_this"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toRightOf="@id/search_text_view"
+                app:layout_constraintBottom_toBottomOf="@id/search_text_view"
+                app:layout_constraintTop_toTopOf="@id/search_text_view"
+                android:text="当前位置"/>
+
+            <ListView
+                android:id="@+id/list_view"
+                android:background="#fff"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <RelativeLayout
+            android:layout_alignParentBottom="true"
+            android:background="#FFFFFf"
+            android:layout_width="match_parent"
+            android:layout_height="60dp">
+            <include
+                android:id="@+id/homepage_find_bottom"
+                layout="@layout/bottomfunctionbar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentBottom="true" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+
+
+    <include
+        android:id="@+id/plus_ui"
+        layout="@layout/plus"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:clickable="true"
-        android:focusable="true"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="-16dp" />
+        android:visibility="gone"/>
 
-    <EditText
-        android:id="@+id/search_text_view"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginEnd="80dp"
-        android:paddingEnd="40dp"
-        android:hint="请输入要搜索的城市"
-        android:paddingTop="5dp"
-        android:background="#fff"/>
-
-    <Button
-        android:id="@+id/search_this"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintLeft_toRightOf="@id/search_text_view"
-        app:layout_constraintBottom_toBottomOf="@id/search_text_view"
-        app:layout_constraintTop_toTopOf="@id/search_text_view"
-        android:text="当前位置"/>
-
-    <ListView
-        android:id="@+id/list_view"
-        android:background="#fff"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-/>
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

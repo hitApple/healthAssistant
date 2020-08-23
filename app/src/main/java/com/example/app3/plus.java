@@ -8,7 +8,7 @@ import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class plus  extends AppCompatActivity {
+public class plus  extends BaseActivity{
     private ImageView healthcheckup;
     private ImageView healthreport;
     private ImageView symptomconsultation;
