@@ -196,6 +196,12 @@ public class ContactBaiduMap extends BaseActivity {
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        requestLocation();
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
         mapView.onResume();
@@ -260,8 +266,6 @@ public class ContactBaiduMap extends BaseActivity {
             ActivityCompat.requestPermissions(ContactBaiduMap.this, permissions, 1);
             //申请权限之后再次创建该活动
 //            this.recreate();
-        } else{//如果权限全部申请完毕
-            requestLocation();
         }
     }
 

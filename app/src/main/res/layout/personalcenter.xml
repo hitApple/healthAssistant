@@ -272,6 +272,13 @@
                         android:textSize="26dp"
                         android:textColor="#FFFAFA"/>
                 </LinearLayout>
+                <Button
+                    android:id="@+id/exit_login"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"
+                    android:text="退出登录"/>
 
             </RelativeLayout>
         </RelativeLayout>

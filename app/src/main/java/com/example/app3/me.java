@@ -3,6 +3,7 @@ package com.example.app3;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -11,6 +12,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -159,6 +161,20 @@ public class me extends BaseActivity {
                 startActivityForResult(galleryPicker, GALLERY_REQUEST_CODE);
             }
         });
+
+        Button exitLogin = findViewById(R.id.exit_login);
+        exitLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ActivityCollector.finishAll();
+                SharedPreferences.Editor editor = getSharedPreferences("user_info", MODE_PRIVATE).edit();
+                editor.putBoolean("check_auto", false);
+                editor.putBoolean("auto", false);
+                editor.apply();
+                startActivity(new Intent(me.this, MainActivity.class));
+            }
+        });
+
     }
 
     private void createDir(){

@@ -87,29 +87,28 @@
                 android:visibility="gone"/>
         </LinearLayout>
 
-<!--        <LinearLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="10dp"-->
-<!--            android:orientation="vertical"-->
-<!--            android:gravity="right">-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:gravity="right">
 
-<!--            <Button-->
-<!--                android:id="@+id/remember_password"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="30dp"-->
-<!--                android:layout_marginBottom="5dp"-->
-<!--                android:text="记住密码"-->
-<!--                android:textSize="10sp"/>-->
+            <CheckBox
+                android:id="@+id/remember_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="记住密码"
+                android:layout_marginRight="10dp"
+                android:layout_marginEnd="10dp" />
 
-<!--            <Button-->
-<!--                android:id="@+id/auto_login"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="30dp"-->
-<!--                android:text="自动登录"-->
-<!--                android:textSize="10sp"/>-->
+            <CheckBox
+                android:id="@+id/auto_login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="自动登录"/>
 
-<!--        </LinearLayout>-->
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
