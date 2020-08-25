@@ -59,6 +59,7 @@ public class ActivityCollector {
                         intent.putExtra("room", "room_" + sendPhone);
                         intent.putExtra("stream1", "stream_" + recvPhone);
                         intent.putExtra("stream2", "stream_" + sendPhone);
+                        intent.putExtra("recv", true);
                         activity.startActivity(intent);
                     }
                 });

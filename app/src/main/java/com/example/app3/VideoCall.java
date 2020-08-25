@@ -6,16 +6,22 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.Socket;
 import java.util.ArrayList;
 
 import im.zego.zegoexpress.ZegoExpressEngine;
 import im.zego.zegoexpress.callback.IZegoEventHandler;
+import im.zego.zegoexpress.constants.ZegoAECMode;
 import im.zego.zegoexpress.constants.ZegoScenario;
 import im.zego.zegoexpress.constants.ZegoUpdateType;
 import im.zego.zegoexpress.entity.ZegoCanvas;
@@ -37,9 +43,12 @@ public class VideoCall extends BaseActivity {
     private String room = null;
     private String stream = null;
     private String stream2 = null;
+    private boolean recv = false;
 
     private Button muteButton;
     private Button microButton;
+    private EditText videoDescription;
+    private Button changeButton;
 
     private boolean useFrontCamera = true;
 
@@ -59,12 +68,18 @@ public class VideoCall extends BaseActivity {
             room = intent.getStringExtra("room");
             stream = intent.getStringExtra("stream1");
             stream2 = intent.getStringExtra("stream2");
+            recv = intent.getBooleanExtra("recv", false);
         } catch (Exception e) {
             finish();
             e.printStackTrace();
+            Toast.makeText(VideoCall.this, "遇到未知错误，请稍后重试", Toast.LENGTH_LONG)
+                    .show();
+            
             return;
         }
 
+
+        videoDescription = findViewById(R.id.video_call_description);
 
         engine.setEventHandler(new IZegoEventHandler(){
             @Override
@@ -72,20 +87,49 @@ public class VideoCall extends BaseActivity {
                 super.onRoomUserUpdate(roomID, updateType, userList);
             }
         });
+        engine.enableAEC(true);
+        engine.enableHeadphoneAEC(true);
+        engine.setAECMode(ZegoAECMode.MEDIUM);
 
-
-
-        Button startButton = findViewById(R.id.start_video);
-        startButton.setOnClickListener(new View.OnClickListener() {
+        final Button submitButton = findViewById(R.id.description_submit);
+        submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ZegoUser user = new ZegoUser(userID);
-                engine.loginRoom(room, user);
-                engine.startPublishingStream(stream);
-                engine.startPreview(new ZegoCanvas(findViewById(R.id.my_camera)));
-                engine.startPlayingStream(stream2,
-                        new ZegoCanvas(findViewById(R.id.other_side_camera)));
-
+                if (videoDescription.getText().toString().equals("") ||
+                        videoDescription.getText().toString().equals(" ")){
+                    Toast.makeText(VideoCall.this, "您还没有输入描述信息！",
+                            Toast.LENGTH_SHORT).show();
+                } else {
+                    ZegoUser zegoUser = new ZegoUser(userID);
+                    engine.loginRoom(room, zegoUser);
+                    engine.startPublishingStream(stream);
+                    engine.startPreview(new ZegoCanvas(findViewById(R.id.my_camera)));
+                    engine.startPlayingStream(stream2,
+                            new ZegoCanvas(findViewById(R.id.other_side_camera)));
+                    microButton.setVisibility(View.VISIBLE);
+                    changeButton.setVisibility(View.VISIBLE);
+                    submitButton.setVisibility(View.GONE);
+                    videoDescription.setVisibility(View.GONE);
+                    new Thread(){
+                        @Override
+                        public void run() {
+                            super.run();
+                            try {
+                                Socket socket = new Socket("39.96.71.56", 8002);
+//                                Socket socket = new Socket("10.0.2.2", 8000);
+                                OutputStream outputStream = socket.getOutputStream();
+                                outputStream.write((userID + "\n"
+                                        + stream2.substring(7) + "\n"
+                                        + videoDescription.getText().toString())
+                                        .getBytes("UTF-8"));
+                                outputStream.flush();
+                                socket.close();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }.start();
+                }
             }
         });
 
@@ -109,7 +153,7 @@ public class VideoCall extends BaseActivity {
             }
         });
 
-        Button changeButton = findViewById(R.id.change_camera);
+        changeButton = findViewById(R.id.change_camera);
         changeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -122,14 +166,25 @@ public class VideoCall extends BaseActivity {
                 }
             }
         });
-
+        if (recv){
+            videoDescription.setVisibility(View.GONE);
+            ZegoUser zegoUser = new ZegoUser(userID);
+            engine.loginRoom(room, zegoUser);
+            engine.startPublishingStream(stream);
+            engine.startPreview(new ZegoCanvas(findViewById(R.id.my_camera)));
+            engine.startPlayingStream(stream2,
+                    new ZegoCanvas(findViewById(R.id.other_side_camera)));
+            microButton.setVisibility(View.VISIBLE);
+            changeButton.setVisibility(View.VISIBLE);
+            submitButton.setVisibility(View.GONE);
+        }
     }
 
 
     @Override
     protected void onStop() {
         super.onStop();
-        finish();
+//        finish();
     }
 
     @Override

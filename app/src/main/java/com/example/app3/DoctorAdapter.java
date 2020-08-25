@@ -53,6 +53,7 @@ public class DoctorAdapter extends RecyclerView.Adapter<DoctorAdapter.ViewHolder
                 intent.putExtra("stream1", "stream_" + MainActivity.mPhone);
                 intent.putExtra("stream2", "stream_" +
                         holder.doctorTel.getText().toString().substring(4));
+                intent.putExtra("recv", false);
                 view.getContext().startActivity(intent);
             }
         });
