@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.os.IBinder;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
 import java.net.Socket;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -34,9 +36,30 @@ public class LoginStatusService extends Service {
             try {
                 Socket socket = new Socket("39.96.71.56", 8002);
 //                Socket socket = new Socket("10.0.2.2", 8000);
+                socket.setSoTimeout(2000);
                 OutputStream outputStream = socket.getOutputStream();
                 outputStream.write(MainActivity.mPhone.getBytes("UTF-8"));
                 outputStream.flush();
+                InputStream is = socket.getInputStream();
+                byte[] bytes = new byte[1024];
+                for (int i = 0; i < 3; i++) {
+                    int n = -1;
+                    try {
+                        n = is.read(bytes);
+                    } catch (Exception e) {
+                        // TODO: handle exception
+                        continue;
+                    }
+                    if(n != -1) {
+                        String[] resultStrings = new String(bytes, 0, n, "UTF-8")
+                                .split("\n");
+                        if (!resultStrings[0].equals("40")){
+                            ActivityCollector.showDialog(resultStrings[1], resultStrings[2], resultStrings[3]);
+                        }
+                        break;
+                    }
+                }
+                is.close();
                 socket.close();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -47,7 +70,9 @@ public class LoginStatusService extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        timer.cancel();
+        if (timer != null){
+            timer.cancel();
+        }
         new Thread(){
             @Override
             public void run() {

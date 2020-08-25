@@ -127,6 +127,12 @@ public class VideoCall extends BaseActivity {
 
 
     @Override
+    protected void onStop() {
+        super.onStop();
+        finish();
+    }
+
+    @Override
     protected void onDestroy() {
         engine.stopPreview();
         engine.stopPlayingStream(stream);
