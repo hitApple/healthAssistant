@@ -2,7 +2,6 @@ package com.example.app3;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
@@ -11,23 +10,27 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Paint;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+import java.util.regex.Pattern;
 
 public class CalorieView extends BaseActivity {
 
@@ -39,7 +42,16 @@ public class CalorieView extends BaseActivity {
     private static final int CAMERA_REQUEST_CODE = 3;
 
     private ProgressBar progressBar;
-    private TextView textView;
+    private EditText text1;
+    private EditText text2;
+    private EditText text3;
+    private TextView text4;
+    private EditText text5;
+    private ImageView rightArrow;
+    private ImageView displayPic;
+
+    private String[] foodInfo;
+    private boolean[] format = {false, true};
 
     //需要请求的权限
     private static final String[] PERMISSIONS = {
@@ -61,7 +73,30 @@ public class CalorieView extends BaseActivity {
         progressBar = (ProgressBar) findViewById(R.id.waiting_calorie_server);
         progressBar.setVisibility(View.GONE);
 
-        textView = (TextView) findViewById(R.id.calorie_display);
+        text1 = findViewById(R.id.calorie_display1);
+        text2 = findViewById(R.id.calorie_display2);
+        text3 = findViewById(R.id.calorie_display3);
+        text4 = findViewById(R.id.calorie_display4);
+        text5 = findViewById(R.id.calorie_display5);
+
+        text2.setOnFocusChangeListener(new TextView.OnFocusChangeListener() {
+
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                format[0] = checkFormat(text2, b);
+            }
+        });
+        text5.setOnFocusChangeListener(new TextView.OnFocusChangeListener() {
+
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                format[1] = checkFormat(text5, b);
+            }
+        });
+
+        text4.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG); //下划线
+        text4.getPaint().setAntiAlias(true);//抗锯齿
+        text5.setText("1");
 
         Button galleryButton = (Button) findViewById(R.id.open_gallery);
         galleryButton.setOnClickListener(new View.OnClickListener() {
@@ -72,6 +107,7 @@ public class CalorieView extends BaseActivity {
                 startActivityForResult(photoPickerIntent, GALLERY_REQUEST_CODE);
             }
         });
+
         Button cameraButton = (Button) findViewById(R.id.open_camera);
         cameraButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,6 +115,39 @@ public class CalorieView extends BaseActivity {
                 Intent intent1 = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 // 启动相机
                 startActivityForResult(intent1, CAMERA_REQUEST_CODE);
+            }
+        });
+
+        displayPic = findViewById(R.id.display_image);
+        rightArrow = findViewById(R.id.right_arrow);
+        rightArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                format[0] = checkFormat(text2, false);
+                format[1] = checkFormat(text5, false);
+
+                if (!format[0]){
+                    Toast.makeText(CalorieView.this, "您的卡路里信息未填写或填写错误",
+                            Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (!format[1]){
+                    Toast.makeText(CalorieView.this, "您的数量信息未填写或填写错误",
+                            Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                Calorie calorie = new Calorie();
+                calorie.setPhone(MainActivity.mPhone);
+                calorie.setFoodName(foodInfo[0]);
+                calorie.setCalorieAmount(Integer.parseInt(text2.getText().toString())
+                * Integer.parseInt(text5.getText().toString()));
+                Calendar calendar = Calendar.getInstance();
+                calorie.setYear(calendar.get(Calendar.YEAR));
+                calorie.setMonth(calendar.get(Calendar.MONTH) + 1);
+                calorie.setDay(calendar.get(Calendar.DAY_OF_MONTH));
+                calorie.save();
+                recreate();
             }
         });
 
@@ -108,7 +177,7 @@ public class CalorieView extends BaseActivity {
                         final InputStream imageStream = getContentResolver().openInputStream(imageUri);
                         bitmap = BitmapFactory.decodeStream(imageStream);
 //                        Log.d(TAG, "onActivityResult: I have gotten a photo!");
-
+                        displayPic.setImageBitmap(bitmap);
                         startSearchImage(bitmap);
                     } catch (FileNotFoundException | JSONException e) {
                         e.printStackTrace();
@@ -130,6 +199,7 @@ public class CalorieView extends BaseActivity {
                         if (bitmap == null){
                             return;
                         }
+                        displayPic.setImageBitmap(bitmap);
                         startSearchImage(bitmap);
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -164,10 +234,18 @@ public class CalorieView extends BaseActivity {
         }
         progressBar.setVisibility(View.GONE);
         if (isOutOfTime){
+            Toast.makeText(CalorieView.this, "请求超时，请稍后重试", Toast.LENGTH_SHORT)
+                    .show();
             return;
         }
         SearchImage.SearchResult[] searchResults = searchImage.getSearchResults();
-        textView.setText(searchResults[0].toString());
+        foodInfo = searchResults[0].toString().split("\n");
+        text1.setText(foodInfo[0].substring(3));
+        text2.setText(foodInfo[1]);
+        text3.setText(foodInfo[2].substring(6));
+        text4.setText(foodInfo[3]);
+        foodInfo[0] = text1.getText().toString();
+        format[0] = true;
     }
 
     /**
@@ -206,6 +284,27 @@ public class CalorieView extends BaseActivity {
                     return;
                 }
             }
+        }
+    }
+
+
+    public static boolean isNumeric(String string){
+        Pattern pattern = Pattern.compile("[0-9]*");
+        return pattern.matcher(string).matches();
+    }
+
+    private boolean checkFormat(EditText editText, boolean focused){
+        if (!focused){
+            if (!isNumeric(editText.getText().toString())){
+                Toast.makeText(CalorieView.this, "请输入正确的数字！", Toast.LENGTH_SHORT).show();
+                editText.setText("");
+                return false;
+            } else {
+                editText.setText(String.valueOf(Integer.parseInt(editText.getText().toString())));
+                return true;
+            }
+        } else {
+            return true;
         }
     }
 

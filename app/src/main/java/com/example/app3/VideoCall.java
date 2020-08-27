@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.PowerManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -51,6 +52,7 @@ public class VideoCall extends BaseActivity {
     private Button changeButton;
 
     private boolean useFrontCamera = true;
+    private PowerManager.WakeLock mWakeLock;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +80,9 @@ public class VideoCall extends BaseActivity {
             return;
         }
 
+        PowerManager manager = (PowerManager) getSystemService(POWER_SERVICE);
+        mWakeLock = manager.newWakeLock(PowerManager.ACQUIRE_CAUSES_WAKEUP,
+                getClass().getName());
 
         videoDescription = findViewById(R.id.video_call_description);
 
@@ -180,10 +185,18 @@ public class VideoCall extends BaseActivity {
         }
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mWakeLock.acquire(30*60*1000L /*30 minutes*/);
+    }
 
     @Override
     protected void onStop() {
         super.onStop();
+        if (mWakeLock.isHeld()){
+            mWakeLock.release();
+        }
 //        finish();
     }
 

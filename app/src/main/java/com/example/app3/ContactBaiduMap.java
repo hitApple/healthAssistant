@@ -465,6 +465,8 @@ public class ContactBaiduMap extends BaseActivity {
                 Toast.makeText(ContactBaiduMap.this, "请填写城市信息！",
                         Toast.LENGTH_SHORT).show();
             } else{
+                Toast.makeText(ContactBaiduMap.this,
+                        "点击列表中的医院信息可访问对应网站并联系医生", Toast.LENGTH_SHORT).show();
                 poiSearch.searchInCity(new PoiCitySearchOption()
                         .city(city)
                         .keyword("医院")
@@ -487,6 +489,8 @@ public class ContactBaiduMap extends BaseActivity {
                 Toast.makeText(ContactBaiduMap.this, "暂时无法获取位置信息，请稍后再试",
                         Toast.LENGTH_SHORT).show();
             } else{
+                Toast.makeText(ContactBaiduMap.this,
+                        "点击列表中的医院信息可访问对应网站并联系医生", Toast.LENGTH_SHORT).show();
                 poiSearch.searchInCity(new PoiCitySearchOption()
                         .city(bdLocation.getCity())
                         .keyword("医院")

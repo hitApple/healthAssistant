@@ -20,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.litepal.LitePal;
+import org.litepal.tablemanager.Connector;
 
 import java.io.File;
 import java.io.IOException;
@@ -43,6 +44,7 @@ public class MainActivity extends BaseActivity {    private static final String 
         setContentView(R.layout.activity_main);
 
         importDatabases();
+        Connector.getDatabase();
 
         user = findViewById(R.id.user);
         password =  findViewById(R.id.password);

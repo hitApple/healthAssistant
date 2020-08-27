@@ -153,11 +153,10 @@ public class SearchImage extends Thread{
 
         @Override
         public String toString() {
-            return "has_calorie=" + has_calorie + '\n' +
-                    "calorie='" + calorie + '\n' +
-                    "name='" + name + '\n' +
-                    "description='" + description + '\n' +
-                    "probability='" + probability;
+            return  "名称：" + name + '\n' +
+                    calorie + '\n' +
+                    "描述/备注：" + (description.length() <= 80 ? description : description.substring(0,77) + "...") + '\n' +
+                    "可能性：" + probability;
         }
     }
 
