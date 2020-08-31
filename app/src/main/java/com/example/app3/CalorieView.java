@@ -137,17 +137,14 @@ public class CalorieView extends BaseActivity {
                     return;
                 }
 
-                Calorie calorie = new Calorie();
-                calorie.setPhone(MainActivity.mPhone);
-                calorie.setFoodName(foodInfo[0]);
-                calorie.setCalorieAmount(Integer.parseInt(text2.getText().toString())
-                * Integer.parseInt(text5.getText().toString()));
-                Calendar calendar = Calendar.getInstance();
-                calorie.setYear(calendar.get(Calendar.YEAR));
-                calorie.setMonth(calendar.get(Calendar.MONTH) + 1);
-                calorie.setDay(calendar.get(Calendar.DAY_OF_MONTH));
-                calorie.save();
-                recreate();
+                // Calorie calorie = new Calorie();
+                // calorie.setFoodName(foodInfo[0]);
+                // calorie.setCalorieAmount(Integer.parseInt(text2.getText().toString())
+                //         * Integer.parseInt(text5.getText().toString()));
+                // Calendar calendar = Calendar.getInstance();
+                // calorie.setYear(calendar.get(Calendar.YEAR));
+                // calorie.setMonth(calendar.get(Calendar.MONTH) + 1);
+                // calorie.setDay(calendar.get(Calendar.DAY_OF_MONTH));
             }
         });
 

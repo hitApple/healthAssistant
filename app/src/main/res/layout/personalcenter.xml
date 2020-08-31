@@ -61,13 +61,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="157dp">
 
-                <ImageView
+                <com.example.app3.CircleImageView
+                    android:layout_marginLeft="10dp"
+                    android:id="@+id/personal_pic"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="20dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/setting"/>
+
+
+                <!--<ImageView
 
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_marginTop="40dp"
-                    android:background="@drawable/setting"
-                    android:id="@+id/personal_pic"/>
+                    android:src="@drawable/setting"
+                    android:id="@+id/personal_pic"/>-->
 
                 <TextView
                     android:id="@+id/username"
@@ -78,7 +88,7 @@
                     android:layout_marginLeft="10dp"
                     android:textSize="25dp"
                     android:layout_toRightOf="@+id/personal_pic"/>
-                <LinearLayout
+                <!--<LinearLayout
                     android:layout_alignParentRight="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -114,7 +124,7 @@
                             android:background="@drawable/camera" />
                     </LinearLayout>
 
-                </LinearLayout>
+                </LinearLayout>-->
             </RelativeLayout>
 
             <RelativeLayout
@@ -298,7 +308,6 @@
         </RelativeLayout>
     </RelativeLayout>
 
-
     <include
         android:id="@+id/plus_ui"
         layout="@layout/plus"
@@ -306,5 +315,60 @@
         android:layout_height="match_parent"
         android:visibility="gone"/>
 
+    <RelativeLayout
+        android:id="@+id/head_portrait"
+        android:background="#000000"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.example.app3.CircleImageView
+            android:layout_centerHorizontal="true"
+
+            android:id="@+id/personal_pic_2"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="60dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/setting"/>
+        <RelativeLayout
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <Button
+                android:id="@+id/personal_take_photo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:text="拍照"
+                android:textSize="25dp"/>
+            <Button
+
+                android:id="@+id/personal_photo_album"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/personal_take_photo"
+                android:layout_alignRight="@+id/personal_take_photo"
+                android:layout_alignLeft="@+id/personal_take_photo"
+                android:text="相册"
+                android:textSize="25dp"/>
+
+            <Button
+                android:id="@+id/photo_cancel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/personal_photo_album"
+                android:layout_alignRight="@+id/personal_take_photo"
+                android:layout_alignLeft="@+id/personal_take_photo"
+                android:text="取消"
+                android:textSize="25dp"/>
+        </RelativeLayout>
+
+
+
+    </RelativeLayout>
 
 </RelativeLayout>
