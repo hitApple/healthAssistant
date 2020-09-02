@@ -81,9 +81,8 @@ public class VideoCall extends BaseActivity {
         }
 
         PowerManager manager = (PowerManager) getSystemService(POWER_SERVICE);
-        mWakeLock = manager.newWakeLock(PowerManager.ACQUIRE_CAUSES_WAKEUP,
+        mWakeLock = manager.newWakeLock(PowerManager.FULL_WAKE_LOCK ,
                 getClass().getName());
-
         videoDescription = findViewById(R.id.video_call_description);
 
         engine.setEventHandler(new IZegoEventHandler(){

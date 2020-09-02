@@ -17,6 +17,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -52,8 +53,9 @@ public class me extends BaseActivity {
     private RelativeLayout link;
     private RelativeLayout me;
 
-    private CircleImageView ms_img_show;
+    private CircleImageView ms_img_show;//Circle
     private  ImageView personal_pic_2;
+    private  ImageView personal_setting;
 
     private Button btn_camera;
     private Button btn_picture;
@@ -80,8 +82,10 @@ public class me extends BaseActivity {
         link = findViewById(R.id.link);
         me = findViewById(R.id.me);
         ms_img_show =  findViewById(R.id.personal_pic);
+
         btn_camera  =  findViewById(R.id.personal_take_photo);
         btn_picture =  findViewById(R.id.personal_photo_album);
+
         ms_img_show.setImageURI(Uri.parse(picPath));
 
         personal_pic_2 =findViewById(R.id.personal_pic_2);
@@ -91,11 +95,11 @@ public class me extends BaseActivity {
         find.setBackgroundColor(-1);
         link.setBackgroundColor(-1);
         me.setBackgroundColor(-3355444);
+        personal_setting = findViewById(R.id.personal_setting);
         homepage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(com.example.app3.me.this, HomePage_find.class));
-
 
             }
         });
@@ -117,7 +121,7 @@ public class me extends BaseActivity {
         link.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(com.example.app3.me.this, ContactBaiduMap.class));
+                startActivity(new Intent(me.this, ContactBaiduMap.class));
 
 
             }
@@ -137,23 +141,6 @@ public class me extends BaseActivity {
         });
 
 
-        //点击照相按钮
-        btn_camera.setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.N)
-            @Override
-            public void onClick(View view) {
-
-                Intent intent = new Intent(
-                        MediaStore.ACTION_IMAGE_CAPTURE);
-
-                startActivityForResult(intent, TAKE_PHOTO);
-
-
-
-
-            }
-        });
-
         findViewById(R.id.photo_cancel).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -171,7 +158,7 @@ public class me extends BaseActivity {
             }
         });
 
-        findViewById(R.id.personal_take_photo).setOnClickListener(new View.OnClickListener() {
+        btn_camera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(
@@ -181,34 +168,15 @@ public class me extends BaseActivity {
             }
         });
 
-        findViewById(R.id.personal_photo_album).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(
-                        Intent.ACTION_PICK, null);
-                intent.setDataAndType(
-                        MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-                        "image/*");
-                startActivityForResult(intent,
-                        PHOTO_ALBUM);
-            }
-        });
-
-        //点击图片按钮
         btn_picture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
-                Intent intent = new Intent(
-                        Intent.ACTION_PICK, null);
-                intent.setDataAndType(
-                        MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-                        "image/*");
-                startActivityForResult(intent,
-                        PHOTO_ALBUM);
+                Intent intent = new Intent(Intent.ACTION_PICK, null);
+                intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
+                startActivityForResult(intent, PHOTO_ALBUM);
             }
         });
+
 
         Button exitLogin = findViewById(R.id.exit_login);
         exitLogin.setOnClickListener(new View.OnClickListener() {
@@ -220,6 +188,14 @@ public class me extends BaseActivity {
                 editor.putBoolean("auto", false);
                 editor.apply();
                 startActivity(new Intent(com.example.app3.me.this, MainActivity.class));
+            }
+        });
+
+        LinearLayout myFriend = findViewById(R.id.doctor3);
+        myFriend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(me.this, FriendView.class));
             }
         });
 
@@ -236,16 +212,15 @@ public class me extends BaseActivity {
         switch (requestCode) {
             case TAKE_PHOTO:
                 Bitmap bitmap = data.getParcelableExtra("data");
-                startPhotoZoom(Uri.parse(MediaStore.Images.Media.insertImage(getContentResolver(), bitmap, null,null)), 400);
+                startPhotoZoom(Uri.parse(MediaStore.Images.Media.insertImage(getContentResolver(), bitmap, null,null)), 150);
                 break;
 
             case PHOTO_ALBUM:
                 if (data != null)
-                    startPhotoZoom(data.getData(), 400);
+                    startPhotoZoom(data.getData(), 150);
                 break;
 
             case PICTURE_CUT:
-
                 if (data != null)
                     setPicToView(data);
                 break;

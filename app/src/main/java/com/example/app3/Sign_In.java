@@ -46,10 +46,13 @@ public class Sign_In extends BaseActivity {
             @Override
             public void onClick(View view) {
 
-                password.getText().toString();
                 if (password.getText().toString().equals("")){
                     Toast.makeText(Sign_In.this, "密码不能为空！",
                             Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (!checkPasswordFormat(password.getText().toString())){
                     return;
                 }
 
@@ -81,6 +84,28 @@ public class Sign_In extends BaseActivity {
                     Toast.makeText(Sign_In.this, result[0], Toast.LENGTH_SHORT).show();
                     isSendSms = true;
                 }
+                sendSms.setEnabled(false);
+                sendSms.setText("等待1分钟");
+                new Thread(){
+                    @Override
+                    public void run() {
+                        super.run();
+                        try {
+                            Thread.sleep(60000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                            return;
+                        }
+                        Sign_In.this.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                sendSms.setEnabled(true);
+                                sendSms.setText("发送验证码");
+                            }
+                        });
+
+                    }
+                }.start();
             }
         });
 
@@ -89,6 +114,7 @@ public class Sign_In extends BaseActivity {
         userSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 if (!isSendSms){
                     Toast.makeText(Sign_In.this, "您还没有发送验证码！",
                             Toast.LENGTH_SHORT).show();
@@ -122,4 +148,28 @@ public class Sign_In extends BaseActivity {
             }
         });
     }
+
+    private boolean checkPasswordFormat(String password){
+        if (password.length() < 8){
+            Toast.makeText(Sign_In.this, "密码不能少于8位！", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        char[] passwordChars = password.toCharArray();
+        boolean hasNumber = false;
+        boolean hasLetter = false;
+        for (char c : passwordChars){
+            if (Character.isDigit(c)){
+                hasNumber = true;
+            }
+            if (Character.isLetter(c)){
+                hasLetter = true;
+            }
+        }
+        if (!hasNumber || !hasLetter){
+            Toast.makeText(Sign_In.this, "密码必须包括字母和数字", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
+    }
+
 }

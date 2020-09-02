@@ -184,7 +184,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="医生信息"
+                        android:text="我的医院"
                         android:textSize="26dp"
                         android:textColor="#FFFAFA"/>
                 </LinearLayout>
@@ -202,10 +202,10 @@
                         android:layout_width="40dp"
                         android:layout_height="wrap_content"
                         android:background="@drawable/doctorinformation"/>
-                    <TextView
+                    ..<TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="医生信息"
+                        android:text="我的朋友"
                         android:textSize="26dp"
                         android:textColor="#FFFAFA"/>
                 </LinearLayout>
@@ -224,7 +224,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="医生信息"
+                        android:text="我的朋友"
                         android:textSize="26dp"
                         android:textColor="#FFFAFA"/>
                 </LinearLayout>
@@ -246,49 +246,55 @@
                         android:textSize="26dp"
                         android:textColor="#FFFAFA"/>
                 </LinearLayout>
-                <LinearLayout
-                    android:id="@+id/doctor5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:background="@drawable/buttonblue"
-                    android:layout_marginTop="220dp"
-                    android:layout_alignLeft="@id/doctor1">
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/doctorinformation"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="医生信息"
-                        android:textSize="26dp"
-                        android:textColor="#FFFAFA"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:id="@+id/doctor6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:background="@drawable/buttonblue"
-                    android:layout_alignTop="@id/doctor5"
-                    android:layout_alignRight="@id/doctor2">
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/doctorinformation"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="医生信息"
-                        android:textSize="26dp"
-                        android:textColor="#FFFAFA"/>
-                </LinearLayout>
+<!--                <LinearLayout-->
+<!--                    android:id="@+id/doctor5"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="50dp"-->
+<!--                    android:background="@drawable/buttonblue"-->
+<!--                    android:layout_marginTop="220dp"-->
+<!--                    android:layout_alignLeft="@id/doctor1">-->
+<!--                    <ImageView-->
+<!--                        android:layout_width="40dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:background="@drawable/doctorinformation"/>-->
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="医生信息"-->
+<!--                        android:textSize="26dp"-->
+<!--                        android:textColor="#FFFAFA"/>-->
+<!--                </LinearLayout>-->
+<!--                <LinearLayout-->
+<!--                    android:id="@+id/doctor6"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="50dp"-->
+<!--                    android:background="@drawable/buttonblue"-->
+<!--                    android:layout_alignTop="@id/doctor5"-->
+<!--                    android:layout_alignRight="@id/doctor2">-->
+<!--                    <ImageView-->
+<!--                        android:layout_width="40dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:background="@drawable/doctorinformation"/>-->
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="医生信息"-->
+<!--                        android:textSize="26dp"-->
+<!--                        android:textColor="#FFFAFA"/>-->
+<!--                </LinearLayout>-->
                 <Button
                     android:id="@+id/exit_login"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentRight="true"
+                    android:lines="2"
+                    android:layout_alignTop="@+id/doctor4"
+                    android:layout_marginTop="100dp"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginRight="50dp"
+                    android:layout_centerInParent="true"
+                    android:textSize="20sp"
                     android:text="退出登录"/>
+
 
             </RelativeLayout>
         </RelativeLayout>
