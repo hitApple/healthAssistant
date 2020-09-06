@@ -6,10 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -22,7 +19,6 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
@@ -96,6 +92,13 @@ public class me extends BaseActivity {
         link.setBackgroundColor(-1);
         me.setBackgroundColor(-3355444);
         personal_setting = findViewById(R.id.personal_setting);
+        personal_setting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(me.this, HealthCheckUp.class));
+            }
+        });
+
         homepage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -265,7 +268,7 @@ public class me extends BaseActivity {
 
 
 
-/*******************************************************************************************/
+    /*******************************************************************************************/
 
 
 
@@ -281,7 +284,7 @@ public class me extends BaseActivity {
 
 
 
-        private void createDir(){
+    private void createDir(){
         File file = new File(path);
         if (!file.exists()){
             file.mkdir();

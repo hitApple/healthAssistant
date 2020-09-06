@@ -49,7 +49,7 @@ public class ActivityCollector {
                 AlertDialog.Builder dialog = new AlertDialog.Builder(activity);
                 dialog.setTitle("视频通话邀请");
                 dialog.setMessage("用户" + sendPhone + "想邀请您参与视频通话，" + "原因是：\n" + description
-                        + "是否接受?");
+                        + "\n" + "是否接受?");
                 dialog.setCancelable(true);
                 dialog.setPositiveButton("接受", new DialogInterface.OnClickListener() {
                     @Override

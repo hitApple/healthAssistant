@@ -159,8 +159,42 @@
                     android:textSize="40dp"
                     android:textStyle="italic"
                     android:typeface="serif" />
+                <LinearLayout
+                    android:layout_marginTop="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
-                <EditText
+                    <TextView
+                        android:gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="选择省"
+                        android:id="@+id/province"
+                        android:textSize="20sp"
+                        />
+                    <TextView
+                        android:gravity="center"
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="选择市"
+                        android:id="@+id/city"
+                        android:textSize="20sp"
+                        />
+                    <TextView
+                        android:gravity="center"
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="选择区"
+                        android:id="@+id/county"
+                        android:textSize="20sp"
+                        />
+                </LinearLayout>
+
+<!--                <EditText
                     android:id="@+id/user_city"
                     android:layout_width="250dp"
                     android:layout_height="40dp"
@@ -168,7 +202,7 @@
                     android:background="@drawable/user_age_background"
                     android:maxLines="1"
                     android:text=""
-                    android:textSize="25dp" />
+                    android:textSize="25dp" />-->
 
                 <TextView
                     android:layout_width="wrap_content"
