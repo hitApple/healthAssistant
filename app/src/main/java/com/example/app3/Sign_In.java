@@ -11,6 +11,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Sign_In extends BaseActivity {
 
@@ -22,6 +24,7 @@ public class Sign_In extends BaseActivity {
     private Button userSignIn;
     private Button sendSms;
     private Boolean isSendSms = false;
+    private Timer timer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,9 +106,14 @@ public class Sign_In extends BaseActivity {
                                 sendSms.setText("发送验证码");
                             }
                         });
-
+                        if (timer != null){
+                            timer.cancel();
+                        }
                     }
                 }.start();
+
+                timer = new Timer();
+                timer.schedule(new CountDownTimerMasker(), 1000L, 1000L);
             }
         });
 
@@ -170,6 +178,23 @@ public class Sign_In extends BaseActivity {
             return false;
         }
         return true;
+    }
+
+    class CountDownTimerMasker extends TimerTask{
+
+        int countDown = 60;
+
+        @Override
+        public void run() {
+            Sign_In.this.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    countDown--;
+                    String smsText = "(" + countDown + ")秒";
+                    sendSms.setText(smsText);
+                }
+            });
+        }
     }
 
 }

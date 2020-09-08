@@ -10,6 +10,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -29,7 +30,13 @@ public class HospitalWebView extends BaseActivity {
     private ProgressBar progressBar;
     private boolean isFound = false;
     private String url;
+    private String hospitalTel;
+    private String hospitalAddress;
+    private String hospitalDistance;
+    private String hospitalTime;
     public static String hospitalName;
+    ImageView favouritesImage;
+    ImageView nonFavouritesImage;
 
     @SuppressLint("SetJavaScriptEnabled")
     @Override
@@ -38,7 +45,12 @@ public class HospitalWebView extends BaseActivity {
         setContentView(R.layout.hospital_detail);
 
         try {
-            url = getIntent().getStringExtra("医院名称");
+            Intent intent = getIntent();
+            url = intent.getStringExtra("医院名称");
+            hospitalTel = intent.getStringExtra("医院电话");
+            hospitalAddress = intent.getStringExtra("医院地址");
+            hospitalDistance = intent.getStringExtra("医院距离");
+            hospitalTime = intent.getStringExtra("医院时间");
             if (url == null || url.equals("")){
                 throw new Exception();
             }
@@ -79,6 +91,46 @@ public class HospitalWebView extends BaseActivity {
             findViewById(R.id.progress_bar).setVisibility(View.GONE);
             return;
         }
+
+        HospitalFavourites favourites = LitePal.select("hospitalName")
+                                               .where("hospitalName = ?", hospitalName)
+                                               .findFirst(HospitalFavourites.class);
+
+        favouritesImage = findViewById(R.id.favorite);
+        nonFavouritesImage = findViewById(R.id.non_favorite);
+
+        if (favourites != null){
+            nonFavouritesImage.setVisibility(View.GONE);
+            favouritesImage.setVisibility(View.VISIBLE);
+        }
+
+        nonFavouritesImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                HospitalFavourites favourites = new HospitalFavourites();
+                favourites.setOwnerTel(MainActivity.mPhone);
+                favourites.setHospitalName(hospitalName);
+                favourites.setHospitalTel(hospitalTel);
+                favourites.setHospitalAddress(hospitalAddress);
+                favourites.setHospitalDistance(hospitalDistance);
+                favourites.setHospitalTime(hospitalTime);
+                favourites.save();
+                nonFavouritesImage.setVisibility(View.GONE);
+                favouritesImage.setVisibility(View.VISIBLE);
+            }
+        });
+
+        favouritesImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                HospitalFavourites favourites1 = LitePal.where("ownerTel = ? and hospitalName = ?",
+                        MainActivity.mPhone, hospitalName)
+                        .findFirst(HospitalFavourites.class);
+                favourites1.delete();
+                nonFavouritesImage.setVisibility(View.VISIBLE);
+                favouritesImage.setVisibility(View.GONE);
+            }
+        });
 
         webView = (WebView) findViewById(R.id.hospital_web_view);
         progressBar = (ProgressBar)findViewById(R.id.progress_bar);
@@ -122,13 +174,4 @@ public class HospitalWebView extends BaseActivity {
 
     }
 
-
-//    public void loadUrl(String url)
-//    {
-//        if(webView != null)
-//        {
-//            webView.loadUrl(url);
-//            webView.reload();
-//        }
-//    }
 }

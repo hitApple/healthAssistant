@@ -57,9 +57,7 @@ public class me extends BaseActivity {
     private Button btn_picture;
 
     private String path;
-    private String picPath;
-
-
+    public static String picPath;
 
     @SuppressLint("WrongViewCast")
     protected void onCreate(Bundle savedInstanceState) {

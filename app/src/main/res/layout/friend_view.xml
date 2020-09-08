@@ -4,19 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FriendView"
-    android:background="@drawable/homepage">
+    tools:context=".FriendView">
 
-    <TextView
-        android:id="@+id/friend_view_tittle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:text="我的朋友"
-        android:textSize="35sp"
-        android:textColor="#fff"/>
+    <include layout="@layout/my_friend_view_title"
+        android:id="@+id/friend_view_tittle"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/friend_view_recycler"

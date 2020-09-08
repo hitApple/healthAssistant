@@ -1,6 +1,7 @@
 package com.example.app3;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Point;
@@ -10,6 +11,7 @@ import android.util.Log;
 import android.view.Display;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -136,7 +138,18 @@ public class HomePage extends BaseActivity {
 
         setWidthAndHeight();
 
-
+        new Thread(){
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(300);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                super.run();
+                closeKeyboard();
+            }
+        }.start();
 
     }
 
@@ -305,6 +318,18 @@ public class HomePage extends BaseActivity {
         ArrayList<BaseDateEntity> list = new ArrayList<>();
 
         return list;
+    }
+
+    /**
+     * 调用之后可以关闭键盘
+     */
+    private void closeKeyboard() {
+        InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        if(imm.isActive()&&getCurrentFocus()!=null){
+            if (getCurrentFocus().getWindowToken()!=null) {
+                imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+            }
+        }
     }
 
 }

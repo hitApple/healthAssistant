@@ -448,6 +448,11 @@ public class ContactBaiduMap extends BaseActivity {
         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
             Intent intent = new Intent(ContactBaiduMap.this, HospitalWebView.class);
             intent.putExtra("医院名称", hospitalList.get(i).getName());
+            intent.putExtra("医院电话", hospitalList.get(i).getTel());
+            intent.putExtra("医院地址", hospitalList.get(i).getAddress());
+            intent.putExtra("医院距离", String.valueOf(hospitalList.get(i).getDistance()));
+            intent.putExtra("医院时间", hospitalList.get(i).getTime());
+
             startActivity(intent);
         }
     }

@@ -104,6 +104,14 @@ public class FriendView extends BaseActivity {
             }
         });
 
+        ImageView backImage = findViewById(R.id.friend_view_back);
+        backImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
     }
 
     private List<Friend> changeToFriend(List<FriendContact> myContacts){

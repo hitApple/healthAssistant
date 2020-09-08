@@ -57,7 +57,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintRight_toLeftOf="@id/favorite_text"
         android:src="@drawable/favorite"
-        android:visibility="invisible"/>
+        android:visibility="gone"/>
 
     <TextView
         android:id="@+id/favorite_text"
