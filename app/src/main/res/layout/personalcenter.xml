@@ -170,7 +170,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="405dp">
                 <LinearLayout
-                    android:id="@+id/doctor1"
+                    android:id="@+id/my_hospital"
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"
                     android:background="@drawable/buttonblue"
@@ -195,7 +195,7 @@
                     android:background="@drawable/buttonblue"
 
 
-                    android:layout_alignTop="@id/doctor1"
+                    android:layout_alignTop="@id/my_hospital"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="15dp">
                     <ImageView
@@ -210,12 +210,12 @@
                         android:textColor="#FFFAFA"/>
                 </LinearLayout>
                 <LinearLayout
-                    android:id="@+id/doctor3"
+                    android:id="@+id/my_friend"
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"
                     android:background="@drawable/buttonblue"
                     android:layout_marginTop="130dp"
-                    android:layout_alignLeft="@id/doctor1"
+                    android:layout_alignLeft="@id/my_hospital"
                     >
                     <ImageView
                         android:layout_width="40dp"
@@ -234,7 +234,7 @@
                     android:layout_height="50dp"
                     android:background="@drawable/buttonblue"
                     android:layout_alignRight="@id/doctor2"
-                    android:layout_alignTop="@id/doctor3">
+                    android:layout_alignTop="@id/my_friend">
                     <ImageView
                         android:layout_width="40dp"
                         android:layout_height="wrap_content"

@@ -6,25 +6,24 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Point;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.Display;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.litepal.LitePal;
+
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Iterator;
 import java.util.List;
 
 
@@ -47,11 +46,11 @@ public class HomePage extends BaseActivity {
     private RecyclerView rcList;
 
 
-
     @SuppressLint("WrongViewCast")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.homepage);
+
         homepage_sign_in = findViewById(R.id.homepage_sign_in);
         homepage_sign_in.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -61,6 +60,20 @@ public class HomePage extends BaseActivity {
                     initView();
                     initData();
                     initEvent();
+/*                    Calendar calendar = Calendar.getInstance();
+                    SignInTable da = new SignInTable();
+                    da.setYearMonthDay(2020, 9,8);
+                    da.save();
+*//*                  da.setYearMonthDay(2020, 9,7);
+                    da.save();*/
+                  List<SignInTable> DateList = LitePal.findAll(SignInTable.class);
+
+                    for (SignInTable sin : DateList) {
+                        list.add(new BaseDateEntity(sin.getYear(),sin.getMonth(),sin.getDay()));
+                    }
+/*                  list.add(new BaseDateEntity(2020, 9,8));
+                    list.add(new BaseDateEntity(2020, 9,7));*/
+                    rcDate.initRecordList(list);
                 }
             });
 
@@ -142,7 +155,7 @@ public class HomePage extends BaseActivity {
             @Override
             public void run() {
                 try {
-                    Thread.sleep(300);
+                    Thread.sleep(400);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -150,6 +163,8 @@ public class HomePage extends BaseActivity {
                 closeKeyboard();
             }
         }.start();
+
+
 
     }
 
@@ -211,7 +226,7 @@ public class HomePage extends BaseActivity {
         return super.onKeyDown(keyCode, event);
     }*/
     long boo = 0;
-    public boolean onKeyDown(int keyCode, android.view.KeyEvent event) {
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             if ((System.currentTimeMillis() - boo) > 2000) {
                 Toast.makeText(getApplicationContext(), "再按一次返回键退出程序",
@@ -297,7 +312,7 @@ public class HomePage extends BaseActivity {
 
             @Override
             public void onDateItemClick(DateEntity dateEntity) {
-                //Toast.makeText(MainActivity.this, "点击日期 " + dateEntity.date, Toast.LENGTH_SHORT).show();
+                Toast.makeText(HomePage.this, "点击日期 " + dateEntity.date, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -308,6 +323,11 @@ public class HomePage extends BaseActivity {
                 list.add(new BaseDateEntity(calendar.get(Calendar.YEAR), (calendar.get(Calendar.MONTH) + 1),calendar.get(Calendar.DAY_OF_MONTH)));
                 Log.e("XXP", calendar.get(Calendar.YEAR)+"--"+(calendar.get(Calendar.MONTH) + 1)+"---"+calendar.get(Calendar.DAY_OF_MONTH));
                 rcDate.initRecordList(list);
+
+                SignInTable da = new SignInTable();
+                da.setYearMonthDay(calendar.get(Calendar.YEAR), (calendar.get(Calendar.MONTH) + 1),calendar.get(Calendar.DAY_OF_MONTH));
+                da.save();
+
                 Toast.makeText(HomePage.this, "点击签到 " , Toast.LENGTH_SHORT).show();
             }
         });

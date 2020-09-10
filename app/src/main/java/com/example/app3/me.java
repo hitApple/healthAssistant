@@ -192,11 +192,19 @@ public class me extends BaseActivity {
             }
         });
 
-        LinearLayout myFriend = findViewById(R.id.doctor3);
+        LinearLayout myFriend = findViewById(R.id.my_friend);
         myFriend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(me.this, FriendView.class));
+            }
+        });
+
+        LinearLayout myHospital = findViewById(R.id.my_hospital);
+        myHospital.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(me.this, FavouritesHospitalView.class));
             }
         });
 

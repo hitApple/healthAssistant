@@ -85,12 +85,6 @@ public class HospitalWebView extends BaseActivity {
             }
         }
 
-        if (!isFound){
-            TextView isFoundTextView = (TextView) findViewById(R.id.tip_text_view);
-            isFoundTextView.setVisibility(View.VISIBLE);
-            findViewById(R.id.progress_bar).setVisibility(View.GONE);
-            return;
-        }
 
         HospitalFavourites favourites = LitePal.select("hospitalName")
                                                .where("hospitalName = ?", hospitalName)
@@ -131,6 +125,13 @@ public class HospitalWebView extends BaseActivity {
                 favouritesImage.setVisibility(View.GONE);
             }
         });
+
+        if (!isFound){
+            TextView isFoundTextView = (TextView) findViewById(R.id.tip_text_view);
+            isFoundTextView.setVisibility(View.VISIBLE);
+            findViewById(R.id.progress_bar).setVisibility(View.GONE);
+            return;
+        }
 
         webView = (WebView) findViewById(R.id.hospital_web_view);
         progressBar = (ProgressBar)findViewById(R.id.progress_bar);

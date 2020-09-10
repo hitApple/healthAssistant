@@ -392,8 +392,26 @@ public class ContactBaiduMap extends BaseActivity {
                         R.layout.hospital_item, hospitalList);
                 listView.setVisibility(View.VISIBLE);
                 listView.setAdapter(adapter);
+                listView.setEnabled(false);
 
                 startAnimation();
+                new Thread(){
+                    @Override
+                    public void run() {
+                        super.run();
+                        try {
+                            Thread.sleep(3000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        ContactBaiduMap.this.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                listView.setEnabled(true);
+                            }
+                        });
+                    }
+                }.start();
 //                poiSearch.searchPoiDetail((new PoiDetailSearchOption()).poiUids(poiInfo1.uid));
 //                // uid的集合，最多可以传入10个uid，多个uid之间用英文逗号分隔。
 
