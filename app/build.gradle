@@ -29,13 +29,32 @@ android {
 }
 
 dependencies {
+    implementation 'im.zego:express-video:1.13.0'
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     implementation files('libs/BaiduLBS_Android.jar')
     implementation 'org.litepal.guolindev:core:3.1.1'
+    implementation files('libs/slf4j-simple-1.7.25.jar')
+    implementation files('libs/slf4j-api-1.7.25.jar')
+    implementation files('libs/json-20160810.jar')
+    implementation files('libs/aip-java-sdk-4.15.1.jar')
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    //noinspection GradleCompatible
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    //gson
+    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+    //OptionsPickerView(城市三级联动)
+    implementation 'com.contrarywind:Android-PickerView:3.2.4'
+    //butterknife
+    implementation 'com.jakewharton:butterknife:8.8.1'
 
 }

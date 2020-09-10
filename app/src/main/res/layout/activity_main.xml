@@ -17,10 +17,10 @@
             layout="@layout/log_in"
             />
 
-        <include
+<!--        <include
             android:id="@+id/SignInUI"
             layout="@layout/sign_in"
-            android:visibility="gone"/>
+            android:visibility="gone"/>-->
 
     <!--        <LinearLayout
             android:layout_width="match_parent"
@@ -300,12 +300,12 @@
         android:text="百度地图"/>
 
     <Button
-        android:id="@+id/jumpToWebView"
+        android:id="@+id/jumpToCalorieView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:text="医院网站"/>
+        android:text="卡路里检测"/>
 
     <!--测试用button--><!--测试用button--><!--测试用button--><!--测试用button--><!--测试用button-->
 
