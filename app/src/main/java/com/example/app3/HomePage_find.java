@@ -3,16 +3,12 @@ package com.example.app3;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
-import android.view.Display;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 public class HomePage_find extends BaseActivity  {
 
@@ -56,7 +52,7 @@ public class HomePage_find extends BaseActivity  {
         find.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-              startActivity(new Intent(HomePage_find.this,HomePage.class));
+              startActivity(new Intent(HomePage_find.this, HomePage.class));
 
 
             }
@@ -79,7 +75,7 @@ public class HomePage_find extends BaseActivity  {
         me.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(HomePage_find.this,me.class));
+                startActivity(new Intent(HomePage_find.this, com.example.app3.me.class));
 
 
             }

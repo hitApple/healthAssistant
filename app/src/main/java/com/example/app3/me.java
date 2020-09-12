@@ -80,7 +80,12 @@ public class me extends BaseActivity {
         btn_camera  =  findViewById(R.id.personal_take_photo);
         btn_picture =  findViewById(R.id.personal_photo_album);
 
-        ms_img_show.setImageURI(Uri.parse(picPath));
+        if(new File(picPath).exists()){
+            ms_img_show.setImageURI(Uri.parse(picPath));
+        }
+
+
+//        ms_img_show.setImageURI(Uri.parse(picPath));
 
         personal_pic_2 =findViewById(R.id.personal_pic_2);
 
@@ -93,7 +98,7 @@ public class me extends BaseActivity {
         personal_setting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(me.this, HealthCheckUp.class));
+                startActivity(new Intent(com.example.app3.me.this, HealthCheckUp.class));
             }
         });
 
@@ -122,7 +127,7 @@ public class me extends BaseActivity {
         link.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(me.this, ContactBaiduMap.class));
+                startActivity(new Intent(com.example.app3.me.this, ContactBaiduMap.class));
 
 
             }
@@ -196,7 +201,7 @@ public class me extends BaseActivity {
         myFriend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(me.this, FriendView.class));
+                startActivity(new Intent(com.example.app3.me.this, FriendView.class));
             }
         });
 
@@ -204,7 +209,7 @@ public class me extends BaseActivity {
         myHospital.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(me.this, FavouritesHospitalView.class));
+                startActivity(new Intent(com.example.app3.me.this, FavouritesHospitalView.class));
             }
         });
 

@@ -78,6 +78,7 @@ public class CalorieView extends BaseActivity {
         text3 = findViewById(R.id.calorie_display3);
         text4 = findViewById(R.id.calorie_display4);
         text5 = findViewById(R.id.calorie_display5);
+        text5.setText("1");
 
         text2.setOnFocusChangeListener(new TextView.OnFocusChangeListener() {
 
@@ -96,7 +97,6 @@ public class CalorieView extends BaseActivity {
 
         text4.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG); //下划线
         text4.getPaint().setAntiAlias(true);//抗锯齿
-        text5.setText("1");
 
         Button galleryButton = (Button) findViewById(R.id.open_gallery);
         galleryButton.setOnClickListener(new View.OnClickListener() {
@@ -126,6 +126,12 @@ public class CalorieView extends BaseActivity {
                 format[0] = checkFormat(text2, false);
                 format[1] = checkFormat(text5, false);
 
+                if (text1.getText().toString().equals("")){
+                    Toast.makeText(CalorieView.this, "您的名称信息还未填写",
+                            Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 if (!format[0]){
                     Toast.makeText(CalorieView.this, "您的卡路里信息未填写或填写错误",
                             Toast.LENGTH_SHORT).show();
@@ -137,16 +143,34 @@ public class CalorieView extends BaseActivity {
                     return;
                 }
 
-                // Calorie calorie = new Calorie();
-                // calorie.setFoodName(foodInfo[0]);
-                // calorie.setCalorieAmount(Integer.parseInt(text2.getText().toString())
-                //         * Integer.parseInt(text5.getText().toString()));
-                // Calendar calendar = Calendar.getInstance();
-                // calorie.setYear(calendar.get(Calendar.YEAR));
-                // calorie.setMonth(calendar.get(Calendar.MONTH) + 1);
-                // calorie.setDay(calendar.get(Calendar.DAY_OF_MONTH));
+                Calorie calorie = new Calorie();
+                calorie.setPhone(MainActivity.mPhone);
+                calorie.setFoodName(text1.getText().toString());
+                calorie.setCalorieAmount(Integer.parseInt(text2.getText().toString())
+                        * Integer.parseInt(text5.getText().toString()));
+                Calendar calendar = Calendar.getInstance();
+                calorie.setYear(calendar.get(Calendar.YEAR));
+                calorie.setMonth(calendar.get(Calendar.MONTH) + 1);
+                calorie.setDay(calendar.get(Calendar.DAY_OF_MONTH));
+                calorie.save();
+                text1.setText("");
+                text2.setText("");
+                text3.setText("");
+                text4.setText("");
+                text5.setText("1");
+                recreate();
             }
         });
+
+        Button hasFinished = findViewById(R.id.has_finished);
+        hasFinished.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                rightArrow.performClick();
+                startActivity(new Intent(CalorieView.this, CalorieResult.class));
+            }
+        });
+
 
     }
 
@@ -292,6 +316,10 @@ public class CalorieView extends BaseActivity {
 
     private boolean checkFormat(EditText editText, boolean focused){
         if (!focused){
+            if (editText.getText().toString().equals("")){
+                Toast.makeText(CalorieView.this, "您还没有输入信息！", Toast.LENGTH_SHORT).show();
+                return false;
+            }
             if (!isNumeric(editText.getText().toString())){
                 Toast.makeText(CalorieView.this, "请输入正确的数字！", Toast.LENGTH_SHORT).show();
                 editText.setText("");

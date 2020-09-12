@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import org.litepal.LitePal;
 import org.litepal.crud.LitePalSupport;
@@ -74,7 +75,25 @@ public class FriendView extends BaseActivity {
             public void onClick(View view) {
 
                 String friendTelString = friendTelText.getText().toString();
+                if (friendTelString.equals("")){
+                    Toast.makeText(FriendView.this, "您还没有填写朋友的电话信息！",
+                            Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                for (int i = 0; i < friendTelString.length(); i++){
+                    if (!(friendTelString.charAt(i) >= '0' && friendTelString.charAt(i) <= '9')){
+                        Toast.makeText(FriendView.this, "电话信息的格式不正确！",
+                                Toast.LENGTH_SHORT).show();
+                        friendTelText.setText("");
+                        return;
+                    }
+                }
                 String friendNameString = friendNameText.getText().toString();
+                if (friendNameString.equals("")){
+                    Toast.makeText(FriendView.this, "您还没有填写朋友的名称信息！",
+                            Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
                 Friend friend1 = new Friend();
                 friend1.setTel(friendTelString);
@@ -111,7 +130,6 @@ public class FriendView extends BaseActivity {
                 finish();
             }
         });
-
     }
 
     private List<Friend> changeToFriend(List<FriendContact> myContacts){

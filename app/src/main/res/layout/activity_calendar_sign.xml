@@ -16,11 +16,6 @@
             android:layout_height="330dp"
             android:background="#836FFF"
             android:orientation="vertical">
-
-
-
-
-
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rc_list"
                 android:layout_width="match_parent"
@@ -171,7 +166,7 @@
                     android:id="@+id/go_back"
                     android:layout_width="225dp"
                     android:layout_height="50dp"
-                    android:background="@mipmap/icon_qt_sign_b"
+                    android:background="@mipmap/icon_qt_sign_bbb"
                     android:text="返回" />
 
                 <ImageView

@@ -1,19 +1,12 @@
 package com.example.app3;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
-import android.view.Display;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.WindowManager;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 public class link extends BaseActivity {
     private RelativeLayout homepage;
@@ -73,7 +66,7 @@ public class link extends BaseActivity {
             @Override
             public void onClick(View view) {
 
-                startActivity(new Intent(link.this,HomePage.class));
+                startActivity(new Intent(link.this, HomePage.class));
 /*                homepage.setBackgroundColor(-1);
                 find.setBackgroundColor(-3355444);
                 link.setBackgroundColor(-1);
@@ -102,7 +95,7 @@ public class link extends BaseActivity {
         me.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(link.this,me.class));
+                startActivity(new Intent(link.this, com.example.app3.me.class));
 /*                homepage.setBackgroundColor(-1);
                 find.setBackgroundColor(-1);
                 link.setBackgroundColor(-1);

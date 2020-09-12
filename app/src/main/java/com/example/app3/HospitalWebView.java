@@ -120,7 +120,9 @@ public class HospitalWebView extends BaseActivity {
                 HospitalFavourites favourites1 = LitePal.where("ownerTel = ? and hospitalName = ?",
                         MainActivity.mPhone, hospitalName)
                         .findFirst(HospitalFavourites.class);
-                favourites1.delete();
+                if (favourites1 != null){
+                    favourites1.delete();
+                }
                 nonFavouritesImage.setVisibility(View.VISIBLE);
                 favouritesImage.setVisibility(View.GONE);
             }

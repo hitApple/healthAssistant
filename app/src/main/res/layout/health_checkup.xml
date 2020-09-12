@@ -21,27 +21,28 @@
             android:background="@drawable/healthassisant"
             tools:ignore="MissingConstraints" />
 
-        <Button
-            android:id="@+id/healthcheckup_submit"
-            android:layout_width="150dp"
-            android:layout_height="60dp"
-            android:layout_marginRight="28dp"
-            android:layout_marginBottom="32dp"
-            android:background="@drawable/buttongreen"
-            android:text="保存"
-            android:textSize="30dp"
-            android:layout_marginLeft="30dp"
-            android:layout_alignParentBottom="true"
-            android:layout_toRightOf="@+id/picture"
-            tools:ignore="MissingConstraints" />
+        <LinearLayout
+            android:id="@+id/gobackfull"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#9B30FF">
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:id="@+id/go_back"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/goback"/>
+
+        </LinearLayout>
+
+
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="600dp"
-            android:layout_marginTop="20dp"
             android:layout_marginLeft="20dp"
             android:id="@+id/parent"
-            android:layout_marginStart="20dp"
+            android:layout_below="@+id/gobackfull"
             tools:ignore="MissingConstraints">
 
             <ScrollView
@@ -144,7 +145,7 @@
 
                     </RadioGroup>
 
-                    <TextView
+                    <!--<TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="你的年龄是？"
@@ -159,7 +160,7 @@
                         android:layout_gravity="right"
                         android:background="@drawable/user_age_background"
                         android:maxLength="3"
-                        android:maxLines="1" />
+                        android:maxLines="1" />-->
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -400,6 +401,16 @@
                         android:background="@drawable/user_age_background"
 
                         android:textSize="25dp" />
+
+
+                    <Button
+                        android:id="@+id/healthcheckup_submit"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/buttongreen"
+                        android:text="保存"
+                        android:textSize="30dp" />
                 </LinearLayout>
             </ScrollView>
         </androidx.constraintlayout.widget.ConstraintLayout>

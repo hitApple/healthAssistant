@@ -1,7 +1,6 @@
 package com.example.app3;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
@@ -156,7 +155,7 @@ public class ContactBaiduMap extends BaseActivity {
             @Override
             public void onClick(View view) {
 
-                startActivity(new Intent(ContactBaiduMap.this,HomePage.class));
+                startActivity(new Intent(ContactBaiduMap.this, HomePage.class));
 
                 startActivity(new Intent(ContactBaiduMap.this,HomePage_find.class));
             }
@@ -177,7 +176,7 @@ public class ContactBaiduMap extends BaseActivity {
         me.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(ContactBaiduMap.this,me.class));
+                startActivity(new Intent(ContactBaiduMap.this, com.example.app3.me.class));
 
 
             }

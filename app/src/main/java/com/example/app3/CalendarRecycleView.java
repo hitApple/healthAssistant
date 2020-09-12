@@ -54,6 +54,12 @@ public class CalendarRecycleView <T extends BaseDateEntity> extends RecyclerView
         });
     }
 
+    public void initRecordList2(ArrayList<SignInTable> list) {
+        mCalendarTool.initRecordList(list);
+        mCalendarTool.initDateList();
+        mAdapter.notifyDataSetChanged();
+    }
+
     public void initRecordList(ArrayList<T> list) {
         mCalendarTool.initRecordList(list);
         mCalendarTool.initDateList();

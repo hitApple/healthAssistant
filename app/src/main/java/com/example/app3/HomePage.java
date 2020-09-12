@@ -2,7 +2,6 @@ package com.example.app3;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Point;
 import android.os.Bundle;
@@ -15,7 +14,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -23,7 +21,6 @@ import org.litepal.LitePal;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Iterator;
 import java.util.List;
 
 
@@ -127,7 +124,7 @@ public class HomePage extends BaseActivity {
             @Override
             public void onClick(View view) {
 
-                startActivity(new Intent(HomePage.this,me.class));
+                startActivity(new Intent(HomePage.this, com.example.app3.me.class));
             }
         });
         findViewById(R.id.cross).setOnClickListener(new View.OnClickListener() {
@@ -138,12 +135,12 @@ public class HomePage extends BaseActivity {
             }
         });
 
-        Intent intent = getIntent();
-        try {
-            memberWelcome(intent.getStringExtra("phone"));
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+//        Intent intent = getIntent();
+//        try {
+//            memberWelcome(intent.getStringExtra("phone"));
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
 /*        DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
         int width = dm.widthPixels;
@@ -204,9 +201,9 @@ public class HomePage extends BaseActivity {
 
 
 
-    private static final String[] memberPhones = {
-            "15689712036", "19861807360", "13184116753","15689711359","13954159704"
-    };
+//    private static final String[] memberPhones = {
+//            "15689712036", "19861807360", "13184116753","15689711359","13954159704"
+//    };
 
 
     /**
@@ -244,27 +241,27 @@ public class HomePage extends BaseActivity {
         return false;
     }
 
-    private void memberWelcome(String phone) throws InterruptedException {
-        if (phone == null){
-            return;
-        }
-        for (String string : memberPhones){
-            if (phone.equals(string)){
-                AlertDialog.Builder dialog = new AlertDialog.Builder(HomePage.this);
-                dialog.setTitle("欢迎！");
-                dialog.setMessage("检测到您为健康助手的测试人员\n本程序在这里诚挚的欢迎您!\n感谢您为健康助手所做的突出贡献!");
-                dialog.setCancelable(true);
-                dialog.setPositiveButton("谢谢", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-
-                    }
-                });
-                dialog.show();
-                break;
-            }
-        }
-    }
+//    private void memberWelcome(String phone) throws InterruptedException {
+//        if (phone == null){
+//            return;
+//        }
+//        for (String string : memberPhones){
+//            if (phone.equals(string)){
+//                AlertDialog.Builder dialog = new AlertDialog.Builder(HomePage.this);
+//                dialog.setTitle("欢迎！");
+//                dialog.setMessage("检测到您为健康助手的测试人员\n本程序在这里诚挚的欢迎您!\n感谢您为健康助手所做的突出贡献!");
+//                dialog.setCancelable(true);
+//                dialog.setPositiveButton("谢谢", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialogInterface, int i) {
+//
+//                    }
+//                });
+//                dialog.show();
+//                break;
+//            }
+//        }
+//    }
 
     private void initView() {
         tvDate = findViewById(R.id.tv_date);

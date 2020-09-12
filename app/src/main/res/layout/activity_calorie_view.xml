@@ -7,25 +7,41 @@
     tools:context=".CalorieView"
     android:background="@drawable/homepage_background">
 
-<!--    <TextView-->
-<!--        android:id="@+id/calorie_title"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        app:layout_constraintLeft_toLeftOf="parent"-->
-<!--        app:layout_constraintRight_toRightOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        android:text="检测到的食物为："-->
-<!--        android:textSize="25sp"-->
-<!--        app:layout_constraintVertical_bias="0.3"/>-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/calorie_view_tittle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent">
 
-<!--    <LinearLayout-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/open_gallery"-->
-<!--        app:layout_constraintLeft_toLeftOf="parent"-->
-<!--        android:layout_marginTop="30dp">-->
-<!--        -->
-<!--    </LinearLayout>-->
+        <ImageView
+            android:id="@+id/calorie_view_back"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:src="@drawable/arrow_left"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/calorie_tittle_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/calorie_view_back"
+            android:text="卡路里记录"
+            android:textSize="25sp"
+            android:layout_marginTop="8dp"/>
+
+        <ImageView
+            android:id="@+id/calorie_view_calendar"
+            android:layout_width="25dp"
+            android:layout_height="35dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/calorie_tittle_text"
+            android:src="@drawable/calendar"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraint_content"
@@ -99,7 +115,16 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             android:layout_marginTop="20dp"
-            app:layout_constraintHorizontal_bias="0.45"/>
+            app:layout_constraintHorizontal_bias="0.25"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintRight_toLeftOf="@id/right_arrow"
+            app:layout_constraintTop_toTopOf="@id/right_arrow"
+            android:layout_marginTop="30dp"
+            android:textSize="20sp"
+            android:text="下一个："/>
 
         <ImageView
             android:id="@+id/right_arrow"
@@ -109,6 +134,16 @@
             app:layout_constraintTop_toBottomOf="@id/calorie_display5"
             android:layout_marginTop="30dp"
             android:src="@drawable/right_arrow"/>
+
+        <Button
+            android:id="@+id/has_finished"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/right_arrow"
+            android:layout_marginTop="20dp"
+            android:text="完成今日填写"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -118,7 +153,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/open_camera"
         android:text="上传图片"/>
 
     <Button
@@ -126,8 +161,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:text="上传照片"/>
+        app:layout_constraintBottom_toTopOf="@id/constraint_content"
+        android:text="拍照"/>
 
     <ProgressBar
         android:id="@+id/waiting_calorie_server"
@@ -140,3 +175,25 @@
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+    <!--    <TextView-->
+    <!--        android:id="@+id/calorie_title"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        app:layout_constraintLeft_toLeftOf="parent"-->
+    <!--        app:layout_constraintRight_toRightOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent"-->
+    <!--        android:text="检测到的食物为："-->
+    <!--        android:textSize="25sp"-->
+    <!--        app:layout_constraintVertical_bias="0.3"/>-->
+
+    <!--    <LinearLayout-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        app:layout_constraintTop_toBottomOf="@id/open_gallery"-->
+    <!--        app:layout_constraintLeft_toLeftOf="parent"-->
+    <!--        android:layout_marginTop="30dp">-->
+    <!--        -->
+    <!--    </LinearLayout>-->
