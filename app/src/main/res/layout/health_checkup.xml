@@ -31,7 +31,7 @@
                 android:layout_height="50dp"
                 android:id="@+id/go_back"
                 android:layout_marginLeft="10dp"
-                android:background="@drawable/goback"/>
+                android:background="@drawable/arrow_left"/>
 
         </LinearLayout>
 

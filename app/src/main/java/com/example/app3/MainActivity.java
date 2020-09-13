@@ -27,7 +27,7 @@ import java.io.IOException;
 import java.util.List;
 
 public class MainActivity extends BaseActivity {    private static final String TAG = "MainActivity";
-    public static String mPhone = "15689712036";;
+    public static String mPhone = "1";;
     private Button SignIn;
     private Button LogIn;
 

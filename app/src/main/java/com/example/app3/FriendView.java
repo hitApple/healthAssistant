@@ -1,10 +1,5 @@
 package com.example.app3;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
@@ -15,11 +10,20 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import org.litepal.LitePal;
-import org.litepal.crud.LitePalSupport;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import org.litepal.LitePal;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class FriendView extends BaseActivity {
 
@@ -33,6 +37,8 @@ public class FriendView extends BaseActivity {
     private List<Friend> friendList;
     private RecyclerView friendViewRecycler;
     private FriendAdapter friendAdapter;
+
+    private Timer timer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -132,6 +138,13 @@ public class FriendView extends BaseActivity {
         });
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        timer = new Timer();
+        timer.schedule(new checkLoginTimer(friendList, friendViewRecycler), 0L, 10000L);
+    }
+
     private List<Friend> changeToFriend(List<FriendContact> myContacts){
         List<Friend> contactList = new ArrayList<>();
 
@@ -144,14 +157,21 @@ public class FriendView extends BaseActivity {
             return contactList;
         }
 
-        Friend friend = new Friend();
+        Friend friend;
         for (FriendContact contact : myContacts){
+            friend = new Friend();
             friend.setName(contact.getFriendName());
             friend.setTel(contact.getFriendTel());
             contactList.add(friend);
         }
 
         return contactList;
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        timer.cancel();
     }
 
     /**
@@ -162,6 +182,86 @@ public class FriendView extends BaseActivity {
         if(imm.isActive()&&getCurrentFocus()!=null){
             if (getCurrentFocus().getWindowToken()!=null) {
                 imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+            }
+        }
+    }
+
+    class checkLoginTimer extends TimerTask {
+
+        List<Friend> friendList;
+        RecyclerView recyclerView;
+
+        public checkLoginTimer(List<Friend> friendList, RecyclerView recyclerView){
+            this.friendList = friendList;
+            this.recyclerView = recyclerView;
+        }
+
+        @Override
+        public void run() {
+            try {
+                Socket socket = new Socket("39.96.71.56", 8003);
+                socket.setSoTimeout(500);
+//                Socket socket = new Socket("10.0.2.2", 8000);
+                OutputStream outputStream = socket.getOutputStream();
+                StringBuilder builder = new StringBuilder();
+                for (Friend friend : friendList){
+                    builder.append(friend.getTel().substring(4));
+                    builder.append("\n");
+                }
+                outputStream.write(builder.toString().getBytes("UTF-8"));
+                outputStream.flush();
+                InputStream is = socket.getInputStream();
+                byte[] bytes = new byte[1024];
+                for (int i = 0; i < 3; i++) {
+                    int n = -1;
+                    try {
+                        n = is.read(bytes);
+                    } catch (Exception e) {
+                        continue;
+                    }
+                    if(n != -1) {
+                        try {
+                            boolean changed = false;
+                            char[] loginStatuses = new String(bytes, 0, n,
+                                    "UTF-8").toCharArray();
+                            for (int j = 0; j < friendList.size(); j++){
+                                Friend friend = friendList.get(j);
+                                if (friend.getStatus().equals("离线") && loginStatuses[j] != '0'){
+                                    friend.setStatus("在线");
+                                    friendList.set(j, friend);
+                                    changed = true;
+                                } else if (friend.getStatus().equals("在线") && loginStatuses[j] == '0'){
+                                    friend.setStatus("离线");
+                                    friendList.set(j, friend);
+                                    changed = true;
+                                }
+                            }
+                            if (changed){
+                                FriendView.this.runOnUiThread(new Runnable() {
+                                    public void run() {
+                                        recyclerView.setAdapter(new FriendAdapter(friendList));
+                                    }
+                                });
+                            }
+
+                            break;
+                        } catch (NumberFormatException e) {
+                            e.printStackTrace();
+                            return;
+                        } catch (ArrayIndexOutOfBoundsException e){
+                            e.printStackTrace();
+                            return;
+                        } catch (Exception e){
+                            e.printStackTrace();
+                            return;
+                        }
+                    }
+
+                }
+                is.close();
+                socket.close();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
     }

@@ -24,12 +24,14 @@ public class FriendAdapter extends RecyclerView.Adapter<FriendAdapter.ViewHolder
         View friendView;
         TextView friendName;
         TextView friendTel;
+        TextView friendLogin;
 
         public ViewHolder(View view){
             super(view);
             friendView = view;
             friendName = view.findViewById(R.id.friend_name);
             friendTel = view.findViewById(R.id.friend_tel);
+            friendLogin = view.findViewById(R.id.friend_login_status);
         }
     }
 
@@ -61,6 +63,7 @@ public class FriendAdapter extends RecyclerView.Adapter<FriendAdapter.ViewHolder
         Friend friend = mFriendsList.get(position);
         holder.friendName.setText(friend.getName());
         holder.friendTel.setText(friend.getTel());
+        holder.friendLogin.setText(friend.getStatus());
 
     }
 

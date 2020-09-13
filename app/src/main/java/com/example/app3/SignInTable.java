@@ -3,6 +3,7 @@ package com.example.app3;
 import org.litepal.crud.LitePalSupport;
 
 public class SignInTable extends LitePalSupport {
+    public String phone;
     public int year;
     public int month;
     public int day;
@@ -34,5 +35,13 @@ public class SignInTable extends LitePalSupport {
         this.year = year ;
         this.month = month ;
         this.day = day ;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }

@@ -13,26 +13,32 @@
         android:id="@+id/full"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <ImageView
-            android:id="@+id/homepage_find_searchicon"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:background="@drawable/search"
-            android:contentDescription="TODO" />
-        <EditText
-            android:layout_toRightOf="@+id/homepage_find_searchicon"
-            android:id="@+id/homepage_find_search"
-            android:layout_width="250dp"
+        <RelativeLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/buttongreen"/>
+            android:layout_centerHorizontal="true">
+            <ImageView
+                android:id="@+id/homepage_find_searchicon"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:background="@drawable/search"
+                android:contentDescription="TODO" />
+            <EditText
+                android:layout_toRightOf="@+id/homepage_find_searchicon"
+                android:id="@+id/homepage_find_search"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/buttongreen"/>
 
 
-        <ImageView
-            android:layout_toRightOf="@+id/homepage_find_search"
-            android:layout_width="36dp"
-            android:layout_height="40dp"
-            android:layout_marginLeft="20dp"
-            android:background="@drawable/message" />
+            <ImageView
+                android:layout_toRightOf="@+id/homepage_find_search"
+                android:layout_width="36dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="20dp"
+                android:background="@drawable/message" />
+
+        </RelativeLayout>
 
 
 

@@ -2,7 +2,7 @@
 <litepal>
 
     <dbname value="HospitalWebsite"/>
-    <version value="9"/>
+    <version value="10"/>
 
     <list>
         <mapping class="com.example.app3.HospitalWeb"/>

@@ -4,6 +4,7 @@ public class Friend {
 
     private String name = "姓名： 暂无信息";
     private String tel = "电话： 暂无信息";
+    private String status = "离线";
 
     public String getName() {
         return "昵称： " + name;
@@ -19,5 +20,13 @@ public class Friend {
 
     public void setTel(String tel) {
         this.tel = tel;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

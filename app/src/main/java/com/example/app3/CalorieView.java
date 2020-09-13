@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
 import android.content.Intent;
@@ -11,18 +13,22 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONException;
+import org.litepal.LitePal;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
@@ -49,6 +55,12 @@ public class CalorieView extends BaseActivity {
     private EditText text5;
     private ImageView rightArrow;
     private ImageView displayPic;
+
+    private TextView tvDate;
+    private CalendarRecycleView<BaseDateEntity> rcDate;
+    private RelativeLayout rlSignK;
+    private ArrayList<BaseDateEntity> list;
+    private RecyclerView rcList;
 
     private String[] foodInfo;
     private boolean[] format = {false, true};
@@ -172,6 +184,115 @@ public class CalorieView extends BaseActivity {
         });
 
 
+        ImageView calendarImage = findViewById(R.id.calorie_view_calendar);
+        calendarImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                findViewById(R.id.full).setVisibility(View.GONE);
+                findViewById(R.id.activity_calendar_sign_in).setVisibility(View.VISIBLE);
+                initView();
+                initData();
+                initEvent();
+//                Calendar calendar = Calendar.getInstance();
+//                SignInTable da = new SignInTable();
+//                da.setPhone(MainActivity.mPhone);
+//                da.setYearMonthDay(2020, 9,8);
+//                da.save();
+/*                  da.setYearMonthDay(2020, 9,7);
+                    da.save();*/
+                List<SignInTable> DateList = LitePal.where("phone = ?",
+                        MainActivity.mPhone).find(SignInTable.class);
+
+                for (SignInTable sin : DateList) {
+                    list.add(new BaseDateEntity(sin.getYear(),sin.getMonth(),sin.getDay()));
+                }
+/*                  list.add(new BaseDateEntity(2020, 9,8));
+                    list.add(new BaseDateEntity(2020, 9,7));*/
+                rcDate.initRecordList(list);
+            }
+        });
+        findViewById(R.id.go_back).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                findViewById(R.id.full).setVisibility(View.VISIBLE);
+                findViewById(R.id.activity_calendar_sign_in).setVisibility(View.GONE);
+            }
+        });
+
+
+    }
+    private void initView() {
+        tvDate = findViewById(R.id.tv_date);
+        rcDate = findViewById(R.id.recycle_view);
+        rlSignK = findViewById(R.id.rl_sign_k);
+        rcList = findViewById(R.id.rc_list);
+
+    }
+    private void initData() {
+        list = new ArrayList<>();
+        Calendar calendar = Calendar.getInstance();
+        tvDate.setText(calendar.get(Calendar.YEAR) + "年" + (calendar.get(Calendar.MONTH) + 1) + "月");
+        list.add(new BaseDateEntity(2019, 9, 12));
+        list.add(new BaseDateEntity(2019, 9, 15));
+        list.add(new BaseDateEntity(2019, 9, 17));
+        rcDate.initRecordList(list);
+
+
+        List<String> listX = new ArrayList<>();
+        listX.add("1");
+        listX.add("1");
+        listX.add("1");
+        listX.add("1");
+        listX.add("1");
+        listX.add("1");
+        listX.add("1");
+        listX.add("1");
+        listX.add("1");
+        listX.add("1");
+        LinearLayoutManager manager = new LinearLayoutManager(CalorieView.this);
+        manager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        rcList.setLayoutManager(manager);
+        SignAwardListAdapter adapter = new SignAwardListAdapter(listX, CalorieView.this);
+        rcList.setAdapter(adapter);
+    }
+    private void initEvent() {
+
+        rcDate.setOnCalendarDateListener(new OnCalendarDateListener() {
+            @Override
+            public void onDateChange(Point nowCalendar, int startDay, int endDay, boolean startBelong, boolean endBelong) {
+                tvDate.setText(nowCalendar.x + "年" + nowCalendar.y + "月");
+            }
+
+            @Override
+            public void onDateItemClick(DateEntity dateEntity) {
+                Toast.makeText(CalorieView.this, "点击日期 " + dateEntity.date, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        rlSignK.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Calendar calendar = Calendar.getInstance();
+                list.add(new BaseDateEntity(calendar.get(Calendar.YEAR), (calendar.get(Calendar.MONTH) + 1),calendar.get(Calendar.DAY_OF_MONTH)));
+                Log.e("XXP", calendar.get(Calendar.YEAR)+"--"+(calendar.get(Calendar.MONTH) + 1)+"---"+calendar.get(Calendar.DAY_OF_MONTH));
+                rcDate.initRecordList(list);
+
+                SignInTable da = new SignInTable();
+                da.setPhone(MainActivity.mPhone);
+                da.setYearMonthDay(calendar.get(Calendar.YEAR), (calendar.get(Calendar.MONTH) + 1),calendar.get(Calendar.DAY_OF_MONTH));
+                da.save();
+
+                Toast.makeText(CalorieView.this, "点击签到 " , Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    //设置可以点击日期的事件记录
+    private ArrayList<BaseDateEntity> initRecordList() {
+        ArrayList<BaseDateEntity> list = new ArrayList<>();
+
+        return list;
     }
 
     /*********************************活动的生命周期管理********************************************/
