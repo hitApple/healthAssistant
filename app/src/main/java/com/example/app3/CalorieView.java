@@ -194,6 +194,7 @@ public class CalorieView extends BaseActivity {
                 initView();
                 initData();
                 initEvent();
+
 //                Calendar calendar = Calendar.getInstance();
 //                SignInTable da = new SignInTable();
 //                da.setPhone(MainActivity.mPhone);
