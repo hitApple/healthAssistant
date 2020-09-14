@@ -6,71 +6,81 @@
     android:layout_height="match_parent"
     tools:context=".VideoCall">
 
-    <TextureView
-        android:id="@+id/other_side_camera"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        android:id="@+id/full">
 
-    <TextureView
-        android:id="@+id/my_camera"
-        android:layout_width="150dp"
-        android:layout_height="220dp"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        <TextureView
+            android:id="@+id/other_side_camera"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <TextureView
+            android:id="@+id/my_camera"
+            android:layout_width="150dp"
+            android:layout_height="220dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
 
-    <Button
-        android:id="@+id/mute"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="@id/change_camera"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.3"
-        android:text="点击开麦"
-        android:visibility="gone"/>
+        <Button
+            android:id="@+id/mute"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="@id/change_camera"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.3"
+            android:text="点击开麦"
+            android:visibility="gone"/>
 
-    <Button
-        android:id="@+id/micro"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="@id/change_camera"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.3"
-        android:text="点击静音"
-        android:visibility="gone"/>
+        <Button
+            android:id="@+id/micro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="@id/change_camera"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.3"
+            android:text="点击静音"
+            android:visibility="gone"/>
 
-    <Button
-        android:id="@+id/change_camera"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="@id/micro"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.7"
-        android:text="转换摄像"
-        android:visibility="gone"/>
+        <Button
+            android:id="@+id/change_camera"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="@id/micro"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.7"
+            android:text="转换摄像"
+            android:visibility="gone"/>
 
-    <EditText
-        android:id="@+id/video_call_description"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/my_camera"
-        android:layout_marginTop="100dp"
-        android:lines="5"
-        android:hint="请描述一下您本次视频通话的原因"/>
+        <EditText
+            android:id="@+id/video_call_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/my_camera"
+            android:layout_marginTop="100dp"
+            android:lines="5"
+            android:hint="请描述一下您本次视频通话的原因"/>
 
-    <Button
-        android:id="@+id/description_submit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/video_call_description"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="30dp"
-        android:text="提交"/>
+        <Button
+            android:id="@+id/description_submit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/video_call_description"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginTop="30dp"
+            android:text="提交"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

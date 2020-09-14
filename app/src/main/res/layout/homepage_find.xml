@@ -65,7 +65,7 @@
                     android:textSize="30sp" />
 
                 <TextView
-                    android:id="@+id/xinagmu2"
+                    android:id="@+id/homepage_weather"
                     android:layout_width="350dp"
                     android:layout_height="250dp"
                     android:layout_below="@+id/xinagmu1"
@@ -73,8 +73,8 @@
                     android:layout_alignRight="@+id/xinagmu1"
                     android:layout_marginTop="20dp"
                     android:background="@drawable/buttonwhite"
-                    android:text="qwe"
-                    android:textSize="30sp" />
+                    android:text="暂时无法获取当前城市的天气信息"
+                    android:textSize="20sp" />
 
                 <TextView
 
@@ -83,7 +83,7 @@
                     android:layout_height="250dp"
                     android:layout_alignLeft="@+id/xinagmu1"
                     android:layout_alignRight="@+id/xinagmu1"
-                    android:layout_below="@+id/xinagmu2"
+                    android:layout_below="@+id/homepage_weather"
                     android:layout_marginTop="30dp"
                     android:layout_marginBottom="60dp"
                     android:background="@drawable/buttonwhite"

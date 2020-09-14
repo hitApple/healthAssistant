@@ -220,7 +220,12 @@ public class CalorieView extends BaseActivity {
                 findViewById(R.id.activity_calendar_sign_in).setVisibility(View.GONE);
             }
         });
-
+        findViewById(R.id.calorie_view_back).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
     }
     private void initView() {

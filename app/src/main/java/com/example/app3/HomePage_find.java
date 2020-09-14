@@ -1,14 +1,25 @@
 package com.example.app3;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 public class HomePage_find extends BaseActivity  {
 
@@ -19,10 +30,19 @@ public class HomePage_find extends BaseActivity  {
     private RelativeLayout me;
     private ImageView homepage_find_searchicon;
     private EditText homepage_find_search;
+    private boolean isWeatherAccept = true;
+    private WeatherSearch weatherSearch;
+    TextView weatherTextView;
+    private List<String> permissionList = new ArrayList<>();
+
     @SuppressLint("WrongViewCast")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        weatherSearch = new WeatherSearch(HomePage_find.this);
         setContentView(R.layout.homepage_find);
+
+        weatherTextView = findViewById(R.id.homepage_weather);
+        getPermissions();
 
         homepage_find_searchicon = findViewById(R.id.homepage_find_searchicon);
         homepage_find_searchicon.setOnClickListener(new View.OnClickListener() {
@@ -121,6 +141,48 @@ public class HomePage_find extends BaseActivity  {
             }
         }
         return false;
+    }
+
+    /**
+     * 进行各种权限的申请
+     */
+    private void getPermissions(){
+        if (ContextCompat.checkSelfPermission(HomePage_find.this,
+                Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
+            permissionList.add(Manifest.permission.ACCESS_FINE_LOCATION);
+        }
+        if (ContextCompat.checkSelfPermission(HomePage_find.this,
+                Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED){
+            permissionList.add(Manifest.permission.READ_PHONE_STATE);
+        }
+        if (ContextCompat.checkSelfPermission(HomePage_find.this,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
+            permissionList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        }
+        if (!permissionList.isEmpty()){
+            String [] permissions = permissionList.toArray(new String[permissionList.size()]);
+            ActivityCompat.requestPermissions(HomePage_find.this, permissions, 1);
+        } else {
+            weatherSearch.mLocationClient.start();
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == 1) {
+            for (int result : grantResults) {
+                if (result != PackageManager.PERMISSION_GRANTED) {
+                    isWeatherAccept = false;
+                    Toast.makeText(this, "没有得到获取天气的权限，无法显示天气信息",
+                            Toast.LENGTH_SHORT).show();
+                    return;
+                }
+            }
+        }
+        if (isWeatherAccept){
+            weatherSearch.mLocationClient.start();
+        }
     }
 
 }

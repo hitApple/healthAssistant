@@ -5,90 +5,98 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#2196F3">
 
-    <TextView
-        android:id="@+id/calorie_finish_tittle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:text="今日卡路里统计"
-        android:textSize="30sp"
-        android:textColor="#E2FFFFFF"
-        android:textStyle="italic"/>
-
-    <TextView
-        android:id="@+id/today_result_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/calorie_finish_tittle"
-        android:text="今日统计："
-        android:layout_marginTop="20dp"
-        android:textSize="20sp"/>
-
-    <TextView
-        android:id="@+id/today_result"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:background="#fff"
-        android:lines="8"
-        android:maxLines="8"
-        android:textSize="30sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/today_result_text" />
+        android:layout_height="match_parent"
+        android:id="@+id/full">
+        <TextView
+            android:id="@+id/calorie_finish_tittle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:text="今日卡路里统计"
+            android:textSize="30sp"
+            android:textColor="#E2FFFFFF"
+            android:textStyle="italic"/>
 
-    <TextView
-        android:id="@+id/sum_calorie"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/today_result"
-        android:layout_marginTop="20dp"
-        android:background="#fff"
-        android:textAlignment="textEnd"
-        android:textSize="30sp"
-        android:gravity="end" />
+        <TextView
+            android:id="@+id/today_result_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/calorie_finish_tittle"
+            android:text="今日统计："
+            android:layout_marginTop="20dp"
+            android:textSize="20sp"/>
 
-    <TextView
-        android:id="@+id/exception_calorie"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/sum_calorie"
-        android:background="#fff"
-        android:textAlignment="textEnd"
-        android:textSize="30sp"
-        android:gravity="end" />
+        <TextView
+            android:id="@+id/today_result"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="#fff"
+            android:lines="8"
+            android:maxLines="8"
+            android:textSize="30sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/today_result_text" />
 
-    <TextView
-        android:id="@+id/isAchieved"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/exception_calorie"
-        android:background="#fff"
-        android:textAlignment="textEnd"
-        android:textSize="30sp"
-        android:gravity="end"
-        android:text="   达标   "/>
+        <TextView
+            android:id="@+id/sum_calorie"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/today_result"
+            android:layout_marginTop="20dp"
+            android:background="#fff"
+            android:textAlignment="textEnd"
+            android:textSize="30sp"
+            android:gravity="end" />
 
-    <Button
-        android:id="@+id/continue_write_down"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/isAchieved"
-        android:layout_marginTop="20dp"
-        android:text="继续记录"/>
+        <TextView
+            android:id="@+id/exception_calorie"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/sum_calorie"
+            android:background="#fff"
+            android:textAlignment="textEnd"
+            android:textSize="30sp"
+            android:gravity="end" />
 
-    <Button
-        android:id="@+id/back_to_homepage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/isAchieved"
-        android:layout_marginTop="20dp"
-        android:text="返回首页"/>
+        <TextView
+            android:id="@+id/isAchieved"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/exception_calorie"
+            android:background="#fff"
+            android:textAlignment="textEnd"
+            android:textSize="30sp"
+            android:gravity="end"
+            android:text="   达标   "/>
+
+        <Button
+            android:id="@+id/continue_write_down"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/isAchieved"
+            android:layout_marginTop="20dp"
+            android:text="继续记录"/>
+
+        <Button
+            android:id="@+id/back_to_homepage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/isAchieved"
+            android:layout_marginTop="20dp"
+            android:text="返回首页"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

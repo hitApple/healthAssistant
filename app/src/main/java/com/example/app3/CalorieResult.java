@@ -23,8 +23,10 @@ public class CalorieResult extends BaseActivity {
         setContentView(R.layout.calorie_finished);
 
         TextView calorieResult = findViewById(R.id.today_result);
-        calorieResult.setText(getCaloriesText());
         TextView sumCalorie = findViewById(R.id.sum_calorie);
+        TextView isAchievedText = findViewById(R.id.isAchieved);
+
+        calorieResult.setText(getCaloriesText());
         String sumCalorieString = "总共：" + sumCalorieAmount + " 卡路里";
         sumCalorie.setText(sumCalorieString);
         TextView exceptCalorie = findViewById(R.id.exception_calorie);
