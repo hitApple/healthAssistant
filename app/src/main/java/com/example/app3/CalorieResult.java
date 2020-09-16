@@ -16,6 +16,7 @@ import java.util.List;
 public class CalorieResult extends BaseActivity {
 
     private int sumCalorieAmount = 0;
+    private int exceptCalorieAmount = 1000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,8 +31,14 @@ public class CalorieResult extends BaseActivity {
         String sumCalorieString = "总共：" + sumCalorieAmount + " 卡路里";
         sumCalorie.setText(sumCalorieString);
         TextView exceptCalorie = findViewById(R.id.exception_calorie);
-        String exceptCalorieString = "期望值为：";
+        String exceptCalorieString = "期望值为：" + exceptCalorieAmount;
         exceptCalorie.setText(exceptCalorieString);
+
+        if (sumCalorieAmount <= exceptCalorieAmount){
+            isAchievedText.setText("   达标   ");
+        } else {
+            isAchievedText.setText("   未达标   ");
+        }
 
         Button continueWriteDown = findViewById(R.id.continue_write_down);
         continueWriteDown.setOnClickListener(new View.OnClickListener() {
@@ -68,5 +75,6 @@ public class CalorieResult extends BaseActivity {
         }
         return builder.toString();
     }
+
 
 }

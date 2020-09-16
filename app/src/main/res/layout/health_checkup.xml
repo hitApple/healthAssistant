@@ -70,7 +70,7 @@
                             android:layout_height="150dp"
                             android:id="@+id/head_person"
                             android:layout_centerHorizontal="true"
-                            android:background="@drawable/btn_back"/>
+                            android:background="@drawable/headpic"/>
                     </RelativeLayout>
 
 

@@ -3,11 +3,14 @@ package com.example.app3;
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.service.autofill.UserData;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -18,6 +21,7 @@ import android.widget.TextView;
 import com.example.app3.utils.PickCityUtil;
 
 import org.litepal.LitePal;
+import org.litepal.crud.LitePalSupport;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -54,14 +58,25 @@ public class HealthCheckUp extends BaseActivity {
         head_person = findViewById(R.id.head_person);
         if(new File(me.picPath).exists()) {
             head_person.setImageURI(Uri.parse(me.picPath));
+            head_person.setBackgroundDrawable(null);
         }
+
         submit = findViewById(R.id.healthcheckup_submit);
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //提交信息
+                try {
+                    saveData();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
+        try {
+            setData();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         findViewById(R.id.user_time).setOnClickListener(new View.OnClickListener(){
 
             @Override
@@ -155,30 +170,40 @@ public class HealthCheckUp extends BaseActivity {
         });
     }
 
-    public void getDate(){
-        List<HealthCheckUpTable> list = LitePal.findAll(HealthCheckUpTable.class);
-        HealthCheckUpTable he = list.get(0);
-        ((CircleImageView)findViewById(R.id.head_person)).setImageBitmap(getBitmapFromByte(he.pic));
-        ((EditText)findViewById(R.id.user_name)).setText(he.name);
-        ((TextView)findViewById(R.id.user_time)).setText(he.birthday);
-        //sex;
-        ((TextView)findViewById(R.id.province_city_county)).setText(he.place);
-        ((EditText)findViewById(R.id.user_blood_type)).setText(he.bloodtype);
-        ((EditText)findViewById(R.id.user_systolic_lood_pressure)).setText(he.user_systolic_lood_pressure);
-        ((EditText)findViewById(R.id.user_diastolic_blood_pressure)).setText(he.user_diastolic_blood_pressure);
-        ((EditText)findViewById(R.id.user_height)).setText(he.user_height);
-        ((EditText)findViewById(R.id.user_weight)).setText(he.user_weight);
-        ((EditText)findViewById(R.id.user_heartbeats_per_minute)).setText(he.user_heartbeats_per_minute);
-        ((EditText)findViewById(R.id.user_number_of_urination_per_day)).setText(he.user_number_of_urination_per_day);
-        ((EditText)findViewById(R.id.user_daily_sleep_time)).setText(he.user_daily_sleep_time);
-        ((EditText)findViewById(R.id.user_what_are_the_current_diseases)).setText(he.user_what_are_the_current_diseases);
+    public  void setData() throws IOException {
+        List<HealthCheckUpTable> DateList = LitePal.where("phone = ?",
+                MainActivity.mPhone).find(HealthCheckUpTable.class);
+        if( DateList!=null &&  DateList.size()>0 &&  DateList.get(0)!=null){
+            HealthCheckUpTable sin = DateList.get(0);
+
+            ((CircleImageView)findViewById(R.id.head_person)).setImageURI(Uri.parse(me.picPath));
+            ((EditText)findViewById(R.id.user_name)).setText(sin.getName());
+            ((TextView)findViewById(R.id.user_time)).setText(sin.getBirthday());
+            ((TextView)findViewById(R.id.province_city_county)).setText(sin.getPlace());
+            ((EditText)findViewById(R.id.user_blood_type)).setText(sin.getBloodtype());
+            ((EditText)findViewById(R.id.user_systolic_lood_pressure)).setText(sin.getUser_systolic_lood_pressure());
+            ((EditText)findViewById(R.id.user_diastolic_blood_pressure)).setText(sin.getUser_diastolic_blood_pressure());
+            ((EditText)findViewById(R.id.user_height)).setText(sin.getUser_height());
+            ((EditText)findViewById(R.id.user_weight)).setText(sin.getUser_weight());
+            ((EditText)findViewById(R.id.user_heartbeats_per_minute)).setText(sin.getUser_heartbeats_per_minute());
+            ((EditText)findViewById(R.id.user_number_of_urination_per_day)).setText(sin.getUser_number_of_urination_per_day());
+            ((EditText)findViewById(R.id.user_daily_sleep_time)).setText(sin.getUser_daily_sleep_time());
+            ((EditText)findViewById(R.id.user_what_are_the_current_diseases)).setText(sin.getUser_what_are_the_current_diseases());
+        }
 
 
     }
-
     public  void saveData() throws IOException {
         HealthCheckUpTable hcut = new HealthCheckUpTable();
-        hcut.setAll(getBitmapByte(MediaStore.Images.Media.getBitmap(this.getContentResolver(), Uri.parse(me.picPath))),
+
+        List<HealthCheckUpTable> DateList = LitePal.where("phone = ?",
+                MainActivity.mPhone).find(HealthCheckUpTable.class);
+        for(HealthCheckUpTable sin : DateList){
+            sin.delete();
+        }
+
+        hcut.setPhone(MainActivity.mPhone);
+        hcut.setAll(
                 ((EditText)findViewById(R.id.user_name)).getText().toString(),
                 ((TextView)findViewById(R.id.user_time)).getText().toString(),
                 sex,
@@ -194,30 +219,7 @@ public class HealthCheckUp extends BaseActivity {
                 ((EditText)findViewById(R.id.user_what_are_the_current_diseases)).getText().toString());
 
         hcut.save();
-/*        hcut.setPic(getBitmapByte(MediaStore.Images.Media.getBitmap(this.getContentResolver(), Uri.parse(me.picPath))));
-        hcut.setName(((EditText)findViewById(R.id.user_name)).getText().toString());
-        hcut.setBirthday(((TextView)findViewById(R.id.user_time)).getText().toString());
-        hcut.setSex(sex);
-        *//*hcut.setAge(((TextView)findViewById(R.id.user_age)).getText().toString());*//*
-        hcut.setPlace(((TextView)findViewById(R.id.province_city_county)).getText().toString());*/
-
-/*        //openFileOutput("site.txt", Context.MODE_WORLD_READABLE);
-        List<E> list  = new ArrayList<>();
-        Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), Uri.parse(me.picPath));
-        list.add((E) getBitmapByte(bitmap));
-        list.add((E) ((EditText)findViewById(R.id.user_name)).getText().toString());
-        list.add((E) (String.valueOf(year1) + "/" + String.valueOf(monthOfYear1) + "/" + String.valueOf(dayOfMonth1)));
-        list.add((E) (sex));
-        list.add((E) ((TextView)findViewById(R.id.province_city_county)).getText().toString());
-        list.add((E) ((EditText)findViewById(R.id.user_blood_type)).getText().toString());
-        list.add((E) ((EditText)findViewById(R.id.user_systolic_lood_pressure)).getText().toString());
-        list.add((E) ((EditText)findViewById(R.id.user_diastolic_blood_pressure)).getText().toString());
-        list.add((E) ((EditText)findViewById(R.id.user_height)).getText().toString());
-        list.add((E) ((EditText)findViewById(R.id.user_weight)).getText().toString());
-        list.add((E) ((EditText)findViewById(R.id.user_heartbeats_per_minute)).getText().toString());
-        list.add((E) ((EditText)findViewById(R.id.user_number_of_urination_per_day)).getText().toString());
-        list.add((E) ((EditText)findViewById(R.id.user_daily_sleep_time)).getText().toString());
-        list.add((E) ((EditText)findViewById(R.id.user_what_are_the_current_diseases)).getText().toString());*/
+        Log.d("HealthCheckUp","1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111");
     }
 
     public byte[] getBitmapByte(Bitmap bitmap){

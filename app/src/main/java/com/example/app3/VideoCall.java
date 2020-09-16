@@ -99,8 +99,7 @@ public class VideoCall extends BaseActivity {
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (videoDescription.getText().toString().equals("") ||
-                        videoDescription.getText().toString().equals(" ")){
+                if (videoDescription.getText().toString().trim().equals("")){
                     Toast.makeText(VideoCall.this, "您还没有输入描述信息！",
                             Toast.LENGTH_SHORT).show();
                 } else {
