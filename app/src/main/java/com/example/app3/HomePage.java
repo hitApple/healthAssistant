@@ -23,9 +23,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-
-
-
 public class HomePage extends BaseActivity {
     private RelativeLayout homepage;
     private RelativeLayout find;
@@ -41,38 +38,43 @@ public class HomePage extends BaseActivity {
     private RelativeLayout rlSignK;
     private ArrayList<BaseDateEntity> list;
     private RecyclerView rcList;
-
+    private RecyclerView diseaseRecyclerView;
 
     @SuppressLint("WrongViewCast")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.homepage);
-
+        List<Disase> disaseList = LitePal.where("body = 'fubu'").find(Disase.class);
+        DiseaseItemAdapter adapter = new DiseaseItemAdapter(disaseList);
+        diseaseRecyclerView = findViewById(R.id.diease_recycler_view);
+        LinearLayoutManager linearLayout = new LinearLayoutManager(this);
+        diseaseRecyclerView.setLayoutManager(linearLayout);
+        diseaseRecyclerView.setAdapter(adapter);
         homepage_sign_in = findViewById(R.id.homepage_sign_in);
-        homepage_sign_in.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    findViewById(R.id.full).setVisibility(View.GONE);
-                    findViewById(R.id.activity_calendar_sign_in).setVisibility(View.VISIBLE);
-                    initView();
-                    initData();
-                    initEvent();
-/*                    Calendar calendar = Calendar.getInstance();
-                    SignInTable da = new SignInTable();
-                    da.setYearMonthDay(2020, 9,8);
-                    da.save();
-*//*                  da.setYearMonthDay(2020, 9,7);
-                    da.save();*/
-                  List<SignInTable> DateList = LitePal.findAll(SignInTable.class);
-
-                    for (SignInTable sin : DateList) {
-                        list.add(new BaseDateEntity(sin.getYear(),sin.getMonth(),sin.getDay()));
-                    }
-/*                  list.add(new BaseDateEntity(2020, 9,8));
-                    list.add(new BaseDateEntity(2020, 9,7));*/
-                    rcDate.initRecordList(list);
-                }
-            });
+//        homepage_sign_in.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    findViewById(R.id.full).setVisibility(View.GONE);
+//                    findViewById(R.id.activity_calendar_sign_in).setVisibility(View.VISIBLE);
+//                    initView();
+//                    initData();
+//                    initEvent();
+///*                    Calendar calendar = Calendar.getInstance();
+//                    SignInTable da = new SignInTable();
+//                    da.setYearMonthDay(2020, 9,8);
+//                    da.save();
+//*//*                  da.setYearMonthDay(2020, 9,7);
+//                    da.save();*/
+//                  List<SignInTable> DateList = LitePal.findAll(SignInTable.class);
+//
+//                    for (SignInTable sin : DateList) {
+//                        list.add(new BaseDateEntity(sin.getYear(),sin.getMonth(),sin.getDay()));
+//                    }
+///*                  list.add(new BaseDateEntity(2020, 9,8));
+//                    list.add(new BaseDateEntity(2020, 9,7));*/
+//                    rcDate.initRecordList(list);
+//                }
+//            });
 
         findViewById(R.id.go_back).setOnClickListener(new View.OnClickListener() {
             @Override
