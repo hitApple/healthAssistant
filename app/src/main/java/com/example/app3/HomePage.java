@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Point;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -169,35 +170,41 @@ public class HomePage extends BaseActivity {
 
     public void setWidthAndHeight(){
 
-        int w = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
-        int h = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
-        findViewById(R.id.eightsystem).measure(w, h);
-        int height = findViewById(R.id.eightsystem).getMeasuredHeight();
-        int width = findViewById(R.id.eightsystem).getMeasuredWidth();
+//        int w = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
+//        int h = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
+//        findViewById(R.id.eightsystem).measure(w, h);
+//        int height = findViewById(R.id.eightsystem).getMeasuredHeight();
+//        int width = findViewById(R.id.eightsystem).getMeasuredWidth();
 
-        findViewById(R.id.homepage_urinary_system).getLayoutParams().width = width/5;
-        findViewById(R.id.homepage_urinary_system).getLayoutParams().height = width/5;
+        DisplayMetrics metric = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metric);
+        int screenWidth = metric.widthPixels;
+        findViewById(R.id.body1).getLayoutParams().width = screenWidth/7;
+        findViewById(R.id.body1).getLayoutParams().height = screenWidth/7;
 
-        findViewById(R.id.homepage_digestive_system).getLayoutParams().width = width/5;
-        findViewById(R.id.homepage_digestive_system).getLayoutParams().height = width/5;
+        findViewById(R.id.body2).getLayoutParams().width = screenWidth/7;
+        findViewById(R.id.body2).getLayoutParams().height = screenWidth/7;
 
-        findViewById(R.id.homepage_circulatory_system).getLayoutParams().width = width/5;
-        findViewById(R.id.homepage_circulatory_system).getLayoutParams().height = width/5;
+        findViewById(R.id.body3).getLayoutParams().width = screenWidth/7;
+        findViewById(R.id.body3).getLayoutParams().height = screenWidth/7;
 
-        findViewById(R.id.homepage_endocrine_system).getLayoutParams().width = width/5;
-        findViewById(R.id.homepage_endocrine_system).getLayoutParams().height = width/5;
+        findViewById(R.id.body4).getLayoutParams().width = screenWidth/7;
+        findViewById(R.id.body4).getLayoutParams().height = screenWidth/7;
 
-        findViewById(R.id.homepage_nervous_system).getLayoutParams().width = width/5;
-        findViewById(R.id.homepage_nervous_system).getLayoutParams().height = width/5;
+        findViewById(R.id.body4).getLayoutParams().width = screenWidth/7;
+        findViewById(R.id.body4).getLayoutParams().height = screenWidth/7;
 
-        findViewById(R.id.homepage_reproductive_system).getLayoutParams().width = width/5;
-        findViewById(R.id.homepage_reproductive_system).getLayoutParams().height = width/5;
+        findViewById(R.id.body5).getLayoutParams().width = screenWidth/7;
+        findViewById(R.id.body5).getLayoutParams().height = screenWidth/7;
 
-        findViewById(R.id.homepage_respiratory_system).getLayoutParams().width = width/5;
-        findViewById(R.id.homepage_respiratory_system).getLayoutParams().height = width/5;
+        findViewById(R.id.body6).getLayoutParams().width = screenWidth/7;
+        findViewById(R.id.body6).getLayoutParams().height = screenWidth/7;
 
-        findViewById(R.id.homepage_exercise_system).getLayoutParams().width = width/4;
-        findViewById(R.id.homepage_exercise_system).getLayoutParams().height = width/5;
+        findViewById(R.id.body7).getLayoutParams().width = screenWidth/7;
+        findViewById(R.id.body7).getLayoutParams().height = screenWidth/7;
+
+        findViewById(R.id.body8).getLayoutParams().width = screenWidth/7;
+        findViewById(R.id.body8).getLayoutParams().height = screenWidth/7;
 
     }
 

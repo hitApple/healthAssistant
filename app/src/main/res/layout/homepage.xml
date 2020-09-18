@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/homepage_background">
 
     <RelativeLayout
@@ -48,68 +48,101 @@
             android:layout_alignParentRight="true"/>
 
 
-        <RelativeLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/eightsystem"
             android:layout_marginTop="15dp"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
             android:layout_below="@+id/homepage_title_find"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true">
+            android:layout_centerHorizontal="true"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
+            android:background="@drawable/rounded_rect">
 
-            <ImageView
-                android:id="@+id/homepage_urinary_system"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/urinarysystem"/>
-            <ImageView
-                android:id="@+id/homepage_digestive_system"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/homepage_urinary_system"
-                android:background="@drawable/digestivesystem"/>
-            <ImageView
-                android:id="@+id/homepage_circulatory_system"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/homepage_digestive_system"
-                android:background="@drawable/circulatorysystem"/>
-            <ImageView
-                android:id="@+id/homepage_endocrine_system"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_toRightOf="@+id/homepage_circulatory_system"
-                android:background="@drawable/endocrinesystem"/>
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/homepage_nervous_system"
-                android:layout_below="@+id/homepage_circulatory_system"
-                android:background="@drawable/nervoussystem"/>
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/homepage_reproductive_system"
-                android:layout_alignTop="@+id/homepage_nervous_system"
-                android:layout_toRightOf="@+id/homepage_nervous_system"
-                android:background="@drawable/reproductivesystem"/>
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/homepage_respiratory_system"
-                android:layout_alignTop="@+id/homepage_nervous_system"
-                android:layout_toRightOf="@+id/homepage_reproductive_system"
-                android:background="@drawable/respiratorysystem"/>
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/homepage_exercise_system"
-                android:layout_alignTop="@+id/homepage_nervous_system"
-                android:layout_toRightOf="@+id/homepage_respiratory_system"
-                android:background="@drawable/exercisesystem"/>
-        </RelativeLayout>
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/body1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:background="@drawable/body1"
+                    />
+                <ImageView
+                    android:id="@+id/body2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintLeft_toRightOf="@id/body1"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginStart="30dp"
+                    android:background="@drawable/body2"/>
+                <ImageView
+                    android:id="@+id/body3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintLeft_toRightOf="@id/body2"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginStart="30dp"
+                    android:background="@drawable/body3"/>
+                <ImageView
+                    android:id="@+id/body4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintLeft_toRightOf="@id/body3"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginStart="30dp"
+                    android:background="@drawable/body4"/>
+                <ImageView
+                    android:id="@+id/body5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/body1"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/body5"/>
+                <ImageView
+                    android:id="@+id/body6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintLeft_toRightOf="@id/body5"
+                    app:layout_constraintBottom_toBottomOf="@id/body5"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginStart="30dp"
+                    android:background="@drawable/body6"/>
+                <ImageView
+                    android:id="@+id/body7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintLeft_toRightOf="@id/body6"
+                    app:layout_constraintBottom_toBottomOf="@id/body5"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginStart="30dp"
+                    android:background="@drawable/body7"/>
+                <ImageView
+                    android:id="@+id/body8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintLeft_toRightOf="@id/body7"
+                    app:layout_constraintBottom_toBottomOf="@id/body5"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginStart="30dp"
+                    android:background="@drawable/body8"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <ScrollView
             android:layout_width="match_parent"

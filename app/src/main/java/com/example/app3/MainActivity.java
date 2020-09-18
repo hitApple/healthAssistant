@@ -3,13 +3,18 @@ package com.example.app3;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -18,6 +23,7 @@ import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ViewFlipper;
 
 import org.litepal.LitePal;
 import org.litepal.tablemanager.Connector;
@@ -38,9 +44,25 @@ public class MainActivity extends BaseActivity {    private static final String 
     private CheckBox rememberPassword;
     private CheckBox autoLogin;
 
+    static int count=1;
+
+    private Context mContext;
+    private ViewFlipper vflp_help;
+    private int[] resId = {R.drawable.guide_1,R.drawable.guide_2,
+            R.drawable.guide_3,R.drawable.guide_4};
+
+    private final static int MIN_MOVE = 200;   //最小距离
+    private MsGestureListener mgListener;
+    private GestureDetector mDetector;
+    private Button go_SignIn;
+    private Button go_LogIn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+/*        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        // 全屏
+        getWindow().setFlags(WindowManager.LayoutParams. FLAG_FULLSCREEN ,WindowManager.LayoutParams. FLAG_FULLSCREEN);*/
         setContentView(R.layout.activity_main);
 
         importDatabases();
@@ -49,12 +71,29 @@ public class MainActivity extends BaseActivity {    private static final String 
         user = findViewById(R.id.user);
         password =  findViewById(R.id.password);
 
+
+
 //        Log.d(TAG, "onCreate: " + "MainActivity".equals(this.getLocalClassName()));
 
         SharedPreferences preferences = getSharedPreferences("user_info",   MODE_PRIVATE);
         user.setText(preferences.getString("user",""));
         password.setText(preferences.getString("password", ""));
 
+        SharedPreferences.Editor editor = getSharedPreferences("user_info", MODE_PRIVATE).edit();
+        if (preferences.getBoolean("isFirst", true)){
+            editor.putBoolean("isFirst", true);
+        }
+        editor.apply();
+        if (!preferences.getBoolean("isFirst", false)){
+            findViewById(R.id.guide).setVisibility(View.GONE);
+            findViewById(R.id.full).setVisibility(View.VISIBLE);
+            editor.putBoolean("isFirst", false);
+        } else{
+            findViewById(R.id.guide).setVisibility(View.VISIBLE);
+            findViewById(R.id.full).setVisibility(View.GONE);
+            editor.putBoolean("isFirst", false);
+        }
+        editor.apply();
         eyeview_on = findViewById(R.id.eyeview_on);
         eyeview_off = findViewById(R.id.eyeview_off);
         eyeview_on.setOnClickListener(new View.OnClickListener(){
@@ -124,6 +163,33 @@ public class MainActivity extends BaseActivity {    private static final String 
             }
         });
         /*********************************测试用button**************************************/
+
+
+        mContext = MainActivity.this;
+        //实例化 SimpleOnGestureListener 与 GestureDetector 对象
+        mgListener = new MsGestureListener();
+        mDetector = new GestureDetector(this, mgListener);
+        vflp_help = (ViewFlipper) findViewById(R.id.guide);
+
+/*        //动态导入添加子View
+        for(int i = 0;i < resId.length;i++){
+            vflp_help.addView(getImageView(resId[i]));
+        }*/
+
+        findViewById(R.id.go_SignIn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,Sign_In.class));
+            }
+        });
+        findViewById(R.id.go_LogIn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                vflp_help.setVisibility(View.GONE);
+                findViewById(R.id.full).setVisibility(View.VISIBLE);
+            }
+        });
+
     }
 
 
@@ -215,6 +281,42 @@ public class MainActivity extends BaseActivity {    private static final String 
             finish();
             startActivity(intent);
 
+        }
+    }
+
+    //重写onTouchEvent触发MyGestureListener里的方法
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        return mDetector.onTouchEvent(event);
+    }
+
+    private ImageView getImageView(int resId){
+        ImageView img = new ImageView(this);
+        img.setBackgroundResource(resId);
+        return img;
+    }
+
+    //自定义一个GestureListener,这个是View类下的，别写错哦！！！
+    private class MsGestureListener extends GestureDetector.SimpleOnGestureListener {
+        @Override
+        public boolean onFling(MotionEvent e1, MotionEvent e2, float v, float v1) {
+            if(e1.getX() - e2.getX() > MIN_MOVE){
+                if(count <4){
+                    count ++;
+                    vflp_help.setInAnimation(mContext,R.anim.right_in);
+                    vflp_help.setOutAnimation(mContext, R.anim.right_out);
+                    vflp_help.showNext();
+                }
+            }else if(e2.getX() - e1.getX() > MIN_MOVE){
+                if(count > 1){
+                    vflp_help.setInAnimation(mContext,R.anim.left_in);
+                    vflp_help.setOutAnimation(mContext, R.anim.left_out);
+                    vflp_help.showPrevious();
+                    count --;
+                }
+
+            }
+            return true;
         }
     }
 

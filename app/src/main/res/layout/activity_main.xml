@@ -6,8 +6,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
+
+    <ViewFlipper
+        android:id="@+id/guide"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:inAnimation="@anim/right_in"
+        android:outAnimation="@anim/right_out">
+        <include layout="@layout/guide_one" />
+        <include layout="@layout/guide_two" />
+        <include layout="@layout/guide_three" />
+        <include layout="@layout/guide_four" />
+    </ViewFlipper>
     <LinearLayout
         android:id="@+id/full"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_horizontal"
