@@ -54,7 +54,10 @@ public class LoginStatusService extends Service {
                         String[] resultStrings = new String(bytes, 0, n, "UTF-8")
                                 .split("\n");
                         if (!resultStrings[0].equals("40")){
-                            ActivityCollector.showDialog(resultStrings[1], resultStrings[2], resultStrings[3]);
+                            if(resultStrings.length >= 3){
+                                ActivityCollector.showDialog(resultStrings[1], resultStrings[2], resultStrings[3]);
+
+                            }
                         }
                         break;
                     }

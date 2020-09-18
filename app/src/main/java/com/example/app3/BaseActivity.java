@@ -20,6 +20,10 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        View view = findViewById(R.id.full);
+        if (view == null){
+            return;
+        }
         findViewById(R.id.full).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {//关闭键盘

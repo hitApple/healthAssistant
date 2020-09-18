@@ -10,8 +10,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/full"
-        tools:ignore="DuplicateIds">
+        android:id="@+id/full2"
+        >
         <include
             layout="@layout/activity_calendar_sign"
             android:id="@+id/activity_calendar_sign_in"
