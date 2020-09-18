@@ -8,37 +8,39 @@
     android:orientation="vertical"
     android:focusable="true"
     android:focusableInTouchMode="true"
-    android:background="@drawable/homepage_background">
+    android:background="#CD136ECD">
     <RelativeLayout
         android:id="@+id/full"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true">
-            <ImageView
-                android:id="@+id/homepage_find_searchicon"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:background="@drawable/search"
-                android:contentDescription="TODO" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="10dp">
             <EditText
-                android:layout_toRightOf="@+id/homepage_find_searchicon"
                 android:id="@+id/homepage_find_search"
-                android:layout_width="250dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/buttongreen"/>
-
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@drawable/rounded_rect_xml2"
+                android:paddingLeft="10dp"
+                android:hint="输入搜索信息" />
 
             <ImageView
-                android:layout_toRightOf="@+id/homepage_find_search"
-                android:layout_width="36dp"
-                android:layout_height="40dp"
-                android:layout_marginLeft="20dp"
-                android:background="@drawable/message" />
+                android:id="@+id/homepage_find_search_image"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/search"
+                app:layout_constraintRight_toRightOf="@id/homepage_find_search"
+                app:layout_constraintTop_toTopOf="@id/homepage_find_search"
+                app:layout_constraintBottom_toBottomOf="@id/homepage_find_search"
+                android:layout_marginRight="10dp"/>
 
-        </RelativeLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 
@@ -57,11 +59,10 @@
                     android:id="@+id/xinagmu1"
                     android:layout_width="match_parent"
                     android:layout_height="250dp"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginLeft="10dp"
                     android:layout_marginTop="30dp"
-                    android:layout_marginRight="30dp"
-                    android:background="@drawable/buttonwhite"
-                    android:text="qwe"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/rounded_rect_xml"
                     android:textSize="30sp" />
 
                 <TextView
@@ -72,7 +73,7 @@
                     android:layout_alignLeft="@+id/xinagmu1"
                     android:layout_alignRight="@+id/xinagmu1"
                     android:layout_marginTop="20dp"
-                    android:background="@drawable/buttonwhite"
+                    android:background="@drawable/rounded_rect_xml"
                     android:text="暂时无法获取当前城市的天气信息"
                     android:textSize="20sp" />
 
@@ -84,10 +85,9 @@
                     android:layout_alignLeft="@+id/xinagmu1"
                     android:layout_alignRight="@+id/xinagmu1"
                     android:layout_below="@+id/homepage_weather"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="20dp"
                     android:layout_marginBottom="60dp"
-                    android:background="@drawable/buttonwhite"
-                    android:text="qwe"
+                    android:background="@drawable/rounded_rect_xml"
                     android:textSize="30sp" />
             </RelativeLayout>
 

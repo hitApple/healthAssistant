@@ -12,7 +12,9 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:text="标题"
-        android:textSize="20sp"/>
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:textColor="#E62B2B2B"/>
 
     <TextView
         android:id="@+id/disease_item_content"
@@ -33,6 +35,6 @@
         android:layout_width="match_parent"
         android:layout_marginTop="10dp"
         android:layout_height="1dp"
-        android:background="#aa000000" />
+        android:background="#6B5C5C5C" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

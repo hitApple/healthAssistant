@@ -7,20 +7,14 @@
     android:layout_height="match_parent"
     android:configChanges="orientation|navigation"
     android:windowSoftInputMode="adjustPan"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/health_checkup_bg">
     <RelativeLayout
         android:id="@+id/full"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/picture"
-            android:layout_width="225dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentBottom="true"
-            android:background="@drawable/healthassisant"
-            tools:ignore="MissingConstraints" />
+
 
         <LinearLayout
             android:id="@+id/gobackfull"

@@ -44,7 +44,7 @@ public class HomePage_find extends BaseActivity  {
         weatherTextView = findViewById(R.id.homepage_weather);
         getPermissions();
 
-        homepage_find_searchicon = findViewById(R.id.homepage_find_searchicon);
+        homepage_find_searchicon = findViewById(R.id.homepage_find_search_image);
         homepage_find_searchicon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
