@@ -1,8 +1,10 @@
 package com.example.app3;
 
+import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.RelativeLayout;
@@ -14,6 +16,7 @@ public class link extends BaseActivity {
     private RelativeLayout plus;
     private RelativeLayout link;
     private RelativeLayout me;
+    private Boolean isTF = true;
     @SuppressLint("WrongViewCast")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,8 +80,36 @@ public class link extends BaseActivity {
         plus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                findViewById(R.id.full).setVisibility(View.GONE);
-                findViewById(R.id.plus_ui).setVisibility(View.VISIBLE);
+                if(!isTF){
+                    isTF = true;
+                    plus.animate().rotation(90);
+                    /*                findViewById(R.id.plus_ui2).setVisibility(View.VISIBLE);*/
+                    DisplayMetrics metric = new DisplayMetrics();
+                    getWindowManager().getDefaultDisplay().getMetrics(metric);
+                    int screenH = metric.heightPixels;
+                    findViewById(R.id.plus_ui2).clearAnimation();
+                    ObjectAnimator.ofFloat(findViewById(R.id.plus_ui2),
+                            "translationY",
+                            (float) (screenH/2))
+                            .setDuration(500)
+                            .start();
+
+                }else{
+                    isTF = false;
+                    plus.animate().rotation(-90);
+                    //               findViewById(R.id.plus_ui2).setVisibility(View.VISIBLE);
+                    DisplayMetrics metric = new DisplayMetrics();
+                    getWindowManager().getDefaultDisplay().getMetrics(metric);
+                    int screenH = metric.heightPixels;
+                    findViewById(R.id.plus_ui2).clearAnimation();
+                    ObjectAnimator.ofFloat(findViewById(R.id.plus_ui2),
+                            "translationY",
+                            (float) (-screenH/2))
+                            .setDuration(500)
+                            .start();
+
+
+                }
             }
         });
         link.setOnClickListener(new View.OnClickListener() {
@@ -103,14 +134,6 @@ public class link extends BaseActivity {
 
             }
         });
-        findViewById(R.id.cross).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                findViewById(R.id.full).setVisibility(View.VISIBLE);
-                findViewById(R.id.plus_ui).setVisibility(View.GONE);
-            }
-        });
-
 
     }
     /**

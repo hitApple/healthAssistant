@@ -1,5 +1,6 @@
 package com.example.app3;
 
+import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
@@ -38,18 +39,23 @@ public class HomePage extends BaseActivity {
     private RelativeLayout rlSignK;
     private ArrayList<BaseDateEntity> list;
     private RecyclerView rcList;
-    private RecyclerView diseaseRecyclerView;
+    public RecyclerView diseaseRecyclerView;
     private List<Disase> disaseList;
     private EditText homepageSearch;
+    public TextView clickTittleTextView;
+    public TextView clickTextView;
+    private boolean isTF = true;
+
 
     @SuppressLint("WrongViewCast")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.homepage);
+
         disaseList = LitePal.where("body = 'fubu'").find(Disase.class);
         DiseaseItemAdapter adapter = new DiseaseItemAdapter(disaseList);
         disaseList.add(new Disase());
-        diseaseRecyclerView = findViewById(R.id.diease_recycler_view);
+        diseaseRecyclerView = findViewById(R.id.disease_recycler_view);
         LinearLayoutManager linearLayout = new LinearLayoutManager(this);
         diseaseRecyclerView.setLayoutManager(linearLayout);
         diseaseRecyclerView.setAdapter(adapter);
@@ -72,12 +78,15 @@ public class HomePage extends BaseActivity {
                         .find(Disase.class);
                 disaseList.add(new Disase());
                 DiseaseItemAdapter adapter = new DiseaseItemAdapter(disaseList);
-                diseaseRecyclerView = findViewById(R.id.diease_recycler_view);
+                diseaseRecyclerView = findViewById(R.id.disease_recycler_view);
                 LinearLayoutManager linearLayout = new LinearLayoutManager(HomePage.this);
                 diseaseRecyclerView.setLayoutManager(linearLayout);
                 diseaseRecyclerView.setAdapter(adapter);
             }
         });
+
+        clickTextView = findViewById(R.id.disease_click_text_view);
+        clickTittleTextView = findViewById(R.id.disease_click_tittle_text_view);
 
         homepage = findViewById(R.id.homepage);
         find = findViewById(R.id.find);
@@ -104,8 +113,36 @@ public class HomePage extends BaseActivity {
         plus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                findViewById(R.id.full).setVisibility(View.GONE);
-                findViewById(R.id.plus_ui).setVisibility(View.VISIBLE);
+                if(!isTF){
+                    isTF = true;
+                    plus.animate().rotation(90);
+                    /*                findViewById(R.id.plus_ui2).setVisibility(View.VISIBLE);*/
+                    DisplayMetrics metric = new DisplayMetrics();
+                    getWindowManager().getDefaultDisplay().getMetrics(metric);
+                    int screenH = metric.heightPixels;
+                    findViewById(R.id.plus_ui2).clearAnimation();
+                    ObjectAnimator.ofFloat(findViewById(R.id.plus_ui2),
+                            "translationY",
+                            (float) (screenH/2))
+                            .setDuration(500)
+                            .start();
+
+                }else{
+                    isTF = false;
+                    plus.animate().rotation(-90);
+                    //               findViewById(R.id.plus_ui2).setVisibility(View.VISIBLE);
+                    DisplayMetrics metric = new DisplayMetrics();
+                    getWindowManager().getDefaultDisplay().getMetrics(metric);
+                    int screenH = metric.heightPixels;
+                    findViewById(R.id.plus_ui2).clearAnimation();
+                    ObjectAnimator.ofFloat(findViewById(R.id.plus_ui2),
+                            "translationY",
+                            (float) (-screenH/2))
+                            .setDuration(500)
+                            .start();
+
+
+                }
             }
         });
         link.setOnClickListener(new View.OnClickListener() {
@@ -125,7 +162,7 @@ public class HomePage extends BaseActivity {
             @Override
             public void onClick(View view) {
                 findViewById(R.id.full).setVisibility(View.VISIBLE);
-                findViewById(R.id.plus_ui).setVisibility(View.GONE);
+                findViewById(R.id.plus_ui2).setVisibility(View.GONE);
             }
         });
 
@@ -155,10 +192,6 @@ public class HomePage extends BaseActivity {
 //        findViewById(R.id.eightsystem).measure(w, h);
 //        int height = findViewById(R.id.eightsystem).getMeasuredHeight();
 //        int width = findViewById(R.id.eightsystem).getMeasuredWidth();
-
-        DisplayMetrics metric = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(metric);
-        int screenWidth = metric.widthPixels;
         ImageView body1 = findViewById(R.id.body1);
         ImageView body2 = findViewById(R.id.body2);
         ImageView body3 = findViewById(R.id.body3);
@@ -167,120 +200,120 @@ public class HomePage extends BaseActivity {
         ImageView body6 = findViewById(R.id.body6);
         ImageView body7 = findViewById(R.id.body7);
         ImageView body8 = findViewById(R.id.body8);
-        body1.getLayoutParams().width = screenWidth/7;
-        body1.getLayoutParams().height = screenWidth/7;
+        body1.getLayoutParams().width = MainActivity.mScreenWidth/7;
+        body1.getLayoutParams().height = MainActivity.mScreenWidth/7;
         body1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 disaseList = LitePal.where("body = 'fubu'").find(Disase.class);
                 disaseList.add(new Disase());
                 DiseaseItemAdapter adapter = new DiseaseItemAdapter(disaseList);
-                diseaseRecyclerView = findViewById(R.id.diease_recycler_view);
+                diseaseRecyclerView = findViewById(R.id.disease_recycler_view);
                 LinearLayoutManager linearLayout = new LinearLayoutManager(HomePage.this);
                 diseaseRecyclerView.setLayoutManager(linearLayout);
                 diseaseRecyclerView.setAdapter(adapter);
             }
         });
 
-        body2.getLayoutParams().width = screenWidth/7;
-        body2.getLayoutParams().height = screenWidth/7;
+        body2.getLayoutParams().width = MainActivity.mScreenWidth/7;
+        body2.getLayoutParams().height = MainActivity.mScreenWidth/7;
         body2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 disaseList = LitePal.where("body = 'jingbu'").find(Disase.class);
                 disaseList.add(new Disase());
                 DiseaseItemAdapter adapter = new DiseaseItemAdapter(disaseList);
-                diseaseRecyclerView = findViewById(R.id.diease_recycler_view);
+                diseaseRecyclerView = findViewById(R.id.disease_recycler_view);
                 LinearLayoutManager linearLayout = new LinearLayoutManager(HomePage.this);
                 diseaseRecyclerView.setLayoutManager(linearLayout);
                 diseaseRecyclerView.setAdapter(adapter);
             }
         });
 
-        body3.getLayoutParams().width = screenWidth/7;
-        body3.getLayoutParams().height = screenWidth/7;
+        body3.getLayoutParams().width = MainActivity.mScreenWidth/7;
+        body3.getLayoutParams().height = MainActivity.mScreenWidth/7;
         body3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 disaseList = LitePal.where("body = 'shangzhi'").find(Disase.class);
                 disaseList.add(new Disase());
                 DiseaseItemAdapter adapter = new DiseaseItemAdapter(disaseList);
-                diseaseRecyclerView = findViewById(R.id.diease_recycler_view);
+                diseaseRecyclerView = findViewById(R.id.disease_recycler_view);
                 LinearLayoutManager linearLayout = new LinearLayoutManager(HomePage.this);
                 diseaseRecyclerView.setLayoutManager(linearLayout);
                 diseaseRecyclerView.setAdapter(adapter);
             }
         });
 
-        body4.getLayoutParams().width = screenWidth/7;
-        body4.getLayoutParams().height = screenWidth/7;
+        body4.getLayoutParams().width = MainActivity.mScreenWidth/7;
+        body4.getLayoutParams().height = MainActivity.mScreenWidth/7;
         body4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 disaseList = LitePal.where("body = 'toubu'").find(Disase.class);
                 disaseList.add(new Disase());
                 DiseaseItemAdapter adapter = new DiseaseItemAdapter(disaseList);
-                diseaseRecyclerView = findViewById(R.id.diease_recycler_view);
+                diseaseRecyclerView = findViewById(R.id.disease_recycler_view);
                 LinearLayoutManager linearLayout = new LinearLayoutManager(HomePage.this);
                 diseaseRecyclerView.setLayoutManager(linearLayout);
                 diseaseRecyclerView.setAdapter(adapter);
             }
         });
 
-        body5.getLayoutParams().width = screenWidth/7;
-        body5.getLayoutParams().height = screenWidth/7;
+        body5.getLayoutParams().width = MainActivity.mScreenWidth/7;
+        body5.getLayoutParams().height = MainActivity.mScreenWidth/7;
         body5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 disaseList = LitePal.where("body = 'tunbu'").find(Disase.class);
                 disaseList.add(new Disase());
                 DiseaseItemAdapter adapter = new DiseaseItemAdapter(disaseList);
-                diseaseRecyclerView = findViewById(R.id.diease_recycler_view);
+                diseaseRecyclerView = findViewById(R.id.disease_recycler_view);
                 LinearLayoutManager linearLayout = new LinearLayoutManager(HomePage.this);
                 diseaseRecyclerView.setLayoutManager(linearLayout);
                 diseaseRecyclerView.setAdapter(adapter);
             }
         });
 
-        body6.getLayoutParams().width = screenWidth/7;
-        body6.getLayoutParams().height = screenWidth/7;
+        body6.getLayoutParams().width = MainActivity.mScreenWidth/7;
+        body6.getLayoutParams().height = MainActivity.mScreenWidth/7;
         body6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 disaseList = LitePal.where("body = 'xiazhi'").find(Disase.class);
                 disaseList.add(new Disase());
                 DiseaseItemAdapter adapter = new DiseaseItemAdapter(disaseList);
-                diseaseRecyclerView = findViewById(R.id.diease_recycler_view);
+                diseaseRecyclerView = findViewById(R.id.disease_recycler_view);
                 LinearLayoutManager linearLayout = new LinearLayoutManager(HomePage.this);
                 diseaseRecyclerView.setLayoutManager(linearLayout);
                 diseaseRecyclerView.setAdapter(adapter);
             }
         });
 
-        body7.getLayoutParams().width = screenWidth/7;
-        body7.getLayoutParams().height = screenWidth/7;
+        body7.getLayoutParams().width = MainActivity.mScreenWidth/7;
+        body7.getLayoutParams().height = MainActivity.mScreenWidth/7;
         body7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 disaseList = LitePal.where("body = 'xiongbu'").find(Disase.class);
                 disaseList.add(new Disase());
                 DiseaseItemAdapter adapter = new DiseaseItemAdapter(disaseList);
-                diseaseRecyclerView = findViewById(R.id.diease_recycler_view);
+                diseaseRecyclerView = findViewById(R.id.disease_recycler_view);
                 LinearLayoutManager linearLayout = new LinearLayoutManager(HomePage.this);
                 diseaseRecyclerView.setLayoutManager(linearLayout);
                 diseaseRecyclerView.setAdapter(adapter);
             }
         });
 
-        body8.getLayoutParams().width = screenWidth/7;
-        body8.getLayoutParams().height = screenWidth/7;
+        body8.getLayoutParams().width = MainActivity.mScreenWidth/7;
+        body8.getLayoutParams().height = MainActivity.mScreenWidth/7;
         body8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 disaseList = LitePal.where("body = 'yaobu'").find(Disase.class);
                 disaseList.add(new Disase());
                 DiseaseItemAdapter adapter = new DiseaseItemAdapter(disaseList);
-                diseaseRecyclerView = findViewById(R.id.diease_recycler_view);
+                diseaseRecyclerView = findViewById(R.id.disease_recycler_view);
                 LinearLayoutManager linearLayout = new LinearLayoutManager(HomePage.this);
                 diseaseRecyclerView.setLayoutManager(linearLayout);
                 diseaseRecyclerView.setAdapter(adapter);

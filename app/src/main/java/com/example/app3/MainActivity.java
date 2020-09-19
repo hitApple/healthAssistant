@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Environment;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
@@ -33,7 +34,11 @@ import java.io.IOException;
 import java.util.List;
 
 public class MainActivity extends BaseActivity {    private static final String TAG = "MainActivity";
+
     public static String mPhone = "1";;
+    public static int mScreenWidth = 0;
+    public static int mScreenHeight = 0;
+
     private Button SignIn;
     private Button LogIn;
 
@@ -71,7 +76,10 @@ public class MainActivity extends BaseActivity {    private static final String 
         user = findViewById(R.id.user);
         password =  findViewById(R.id.password);
 
-
+        DisplayMetrics metric = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metric);
+        mScreenWidth = metric.widthPixels;
+        mScreenHeight = metric.heightPixels;
 
 //        Log.d(TAG, "onCreate: " + "MainActivity".equals(this.getLocalClassName()));
 

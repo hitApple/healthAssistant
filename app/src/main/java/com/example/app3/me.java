@@ -1,6 +1,7 @@
 package com.example.app3;
 
 import android.Manifest;
+import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,6 +10,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -35,6 +37,7 @@ public class me extends BaseActivity {
     private static final int TAKE_PHOTO = 1;
     private static final int PHOTO_ALBUM = 2;
     private static final int PICTURE_CUT = 3;
+    private Boolean isTF = true;
 
     //需要请求的权限
     private static final String[] PERMISSIONS = {
@@ -120,8 +123,36 @@ public class me extends BaseActivity {
         plus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                findViewById(R.id.full).setVisibility(View.GONE);
-                findViewById(R.id.plus_ui).setVisibility(View.VISIBLE);
+                if(!isTF){
+                    isTF = true;
+                    plus.animate().rotation(90);
+                    /*                findViewById(R.id.plus_ui2).setVisibility(View.VISIBLE);*/
+                    DisplayMetrics metric = new DisplayMetrics();
+                    getWindowManager().getDefaultDisplay().getMetrics(metric);
+                    int screenH = metric.heightPixels;
+                    findViewById(R.id.plus_ui2).clearAnimation();
+                    ObjectAnimator.ofFloat(findViewById(R.id.plus_ui2),
+                            "translationY",
+                            (float) (screenH/2))
+                            .setDuration(500)
+                            .start();
+
+                }else{
+                    isTF = false;
+                    plus.animate().rotation(-90);
+                    //               findViewById(R.id.plus_ui2).setVisibility(View.VISIBLE);
+                    DisplayMetrics metric = new DisplayMetrics();
+                    getWindowManager().getDefaultDisplay().getMetrics(metric);
+                    int screenH = metric.heightPixels;
+                    findViewById(R.id.plus_ui2).clearAnimation();
+                    ObjectAnimator.ofFloat(findViewById(R.id.plus_ui2),
+                            "translationY",
+                            (float) (-screenH/2))
+                            .setDuration(500)
+                            .start();
+
+
+                }
             }
         });
         link.setOnClickListener(new View.OnClickListener() {
@@ -138,14 +169,6 @@ public class me extends BaseActivity {
 
             }
         });
-        findViewById(R.id.cross).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                findViewById(R.id.full).setVisibility(View.VISIBLE);
-                findViewById(R.id.plus_ui).setVisibility(View.GONE);
-            }
-        });
-
 
         findViewById(R.id.photo_cancel).setOnClickListener(new View.OnClickListener() {
             @Override

@@ -307,11 +307,14 @@
     </RelativeLayout>
 
     <include
-        android:id="@+id/plus_ui"
-        layout="@layout/plus"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone"/>
+        layout="@layout/plus2"
+        android:id="@+id/plus_ui2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="-270dp"
+        android:layout_alignParentBottom="true"/>
 
     <RelativeLayout
         android:id="@+id/head_portrait"

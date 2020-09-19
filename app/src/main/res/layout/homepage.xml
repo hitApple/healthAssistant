@@ -145,13 +145,44 @@
             android:layout_marginLeft="5dp"
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/eightsystem">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/diease_recycler_view"
-                android:layout_marginTop="15dp"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/rounded_rect_xml"/>
+                android:layout_marginTop="15dp"
+                android:background="@drawable/rounded_rect_xml">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/disease_recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:background="@drawable/rounded_rect_xml"/>
+
+                <TextView
+                    android:id="@+id/disease_click_tittle_text_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:lines="1"
+                    android:background="@drawable/rounded_rect_xml"
+                    android:textSize="30sp"
+                    android:textColor="#E62B2B2B"
+                    android:textStyle="bold"
+                    android:text="dasfaf"
+                    android:visibility="gone"/>
+
+                <TextView
+                    android:id="@+id/disease_click_text_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/disease_click_tittle_text_view"
+                    android:lines="15"
+                    android:background="@drawable/rounded_rect_xml"
+                    android:text="adsofia"
+                    android:textSize="25sp"
+                    android:visibility="gone"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 <!--            <RelativeLayout-->
@@ -305,12 +336,14 @@
 
 
     <include
-        layout="@layout/plus"
-        android:id="@+id/plus_ui"
-        android:visibility="gone"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        />
+        layout="@layout/plus2"
+        android:id="@+id/plus_ui2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="-270dp"
+        android:layout_alignParentBottom="true"/>
 
     <include
         layout="@layout/activity_calendar_sign"

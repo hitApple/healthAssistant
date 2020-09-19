@@ -5,6 +5,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -19,6 +20,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -160,11 +162,21 @@ public class ContactBaiduMap extends BaseActivity {
                 startActivity(new Intent(ContactBaiduMap.this,HomePage_find.class));
             }
         });
+        //切换界面返回后将其隐藏
+        if(findViewById(R.id.plus_ui2).getVisibility() == View.VISIBLE){
+            findViewById(R.id.plus_ui2).setVisibility(View.GONE);
+        }
         plus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                findViewById(R.id.full).setVisibility(View.GONE);
-                findViewById(R.id.plus_ui).setVisibility(View.VISIBLE);
+                if(findViewById(R.id.plus_ui2).getVisibility() == View.GONE){
+                    plus.animate().rotation(90);
+                    findViewById(R.id.plus_ui2).setVisibility(View.VISIBLE);
+
+                }else{
+                    plus.animate().rotation(-90);
+                    findViewById(R.id.plus_ui2).setVisibility(View.GONE);
+                }
             }
         });
         link.setOnClickListener(new View.OnClickListener() {
@@ -181,16 +193,6 @@ public class ContactBaiduMap extends BaseActivity {
 
             }
         });
-        findViewById(R.id.cross).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                findViewById(R.id.full).setVisibility(View.VISIBLE);
-                findViewById(R.id.plus_ui).setVisibility(View.GONE);
-            }
-        });
-
-
-
     }
 
     @Override
