@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/buttonwhite">
+    <ImageView
+        android:id="@+id/healthcheckup"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="50dp"
+        android:background="@drawable/healthcheckup"/>
+
+    <ImageView
+        android:id="@+id/healthreport"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignTop="@+id/healthcheckup"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="50dp"
+        android:background="@drawable/healthreport" />
+
+    <ImageView
+        android:id="@+id/symptomconsultation"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginLeft="50dp"
+        android:layout_below="@+id/healthcheckup"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/symptomconsultation" />
+
+    <ImageView
+        android:id="@+id/symptomprediction"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignTop="@id/symptomconsultation"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="50dp"
+        android:background="@drawable/symptomprediction" />
+
+</RelativeLayout>

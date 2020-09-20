@@ -93,7 +93,7 @@ public class HomePage_find extends BaseActivity  {
                     findViewById(R.id.plus_ui2).clearAnimation();
                     ObjectAnimator.ofFloat(findViewById(R.id.plus_ui2),
                             "translationY",
-                            (float) (screenH/2))
+                            (float) (MainActivity.mScreenHeight/2))
                             .setDuration(500)
                             .start();
 
@@ -107,7 +107,7 @@ public class HomePage_find extends BaseActivity  {
                     findViewById(R.id.plus_ui2).clearAnimation();
                     ObjectAnimator.ofFloat(findViewById(R.id.plus_ui2),
                             "translationY",
-                            (float) (-screenH/2))
+                            (float) (-MainActivity.mScreenHeight/2))
                             .setDuration(500)
                             .start();
 
@@ -115,6 +115,7 @@ public class HomePage_find extends BaseActivity  {
                 }
             }
         });
+
         link.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
