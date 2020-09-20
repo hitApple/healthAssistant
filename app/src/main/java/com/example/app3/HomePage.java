@@ -158,13 +158,7 @@ public class HomePage extends BaseActivity {
                 startActivity(new Intent(HomePage.this, com.example.app3.me.class));
             }
         });
-        findViewById(R.id.cross).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                findViewById(R.id.full).setVisibility(View.VISIBLE);
-                findViewById(R.id.plus_ui2).setVisibility(View.GONE);
-            }
-        });
+
 
         initIcons();
 
