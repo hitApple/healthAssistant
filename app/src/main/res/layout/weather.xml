@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="350dp"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/nowTemperature"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="当前温度"
+        android:textSize="45dp"
+        tools:ignore="MissingConstraints" />
+    <TextView
+        android:id="@+id/place"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints"
+        android:textSize="35dp"
+        android:text="地点"
+        app:layout_constraintTop_toBottomOf="@+id/nowTemperature"/>
+    <TextView
+        android:id="@+id/nowWeather"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints"
+        android:textSize="35dp"
+        android:text="天气"
+        app:layout_constraintTop_toBottomOf="@+id/place"/>
+    <TextView
+        android:id="@+id/recommendation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints"
+        android:textSize="25dp"
+        android:text="建议"
+        app:layout_constraintTop_toBottomOf="@+id/nowWeather"/>
+    <ImageView
+        android:id="@+id/today"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        tools:ignore="MissingConstraints"
+        app:layout_constraintTop_toBottomOf="@+id/recommendation"
+        android:layout_marginTop="10dp"/>
+    <ImageView
+        android:id="@+id/tomorrow"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        tools:ignore="MissingConstraints"
+        app:layout_constraintTop_toBottomOf="@+id/recommendation"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="10dp"/>
+    <ImageView
+        android:id="@+id/dayAfterTomorrow"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        tools:ignore="MissingConstraints"
+        app:layout_constraintTop_toBottomOf="@+id/recommendation"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="10dp"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

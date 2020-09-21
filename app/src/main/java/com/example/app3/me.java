@@ -15,9 +15,11 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -150,8 +152,6 @@ public class me extends BaseActivity {
                             (float) (-screenH/2))
                             .setDuration(500)
                             .start();
-
-
                 }
             }
         });
@@ -233,6 +233,26 @@ public class me extends BaseActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(com.example.app3.me.this, FavouritesHospitalView.class));
+            }
+        });
+
+        findViewById(R.id.username).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                findViewById(R.id.setUerName).setVisibility(View.VISIBLE);
+            }
+        });
+        findViewById(R.id.cross).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                findViewById(R.id.setUerName).setVisibility(View.GONE);
+            }
+        });
+        findViewById(R.id.determine).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((TextView)findViewById(R.id.username)).setText(((EditText)findViewById(R.id.editName)).getText());
+                findViewById(R.id.setUerName).setVisibility(View.GONE);
             }
         });
 
