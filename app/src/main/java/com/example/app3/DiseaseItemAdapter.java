@@ -48,20 +48,22 @@ public class DiseaseItemAdapter extends RecyclerView.Adapter<DiseaseItemAdapter.
                 final HomePage homePage = (HomePage) view.getContext();
 
                 homePage.clickTittleTextView.setVisibility(View.VISIBLE);
+                homePage.clickTittleTextView.setAlpha(1);
                 homePage.clickTittleTextView.setText(holder.tittleTextView.getText().toString());
                 homePage.clickTextView.setVisibility(View.VISIBLE);
                 homePage.clickTextView.setText("        " + holder.contentTextView.getText().toString());
                 homePage.diseaseRecyclerView.setVisibility(View.GONE);
+                homePage.homepageDiseaseBack.setVisibility(View.VISIBLE);
                 new Thread(){
                     @Override
                     public void run() {
                         super.run();
-                        try {
-                            Thread.sleep(500);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                            return;
-                        }
+//                        try {
+//                            Thread.sleep(500);
+//                        } catch (InterruptedException e) {
+//                            e.printStackTrace();
+//                            return;
+//                        }
 
                         homePage.runOnUiThread(new Runnable() {
                             @Override
@@ -73,7 +75,15 @@ public class DiseaseItemAdapter extends RecyclerView.Adapter<DiseaseItemAdapter.
                                 ObjectAnimator.ofFloat(homePage.clickTittleTextView,
                                         "translationX",
                                         (float) (MainActivity.mScreenWidth / 2 - size / 2 - 5))
-                                        .setDuration(500)
+                                        .setDuration(1000)
+                                        .start();
+                                ObjectAnimator.ofFloat(homePage.clickTextView,
+                                        "alpha",0, 1)
+                                        .setDuration(2000)
+                                        .start();
+                                ObjectAnimator.ofFloat(homePage.homepageDiseaseBack,
+                                        "alpha",0, 1)
+                                        .setDuration(2000)
                                         .start();
                             }
 

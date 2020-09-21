@@ -320,7 +320,16 @@
 
         </ScrollView>
 
+        <Button
+            android:id="@+id/homepage_disease_back"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/homepage_find_bottom_layout"
+            android:text="关闭"
+            android:visibility="gone"/>
+
         <RelativeLayout
+            android:id="@+id/homepage_find_bottom_layout"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_alignParentBottom="true"

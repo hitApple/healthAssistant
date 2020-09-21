@@ -3,12 +3,14 @@ package com.example.app3;
 import android.Manifest;
 import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -18,6 +20,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+
+import org.litepal.LitePal;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -44,6 +49,7 @@ public class HomePage_find extends BaseActivity  {
         weatherSearch = new WeatherSearch(HomePage_find.this);
         setContentView(R.layout.homepage_find);
 
+        homepage_find_search = findViewById(R.id.homepage_find_search);
         weatherTextView = findViewById(R.id.homepage_weather);
         getPermissions();
 
@@ -51,9 +57,15 @@ public class HomePage_find extends BaseActivity  {
         homepage_find_searchicon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-            //搜索
+                closeKeyboard();
+                Intent intent = new Intent(HomePage_find.this, HomePage.class);
+                intent.putExtra("searchText", homepage_find_search.getText().toString());
+                homepage_find_search.setText("");
+                startActivity(intent);
             }
         });
+
+        setItem1();
 
         homepage = findViewById(R.id.homepage);
         find = findViewById(R.id.find);
@@ -134,6 +146,38 @@ public class HomePage_find extends BaseActivity  {
         });
 
     }
+
+    private void setItem1(){
+
+        HealthCheckUpTable healthCheckUpTable = LitePal.where("phone = ?",
+                MainActivity.mPhone).findFirst(HealthCheckUpTable.class);
+
+        if(healthCheckUpTable == null){
+            return;
+        }
+
+        String weight = "体重: " +  healthCheckUpTable.getUser_weight();
+        String diastolic = "舒张压: " + healthCheckUpTable.getUser_diastolic_blood_pressure();
+        String systolic = "收缩压: " + healthCheckUpTable.getUser_systolic_lood_pressure();
+        String heartbeats = "心跳次数: " + healthCheckUpTable.getUser_heartbeats_per_minute();
+        String sleepTime = "睡眠时间: " + healthCheckUpTable.getUser_daily_sleep_time();
+        String urination = "小便次数: " + healthCheckUpTable.getUser_number_of_urination_per_day();
+
+        TextView text1 = findViewById(R.id.item1_text1);
+        TextView text2 = findViewById(R.id.item1_text2);
+        TextView text3 = findViewById(R.id.item1_text3);
+        TextView text4 = findViewById(R.id.item1_text4);
+        TextView text5 = findViewById(R.id.item1_text5);
+        TextView text6 = findViewById(R.id.item1_text6);
+
+        text1.setText(weight);
+        text2.setText(diastolic);
+        text3.setText(systolic);
+        text4.setText(heartbeats);
+        text5.setText(sleepTime);
+        text6.setText(urination);
+    }
+
     /**
      * 退出程序
      */
@@ -211,4 +255,12 @@ public class HomePage_find extends BaseActivity  {
         }
     }
 
+    private void closeKeyboard() {
+        InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        if(imm.isActive()&&getCurrentFocus()!=null){
+            if (getCurrentFocus().getWindowToken()!=null) {
+                imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+            }
+        }
+    }
 }

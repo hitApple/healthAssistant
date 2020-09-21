@@ -17,6 +17,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.app3.utils.PickCityUtil;
 
@@ -194,19 +195,20 @@ public class HealthCheckUp extends BaseActivity {
 
     }
     public  void saveData() throws IOException {
-        HealthCheckUpTable hcut = new HealthCheckUpTable();
+        HealthCheckUpTable healthCheckUpTable = new HealthCheckUpTable();
 
         List<HealthCheckUpTable> DateList = LitePal.where("phone = ?",
                 MainActivity.mPhone).find(HealthCheckUpTable.class);
-        for(HealthCheckUpTable sin : DateList){
-            sin.delete();
+        for(HealthCheckUpTable checkUpTable : DateList){
+            checkUpTable.delete();
         }
 
-        hcut.setPhone(MainActivity.mPhone);
-        hcut.setAll(
+
+
+        healthCheckUpTable.setPhone(MainActivity.mPhone);
+        healthCheckUpTable.setAll(
                 ((EditText)findViewById(R.id.user_name)).getText().toString(),
-                ((TextView)findViewById(R.id.user_time)).getText().toString(),
-                sex,
+                ((TextView)findViewById(R.id.user_time)).getText().toString(), sex,
                 ((TextView)findViewById(R.id.province_city_county)).getText().toString(),
                 ((EditText)findViewById(R.id.user_blood_type)).getText().toString(),
                 ((EditText)findViewById(R.id.user_systolic_lood_pressure)).getText().toString(),
@@ -218,8 +220,9 @@ public class HealthCheckUp extends BaseActivity {
                 ((EditText)findViewById(R.id.user_daily_sleep_time)).getText().toString(),
                 ((EditText)findViewById(R.id.user_what_are_the_current_diseases)).getText().toString());
 
-        hcut.save();
-        Log.d("HealthCheckUp","1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111");
+        healthCheckUpTable.save();
+        Toast.makeText(HealthCheckUp.this, "保存完毕!", Toast.LENGTH_SHORT).show();
+        finish();
     }
 
     public byte[] getBitmapByte(Bitmap bitmap){

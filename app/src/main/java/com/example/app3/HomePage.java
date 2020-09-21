@@ -4,6 +4,7 @@ import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Paint;
 import android.graphics.Point;
 import android.media.Image;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -45,12 +47,15 @@ public class HomePage extends BaseActivity {
     public TextView clickTittleTextView;
     public TextView clickTextView;
     private boolean isTF = true;
+    public Button homepageDiseaseBack;
 
 
     @SuppressLint("WrongViewCast")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.homepage);
+
+        homepageSearch = findViewById(R.id.homepage_search);
 
         disaseList = LitePal.where("body = 'fubu'").find(Disase.class);
         DiseaseItemAdapter adapter = new DiseaseItemAdapter(disaseList);
@@ -68,11 +73,11 @@ public class HomePage extends BaseActivity {
             }
         });
 
-        homepageSearch = findViewById(R.id.homepage_search);
         ImageView homepageSearchImage = findViewById(R.id.homepage_search_image);
         homepageSearchImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                closeKeyboard();
                 String searchText = homepageSearch.getText().toString();
                 disaseList = LitePal.where("description like ?", "%" + searchText + "%")
                         .find(Disase.class);
@@ -82,11 +87,74 @@ public class HomePage extends BaseActivity {
                 LinearLayoutManager linearLayout = new LinearLayoutManager(HomePage.this);
                 diseaseRecyclerView.setLayoutManager(linearLayout);
                 diseaseRecyclerView.setAdapter(adapter);
+                homepageSearch.setText("");
+                ObjectAnimator.ofFloat(diseaseRecyclerView,
+                        "alpha",0, 1)
+                        .setDuration(1000)
+                        .start();
             }
         });
 
+
         clickTextView = findViewById(R.id.disease_click_text_view);
         clickTittleTextView = findViewById(R.id.disease_click_tittle_text_view);
+
+        homepageDiseaseBack = findViewById(R.id.homepage_disease_back);
+        homepageDiseaseBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Paint paint = new Paint();
+                paint.setTextSize(clickTittleTextView.getTextSize());
+                float size = paint.measureText(clickTittleTextView.getText().toString());
+                ObjectAnimator.ofFloat(clickTextView,
+                        "alpha",1, 0)
+                        .setDuration(2000)
+                        .start();
+                ObjectAnimator.ofFloat(clickTittleTextView,
+                        "translationX",
+                        (float) -(MainActivity.mScreenWidth / 2 - size / 2 - 5))
+                        .setDuration(1000)
+                        .start();
+                ObjectAnimator.ofFloat(homepageDiseaseBack,
+                        "alpha",1, 0)
+                        .setDuration(2000)
+                        .start();
+                ObjectAnimator.ofFloat(clickTittleTextView,
+                        "alpha",1, 0)
+                        .setDuration(2000)
+                        .start();
+                new Thread(){
+                    @Override
+                    public void run() {
+                        super.run();
+                        try {
+                            Thread.sleep(1500);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                            return;
+                        }
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                clickTittleTextView.setVisibility(View.GONE);
+                                clickTextView.setVisibility(View.GONE);
+                                diseaseRecyclerView.setVisibility(View.VISIBLE);
+                                homepageDiseaseBack.setVisibility(View.GONE);
+                            }
+                        });
+                    }
+                }.start();
+            }
+        });
+
+
+        Intent intent = getIntent();
+        if (intent != null){
+            homepageSearch.setText(intent.getStringExtra("searchText"));
+            homepageSearchImage.performClick();
+        }
+
 
         homepage = findViewById(R.id.homepage);
         find = findViewById(R.id.find);
@@ -104,6 +172,7 @@ public class HomePage extends BaseActivity {
                 startActivity(new Intent(HomePage.this,HomePage_find.class));
             }
         });
+
         find.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -206,6 +275,10 @@ public class HomePage extends BaseActivity {
                 LinearLayoutManager linearLayout = new LinearLayoutManager(HomePage.this);
                 diseaseRecyclerView.setLayoutManager(linearLayout);
                 diseaseRecyclerView.setAdapter(adapter);
+                ObjectAnimator.ofFloat(diseaseRecyclerView,
+                        "alpha",0, 1)
+                        .setDuration(1000)
+                        .start();
             }
         });
 
@@ -221,6 +294,10 @@ public class HomePage extends BaseActivity {
                 LinearLayoutManager linearLayout = new LinearLayoutManager(HomePage.this);
                 diseaseRecyclerView.setLayoutManager(linearLayout);
                 diseaseRecyclerView.setAdapter(adapter);
+                ObjectAnimator.ofFloat(diseaseRecyclerView,
+                        "alpha",0, 1)
+                        .setDuration(1000)
+                        .start();
             }
         });
 
@@ -236,6 +313,10 @@ public class HomePage extends BaseActivity {
                 LinearLayoutManager linearLayout = new LinearLayoutManager(HomePage.this);
                 diseaseRecyclerView.setLayoutManager(linearLayout);
                 diseaseRecyclerView.setAdapter(adapter);
+                ObjectAnimator.ofFloat(diseaseRecyclerView,
+                        "alpha", 0, 1)
+                        .setDuration(1000)
+                        .start();
             }
         });
 
@@ -251,6 +332,10 @@ public class HomePage extends BaseActivity {
                 LinearLayoutManager linearLayout = new LinearLayoutManager(HomePage.this);
                 diseaseRecyclerView.setLayoutManager(linearLayout);
                 diseaseRecyclerView.setAdapter(adapter);
+                ObjectAnimator.ofFloat(diseaseRecyclerView,
+                        "alpha",0, 1)
+                        .setDuration(1000)
+                        .start();
             }
         });
 
@@ -266,6 +351,10 @@ public class HomePage extends BaseActivity {
                 LinearLayoutManager linearLayout = new LinearLayoutManager(HomePage.this);
                 diseaseRecyclerView.setLayoutManager(linearLayout);
                 diseaseRecyclerView.setAdapter(adapter);
+                ObjectAnimator.ofFloat(diseaseRecyclerView,
+                        "alpha",0, 1)
+                        .setDuration(1000)
+                        .start();
             }
         });
 
@@ -281,6 +370,10 @@ public class HomePage extends BaseActivity {
                 LinearLayoutManager linearLayout = new LinearLayoutManager(HomePage.this);
                 diseaseRecyclerView.setLayoutManager(linearLayout);
                 diseaseRecyclerView.setAdapter(adapter);
+                ObjectAnimator.ofFloat(diseaseRecyclerView,
+                        "alpha",0, 1)
+                        .setDuration(1000)
+                        .start();
             }
         });
 
@@ -296,6 +389,10 @@ public class HomePage extends BaseActivity {
                 LinearLayoutManager linearLayout = new LinearLayoutManager(HomePage.this);
                 diseaseRecyclerView.setLayoutManager(linearLayout);
                 diseaseRecyclerView.setAdapter(adapter);
+                ObjectAnimator.ofFloat(diseaseRecyclerView,
+                        "alpha",0, 1)
+                        .setDuration(1000)
+                        .start();
             }
         });
 
@@ -311,6 +408,10 @@ public class HomePage extends BaseActivity {
                 LinearLayoutManager linearLayout = new LinearLayoutManager(HomePage.this);
                 diseaseRecyclerView.setLayoutManager(linearLayout);
                 diseaseRecyclerView.setAdapter(adapter);
+                ObjectAnimator.ofFloat(diseaseRecyclerView,
+                        "alpha",0, 1)
+                        .setDuration(1000)
+                        .start();
             }
         });
 

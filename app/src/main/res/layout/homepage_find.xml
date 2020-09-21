@@ -55,23 +55,67 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-                <TextView
-                    android:id="@+id/xinagmu1"
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/homepage_find_item1"
                     android:layout_width="match_parent"
                     android:layout_height="250dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="30dp"
                     android:layout_marginRight="10dp"
-                    android:background="@drawable/rounded_rect_xml"
-                    android:textSize="30sp" />
+                    android:background="@drawable/rounded_rect_xml">
+
+                    <TextView
+                        android:id="@+id/item1_text1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:text="test"/>
+
+                    <TextView
+                        android:id="@+id/item1_text2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toBottomOf="@id/item1_text1"
+                        android:text="test"/>
+
+                    <TextView
+                        android:id="@+id/item1_text3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toBottomOf="@id/item1_text2"
+                        android:text="test"/>
+
+                    <TextView
+                        android:id="@+id/item1_text4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toBottomOf="@id/item1_text3"
+                        android:text="test"/>
+
+                    <TextView
+                        android:id="@+id/item1_text5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toBottomOf="@id/item1_text4"
+                        android:text="test"/>
+
+                    <TextView
+                        android:id="@+id/item1_text6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toBottomOf="@id/item1_text5"
+                        android:text="test"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <TextView
                     android:id="@+id/homepage_weather"
                     android:layout_width="350dp"
                     android:layout_height="250dp"
-                    android:layout_below="@+id/xinagmu1"
-                    android:layout_alignLeft="@+id/xinagmu1"
-                    android:layout_alignRight="@+id/xinagmu1"
+                    android:layout_below="@id/homepage_find_item1"
+                    android:layout_alignLeft="@+id/homepage_find_item1"
+                    android:layout_alignRight="@+id/homepage_find_item1"
                     android:layout_marginTop="20dp"
                     android:background="@drawable/rounded_rect_xml"
                     android:text="暂时无法获取当前城市的天气信息"
@@ -82,8 +126,8 @@
                     android:id="@+id/xinagmu3"
                     android:layout_width="350dp"
                     android:layout_height="250dp"
-                    android:layout_alignLeft="@+id/xinagmu1"
-                    android:layout_alignRight="@+id/xinagmu1"
+                    android:layout_alignLeft="@id/homepage_find_item1"
+                    android:layout_alignRight="@+id/homepage_find_item1"
                     android:layout_below="@+id/homepage_weather"
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="60dp"
@@ -119,4 +163,13 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentBottom="true"
         android:visibility="gone"/>
+    <include
+        layout="@layout/plus2"
+        android:id="@+id/plus_ui2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="-270dp"
+        android:layout_alignParentBottom="true"/>
 </RelativeLayout>
