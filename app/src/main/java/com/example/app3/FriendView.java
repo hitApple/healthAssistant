@@ -111,6 +111,9 @@ public class FriendView extends BaseActivity {
                 contact.setFriendTel(friendTelString);
                 contact.save();
 
+                friendNameText.setText("");
+                friendTelText.setText("");
+
                 friendList.add(friend1);
                 friendAdapter.notifyItemInserted(friendList.size() - 1);
                 greyBackground.setVisibility(View.GONE);
