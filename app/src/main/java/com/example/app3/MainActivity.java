@@ -75,6 +75,7 @@ public class MainActivity extends BaseActivity {
     private ImageView bgImage;
     private Timer bgTimer;
     private BGChangeTimerTask timerTask;
+    public static String mPicPath;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,7 +87,7 @@ public class MainActivity extends BaseActivity {
 
         importDatabases();
         Connector.getDatabase();
-
+        mPicPath = getApplicationContext().getFilesDir().getAbsolutePath() + "/avatar" + "/avatar_" + MainActivity.mPhone + ".jpg";
         bgImage = findViewById(R.id.main_activity_bg);
         bgImage.setImageResource(bgIds[new Random().nextInt(4)]);
         user = findViewById(R.id.user);
@@ -231,8 +232,7 @@ public class MainActivity extends BaseActivity {
     protected void onPause() {
         super.onPause();
         isPaused = true;
-        timerTask.cancel();
-        bgTimer.cancel();
+
     }
 
     /**

@@ -127,7 +127,7 @@ public class me extends BaseActivity {
             public void onClick(View view) {
                 if(!isTF){
                     isTF = true;
-                    plus.animate().rotation(90);
+                    plus.animate().rotation(-90);
                     /*                findViewById(R.id.plus_ui2).setVisibility(View.VISIBLE);*/
                     DisplayMetrics metric = new DisplayMetrics();
                     getWindowManager().getDefaultDisplay().getMetrics(metric);
@@ -141,7 +141,7 @@ public class me extends BaseActivity {
 
                 }else{
                     isTF = false;
-                    plus.animate().rotation(-90);
+                    plus.animate().rotation(45);
                     //               findViewById(R.id.plus_ui2).setVisibility(View.VISIBLE);
                     DisplayMetrics metric = new DisplayMetrics();
                     getWindowManager().getDefaultDisplay().getMetrics(metric);
@@ -220,21 +220,21 @@ public class me extends BaseActivity {
             }
         });
 
-        LinearLayout myFriend = findViewById(R.id.my_friend);
-        myFriend.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(com.example.app3.me.this, FriendView.class));
-            }
-        });
+//        LinearLayout myFriend = findViewById(R.id.my_friend);
+//        myFriend.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startActivity(new Intent(com.example.app3.me.this, FriendView.class));
+//            }
+//        });
 
-        LinearLayout myHospital = findViewById(R.id.my_hospital);
-        myHospital.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(com.example.app3.me.this, FavouritesHospitalView.class));
-            }
-        });
+//        LinearLayout myHospital = findViewById(R.id.my_hospital);
+//        myHospital.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startActivity(new Intent(com.example.app3.me.this, FavouritesHospitalView.class));
+//            }
+//        });
 
         findViewById(R.id.username).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -450,12 +450,12 @@ public class me extends BaseActivity {
         findViewById(R.id.personal_pic).setClickable(false);
         findViewById(R.id.username).setClickable(false);
         findViewById(R.id.personal_3).setClickable(false);
-        findViewById(R.id.personal_4).setClickable(false);
+//        findViewById(R.id.personal_4).setClickable(false);
         findViewById(R.id.par).setClickable(false);
-        findViewById(R.id.my_hospital).setClickable(false);
-        findViewById(R.id.doctor2).setClickable(false);
-        findViewById(R.id.my_friend).setClickable(false);
-        findViewById(R.id.doctor4).setClickable(false);
+//        findViewById(R.id.my_hospital).setClickable(false);
+//        findViewById(R.id.doctor2).setClickable(false);
+//        findViewById(R.id.my_friend).setClickable(false);
+//        findViewById(R.id.doctor4).setClickable(false);
         findViewById(R.id.exit_login).setClickable(false);
         findViewById(R.id.homepage_find_bottom).setClickable(false);
         findViewById(R.id.plus_ui2).setClickable(false);

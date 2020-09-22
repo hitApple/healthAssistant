@@ -7,12 +7,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.text.Layout;
 import android.util.DisplayMetrics;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,9 +41,10 @@ public class HomePage_find extends BaseActivity  {
     private EditText homepage_find_search;
     private boolean isWeatherAccept = true;
     private WeatherSearch weatherSearch;
-    TextView weatherTextView;
     private Boolean isTF = true;
     private List<String> permissionList = new ArrayList<>();
+    private static int[] weatherItems;
+    public TextView[] weathersTextViews = new TextView[5];
 
     @SuppressLint("WrongViewCast")
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,8 +52,14 @@ public class HomePage_find extends BaseActivity  {
         weatherSearch = new WeatherSearch(HomePage_find.this);
         setContentView(R.layout.homepage_find);
 
+        weatherItems = new int[]{R.id.highAndLow, R.id.place, R.id.nowWeather, R.id.directionOfWind,
+                R.id.recommendation};
+
+        for (int i = 0; i < weatherItems.length; i++){
+            weathersTextViews[i] = findViewById(weatherItems[i]);
+        }
+
         homepage_find_search = findViewById(R.id.homepage_find_search);
-        weatherTextView = findViewById(R.id.homepage_weather);
         getPermissions();
 
         homepage_find_searchicon = findViewById(R.id.homepage_find_search_image);
@@ -97,7 +106,7 @@ public class HomePage_find extends BaseActivity  {
             public void onClick(View view) {
                 if(!isTF){
                     isTF = true;
-                    plus.animate().rotation(90);
+                    plus.animate().rotation(-90);
                     /*                findViewById(R.id.plus_ui2).setVisibility(View.VISIBLE);*/
                     DisplayMetrics metric = new DisplayMetrics();
                     getWindowManager().getDefaultDisplay().getMetrics(metric);
@@ -111,7 +120,7 @@ public class HomePage_find extends BaseActivity  {
 
                 }else{
                     isTF = false;
-                    plus.animate().rotation(-90);
+                    plus.animate().rotation(45);
                     //               findViewById(R.id.plus_ui2).setVisibility(View.VISIBLE);
                     DisplayMetrics metric = new DisplayMetrics();
                     getWindowManager().getDefaultDisplay().getMetrics(metric);

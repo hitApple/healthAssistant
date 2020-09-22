@@ -78,7 +78,7 @@ public class ContactBaiduMap extends BaseActivity {
     private RelativeLayout plus;
     private RelativeLayout link;
     private RelativeLayout me;
-
+    private Boolean isTF = true;
     /**************************************以下为各种方法和内部类************************************/
 
     /***********************************活动的生命周期管理************************************/
@@ -162,20 +162,39 @@ public class ContactBaiduMap extends BaseActivity {
                 startActivity(new Intent(ContactBaiduMap.this,HomePage_find.class));
             }
         });
-        //切换界面返回后将其隐藏
-        if(findViewById(R.id.plus_ui2).getVisibility() == View.VISIBLE){
-            findViewById(R.id.plus_ui2).setVisibility(View.GONE);
-        }
         plus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(findViewById(R.id.plus_ui2).getVisibility() == View.GONE){
-                    plus.animate().rotation(90);
-                    findViewById(R.id.plus_ui2).setVisibility(View.VISIBLE);
+
+                if(!isTF){
+                    isTF = true;
+                    plus.animate().rotation(-90);
+                    /*                findViewById(R.id.plus_ui2).setVisibility(View.VISIBLE);*/
+                    DisplayMetrics metric = new DisplayMetrics();
+                    getWindowManager().getDefaultDisplay().getMetrics(metric);
+                    int screenH = metric.heightPixels;
+                    findViewById(R.id.plus_ui2).clearAnimation();
+                    ObjectAnimator.ofFloat(findViewById(R.id.plus_ui2),
+                            "translationY",
+                            (float) (MainActivity.mScreenHeight/2))
+                            .setDuration(500)
+                            .start();
 
                 }else{
-                    plus.animate().rotation(-90);
-                    findViewById(R.id.plus_ui2).setVisibility(View.GONE);
+                    isTF = false;
+                    plus.animate().rotation(45);
+                    //               findViewById(R.id.plus_ui2).setVisibility(View.VISIBLE);
+                    DisplayMetrics metric = new DisplayMetrics();
+                    getWindowManager().getDefaultDisplay().getMetrics(metric);
+                    int screenH = metric.heightPixels;
+                    findViewById(R.id.plus_ui2).clearAnimation();
+                    ObjectAnimator.ofFloat(findViewById(R.id.plus_ui2),
+                            "translationY",
+                            (float) (-MainActivity.mScreenHeight/2))
+                            .setDuration(500)
+                            .start();
+
+
                 }
             }
         });

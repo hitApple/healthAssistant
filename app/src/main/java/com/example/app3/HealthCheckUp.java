@@ -57,7 +57,7 @@ public class HealthCheckUp extends BaseActivity {
         mCounty = (TextView)findViewById(R.id.county);*/
 
         head_person = findViewById(R.id.head_person);
-        if(new File(me.picPath).exists()) {
+        if(new File(MainActivity.mPicPath).exists()) {
             head_person.setImageURI(Uri.parse(me.picPath));
             head_person.setBackgroundDrawable(null);
         }

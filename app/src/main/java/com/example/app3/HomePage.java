@@ -184,7 +184,7 @@ public class HomePage extends BaseActivity {
             public void onClick(View view) {
                 if(!isTF){
                     isTF = true;
-                    plus.animate().rotation(90);
+                    plus.animate().rotation(-90);
                     /*                findViewById(R.id.plus_ui2).setVisibility(View.VISIBLE);*/
                     DisplayMetrics metric = new DisplayMetrics();
                     getWindowManager().getDefaultDisplay().getMetrics(metric);
@@ -198,7 +198,7 @@ public class HomePage extends BaseActivity {
 
                 }else{
                     isTF = false;
-                    plus.animate().rotation(-90);
+                    plus.animate().rotation(45);
                     //               findViewById(R.id.plus_ui2).setVisibility(View.VISIBLE);
                     DisplayMetrics metric = new DisplayMetrics();
                     getWindowManager().getDefaultDisplay().getMetrics(metric);

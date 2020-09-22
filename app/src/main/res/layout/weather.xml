@@ -5,39 +5,47 @@
     android:layout_width="350dp"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="10dp">
+    android:padding="20dp">
 
     <TextView
-        android:id="@+id/nowTemperature"
+        android:id="@+id/highAndLow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="当前温度"
-        android:textSize="45dp"
+        android:text="最高/低温： "
+        android:textSize="30dp"
         tools:ignore="MissingConstraints" />
     <TextView
         android:id="@+id/place"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:ignore="MissingConstraints"
-        android:textSize="35dp"
-        android:text="地点"
-        app:layout_constraintTop_toBottomOf="@+id/nowTemperature"/>
+        android:textSize="25dp"
+        android:text="地点："
+        app:layout_constraintTop_toBottomOf="@+id/highAndLow"/>
     <TextView
         android:id="@+id/nowWeather"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:ignore="MissingConstraints"
-        android:textSize="35dp"
-        android:text="天气"
+        android:textSize="25dp"
+        android:text="天气："
         app:layout_constraintTop_toBottomOf="@+id/place"/>
+    <TextView
+        android:id="@+id/directionOfWind"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints"
+        android:textSize="25dp"
+        android:text="风力/风向："
+        app:layout_constraintTop_toBottomOf="@+id/nowWeather"/>
     <TextView
         android:id="@+id/recommendation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:ignore="MissingConstraints"
-        android:textSize="25dp"
-        android:text="建议"
-        app:layout_constraintTop_toBottomOf="@+id/nowWeather"/>
+        android:textSize="20dp"
+        android:text="建议："
+        app:layout_constraintTop_toBottomOf="@+id/directionOfWind"/>
     <ImageView
         android:id="@+id/today"
         android:layout_width="100dp"
