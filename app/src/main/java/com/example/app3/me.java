@@ -252,6 +252,7 @@ public class me extends BaseActivity {
             @Override
             public void onClick(View v) {
                 ((TextView)findViewById(R.id.username)).setText(((EditText)findViewById(R.id.editName)).getText());
+                String str = ((EditText)findViewById(R.id.editName)).getText().toString();
                 findViewById(R.id.setUerName).setVisibility(View.GONE);
             }
         });
@@ -437,6 +438,36 @@ public class me extends BaseActivity {
             }
         }
         return false;
+    }
+
+    public void setUnable(){
+        findViewById(R.id.full).setClickable(false);
+        findViewById(R.id.personal_1).setClickable(false);
+        findViewById(R.id.personal_setting).setClickable(false);
+        findViewById(R.id.message).setClickable(false);
+        findViewById(R.id.message_unread).setClickable(false);
+        findViewById(R.id.personal_2).setClickable(false);
+        findViewById(R.id.personal_pic).setClickable(false);
+        findViewById(R.id.username).setClickable(false);
+        findViewById(R.id.personal_3).setClickable(false);
+        findViewById(R.id.personal_4).setClickable(false);
+        findViewById(R.id.par).setClickable(false);
+        findViewById(R.id.my_hospital).setClickable(false);
+        findViewById(R.id.doctor2).setClickable(false);
+        findViewById(R.id.my_friend).setClickable(false);
+        findViewById(R.id.doctor4).setClickable(false);
+        findViewById(R.id.exit_login).setClickable(false);
+        findViewById(R.id.homepage_find_bottom).setClickable(false);
+        findViewById(R.id.plus_ui2).setClickable(false);
+        findViewById(R.id.head_portrait).setClickable(false);
+        findViewById(R.id.personal_pic_2).setClickable(false);
+        findViewById(R.id.personal_take_photo).setClickable(false);
+        findViewById(R.id.personal_photo_album).setClickable(false);
+        findViewById(R.id.photo_cancel).setClickable(false);
+        findViewById(R.id.setUerName).setClickable(false);
+        findViewById(R.id.editName).setClickable(false);
+        findViewById(R.id.cross).setClickable(false);
+        findViewById(R.id.determine).setClickable(false);
     }
 
 

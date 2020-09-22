@@ -144,6 +144,12 @@ public class HomePage_find extends BaseActivity  {
 
             }
         });
+        findViewById(R.id.addInformation).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(HomePage_find.this, HealthCheckUp.class));
+            }
+        });
 
     }
 
@@ -195,7 +201,7 @@ public class HomePage_find extends BaseActivity  {
         return super.onKeyDown(keyCode, event);
     }*/
     long boo = 0;
-    public boolean onKeyDown(int keyCode, android.view.KeyEvent event) {
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             if ((System.currentTimeMillis() - boo) > 2000) {
                 Toast.makeText(getApplicationContext(), "再按一次返回键退出程序",

@@ -3,6 +3,7 @@ package com.example.app3;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -32,12 +33,19 @@ import org.litepal.tablemanager.Connector;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
-public class MainActivity extends BaseActivity {    private static final String TAG = "MainActivity";
+public class MainActivity extends BaseActivity {
+
+    private static final String TAG = "MainActivity";
 
     public static String mPhone = "1";;
     public static int mScreenWidth = 0;
     public static int mScreenHeight = 0;
+
+    private boolean isPaused = false;
 
     private Button SignIn;
     private Button LogIn;
@@ -53,14 +61,20 @@ public class MainActivity extends BaseActivity {    private static final String 
 
     private Context mContext;
     private ViewFlipper vflp_help;
-    private int[] resId = {R.drawable.guide_1,R.drawable.guide_2,
+    private final int[] resId = {R.drawable.guide_1,R.drawable.guide_2,
             R.drawable.guide_3,R.drawable.guide_4};
+    private final int[] bgIds = {R.drawable.main_activity_bg1, R.drawable.main_activity_bg2,
+            R.drawable.main_activity_bg3, R.drawable.main_activity_bg4,
+            R.drawable.main_activity_bg5};
 
     private final static int MIN_MOVE = 200;   //最小距离
     private MsGestureListener mgListener;
     private GestureDetector mDetector;
     private Button go_SignIn;
     private Button go_LogIn;
+    private ImageView bgImage;
+    private Timer bgTimer;
+    private BGChangeTimerTask timerTask;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +87,8 @@ public class MainActivity extends BaseActivity {    private static final String 
         importDatabases();
         Connector.getDatabase();
 
+        bgImage = findViewById(R.id.main_activity_bg);
+        bgImage.setImageResource(bgIds[new Random().nextInt(4)]);
         user = findViewById(R.id.user);
         password =  findViewById(R.id.password);
 
@@ -155,22 +171,22 @@ public class MainActivity extends BaseActivity {    private static final String 
             startLogin();
         }
 
-        /*********************************测试用button**************************************/
-        Button button1 = (Button) findViewById(R.id.jumpToBaiduMap);
-        button1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, ContactBaiduMap.class));
-            }
-        });
-        Button button2 = (Button) findViewById(R.id.jumpToCalorieView);
-        button2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, CalorieView.class));
-            }
-        });
-        /*********************************测试用button**************************************/
+//        /*********************************测试用button**************************************/
+//        Button button1 = (Button) findViewById(R.id.jumpToBaiduMap);
+//        button1.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startActivity(new Intent(MainActivity.this, ContactBaiduMap.class));
+//            }
+//        });
+//        Button button2 = (Button) findViewById(R.id.jumpToCalorieView);
+//        button2.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startActivity(new Intent(MainActivity.this, CalorieView.class));
+//            }
+//        });
+//        /*********************************测试用button**************************************/
 
 
         mContext = MainActivity.this;
@@ -197,9 +213,27 @@ public class MainActivity extends BaseActivity {    private static final String 
                 findViewById(R.id.full).setVisibility(View.VISIBLE);
             }
         });
+        bgTimer = new Timer();
+//        timerTask = new BGChangeTimerTask();
+//        bgTimer.schedule(timerTask, 1000L);
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        isPaused = false;
+        timerTask = new BGChangeTimerTask();
+        bgTimer.schedule(timerTask, 1000L);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        isPaused = true;
+        timerTask.cancel();
+        bgTimer.cancel();
+    }
 
     /**
      * 将存储在assets文件夹中的数据库文件移动到相应位置
@@ -325,6 +359,75 @@ public class MainActivity extends BaseActivity {    private static final String 
 
             }
             return true;
+        }
+    }
+
+    class BGChangeTimerTask extends TimerTask {
+
+
+        int currentId = -1;
+
+        @Override
+        public void run() {
+            while (true){
+                if (isPaused){
+                    return;
+                }
+                MainActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        ObjectAnimator.ofFloat(bgImage,
+                                "scaleX", 1, 1.3f)
+                                .setDuration(8000)
+                                .start();
+                        ObjectAnimator.ofFloat(bgImage,
+                                "scaleY", 1, 1.3f)
+                                .setDuration(8000)
+                                .start();
+                    }
+                });
+                try {
+                    Thread.sleep(7000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                    return;
+                }
+                MainActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        ObjectAnimator.ofFloat(bgImage,
+                                "alpha", 1, 0)
+                                .setDuration(1000)
+                                .start();
+                    }
+                });
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                    return;
+                }
+                MainActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        ObjectAnimator.ofFloat(bgImage,
+                                "alpha", 0, 1)
+                                .setDuration(1000)
+                                .start();
+                        Random random = new Random();
+                        int getId = 0;
+                        while (true){
+                            getId = random.nextInt(5);
+                            if (getId != currentId){
+                                break;
+                            }
+                        }
+                        bgImage.setImageResource(bgIds[getId]);
+
+                    }
+                });
+
+            }
         }
     }
 

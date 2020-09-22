@@ -71,57 +71,66 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp">
                         <TextView
-
+                            android:id="@+id/addInformation"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="个人信息"
+                            android:textSize="30dp"
+                            android:textColor="#3E65F3"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
                             tools:ignore="MissingConstraints" />
                         <TextView
                             android:id="@+id/item1_text1"
+                            android:layout_marginTop="40dp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             app:layout_constraintTop_toTopOf="parent"
-                            android:text="test"/>
+                            android:text="点击个人信息即可添加信息"
+                            android:textSize="24dp"/>
 
                         <TextView
                             android:id="@+id/item1_text2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             app:layout_constraintTop_toBottomOf="@id/item1_text1"
-                            android:text="test"/>
+                            android:text="test"
+                            android:textSize="24dp"/>
 
                         <TextView
                             android:id="@+id/item1_text3"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             app:layout_constraintTop_toBottomOf="@id/item1_text2"
-                            android:text="test"/>
+                            android:text="test"
+                            android:textSize="24dp"/>
 
                         <TextView
                             android:id="@+id/item1_text4"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             app:layout_constraintTop_toBottomOf="@id/item1_text3"
-                            android:text="test"/>
+                            android:text="test"
+                            android:textSize="24dp"/>
 
                         <TextView
                             android:id="@+id/item1_text5"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             app:layout_constraintTop_toBottomOf="@id/item1_text4"
-                            android:text="test"/>
+                            android:text="test"
+                            android:textSize="24dp"/>
 
                         <TextView
                             android:id="@+id/item1_text6"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             app:layout_constraintTop_toBottomOf="@id/item1_text5"
-                            android:text="test"/>
+                            android:text="test"
+                            android:textSize="24dp"/>
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </ScrollView>
-
-
 
 <!--                <RelativeLayout
                     android:id="@+id/homepage_weather"
