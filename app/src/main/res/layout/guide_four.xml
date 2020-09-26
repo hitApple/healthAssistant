@@ -10,19 +10,15 @@
         android:id="@+id/go_LogIn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:ignore="MissingConstraints"
-        android:text="登录"
+        android:text="立即体验"
+        android:textSize="25dp"
+        android:paddingRight="50dp"
+        android:paddingLeft="50dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginBottom="100dp"
         app:layout_constraintRight_toRightOf="parent"/>
-    <Button
-        android:id="@+id/go_SignIn"
-        android:layout_marginBottom="100dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:ignore="MissingConstraints"
-        android:text="注册"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

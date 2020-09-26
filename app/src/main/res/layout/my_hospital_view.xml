@@ -18,7 +18,8 @@
             android:layout_height="wrap_content"
             android:background="#31A1FA"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            android:paddingTop="20dp">
 
             <ImageView
                 android:id="@+id/hospital_favourites_view_back"
@@ -26,7 +27,6 @@
                 android:layout_height="50dp"
                 android:text="返回"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="@id/hospital_favourites_tittle"
                 android:layout_marginLeft="3dp"
                 android:src="@drawable/arrow_left"
@@ -41,7 +41,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 android:text="我收藏的医院"
                 android:textSize="30sp"
-                android:layout_marginTop="5dp"/>
+                android:layout_marginBottom="5dp"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

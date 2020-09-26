@@ -116,7 +116,7 @@ public class ContactBaiduMap extends BaseActivity {
         mapView.getChildAt(2).setPadding(0, 0, 0, 100);
         baiduMap.setCompassPosition(new android.graphics.Point(70, 380));
 
-        Button searchButton = (Button) findViewById(R.id.search);
+        ImageView searchButton = findViewById(R.id.search);
         searchButton.setOnClickListener(new myOnClickSearchListener());
 
         Button searchThisButton = (Button) findViewById(R.id.search_this);

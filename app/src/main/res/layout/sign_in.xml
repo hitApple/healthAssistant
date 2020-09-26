@@ -34,7 +34,7 @@
             <EditText
                 android:id="@+id/user_sign_in"
                 android:layout_width="250dp"
-                android:layout_height="50dp"
+                android:layout_height="45dp"
                 android:selectAllOnFocus="true"
                 android:singleLine="true"
                 android:maxLength="15"
@@ -61,7 +61,7 @@
             <EditText
                 android:id="@+id/user_sign_in_password"
                 android:layout_width="250dp"
-                android:layout_height="50dp"
+                android:layout_height="45dp"
                 android:background="@null"
                 android:selectAllOnFocus="true"
                 android:singleLine="true"
@@ -89,7 +89,7 @@
             <EditText
                 android:id="@+id/user_sign_in_password2"
                 android:layout_width="192dp"
-                android:layout_height="55dp"
+                android:layout_height="45dp"
                 android:background="@null"
                 android:selectAllOnFocus="true"
                 android:singleLine="true"
@@ -127,7 +127,8 @@
                 android:id="@+id/send_sms_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="点击发送手机验证码"
+                android:layout_marginTop="10dp"
+                android:text="发送验证码"
                 android:textSize="16dp"
                 android:textStyle="bold"/>
         </LinearLayout>
@@ -155,15 +156,14 @@
                 android:maxLines="1"
                 android:background="@drawable/txt_radiuborder"/>
         </LinearLayout>
-        <Button
+        <ImageView
             android:id="@+id/sign_in_button"
-            android:layout_marginTop="20dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="注册"
-            android:textSize="25dp"
-            android:layout_gravity="center"
-            android:background="@drawable/buttongreen"
+            android:layout_marginTop="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginLeft="30dp"
+            android:background="@drawable/register_button"
             />
         <TextView
             android:id="@+id/toLogIn"

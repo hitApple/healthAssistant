@@ -26,6 +26,8 @@ import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import org.litepal.LitePal;
+
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -74,6 +76,8 @@ public class me extends BaseActivity {
         path = getApplicationContext().getFilesDir().getAbsolutePath() + "/avatar";
         createDir();
         picPath = path + "/avatar_" + MainActivity.mPhone + ".jpg";
+
+        setItem1();
 
         homepage = findViewById(R.id.homepage);
         find = findViewById(R.id.find);
@@ -129,13 +133,10 @@ public class me extends BaseActivity {
                     isTF = true;
                     plus.animate().rotation(-90);
                     /*                findViewById(R.id.plus_ui2).setVisibility(View.VISIBLE);*/
-                    DisplayMetrics metric = new DisplayMetrics();
-                    getWindowManager().getDefaultDisplay().getMetrics(metric);
-                    int screenH = metric.heightPixels;
                     findViewById(R.id.plus_ui2).clearAnimation();
                     ObjectAnimator.ofFloat(findViewById(R.id.plus_ui2),
                             "translationY",
-                            (float) (screenH/2))
+                            (float) (MainActivity.mScreenHeight / 2))
                             .setDuration(500)
                             .start();
 
@@ -143,13 +144,10 @@ public class me extends BaseActivity {
                     isTF = false;
                     plus.animate().rotation(45);
                     //               findViewById(R.id.plus_ui2).setVisibility(View.VISIBLE);
-                    DisplayMetrics metric = new DisplayMetrics();
-                    getWindowManager().getDefaultDisplay().getMetrics(metric);
-                    int screenH = metric.heightPixels;
                     findViewById(R.id.plus_ui2).clearAnimation();
                     ObjectAnimator.ofFloat(findViewById(R.id.plus_ui2),
                             "translationY",
-                            (float) (-screenH/2))
+                            (float) -(MainActivity.mScreenHeight / 2))
                             .setDuration(500)
                             .start();
                 }
@@ -220,21 +218,19 @@ public class me extends BaseActivity {
             }
         });
 
-//        LinearLayout myFriend = findViewById(R.id.my_friend);
-//        myFriend.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                startActivity(new Intent(com.example.app3.me.this, FriendView.class));
-//            }
-//        });
+        findViewById(R.id.me_my_friend).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(com.example.app3.me.this, FriendView.class));
+            }
+        });
 
-//        LinearLayout myHospital = findViewById(R.id.my_hospital);
-//        myHospital.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                startActivity(new Intent(com.example.app3.me.this, FavouritesHospitalView.class));
-//            }
-//        });
+        findViewById(R.id.me_my_hospital).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(com.example.app3.me.this, FavouritesHospitalView.class));
+            }
+        });
 
         findViewById(R.id.username).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -316,24 +312,7 @@ public class me extends BaseActivity {
 
 
 
-
-
-
-
-
-
-
     /*******************************************************************************************/
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -404,23 +383,6 @@ public class me extends BaseActivity {
         }
     }
 
-    /**
-     * 退出程序
-     */
-/*
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            Intent home = new Intent(Intent.ACTION_MAIN);
-            home.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            home.addCategory(Intent.CATEGORY_HOME);
-            startActivity(home);
-            return true;
-        }
-        return super.onKeyDown(keyCode, event);
-    }
-*/
-
     long boo = 0;
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
@@ -445,7 +407,7 @@ public class me extends BaseActivity {
         findViewById(R.id.personal_1).setClickable(false);
         findViewById(R.id.personal_setting).setClickable(false);
         findViewById(R.id.message).setClickable(false);
-        findViewById(R.id.message_unread).setClickable(false);
+//        findViewById(R.id.message_unread).setClickable(false);
         findViewById(R.id.personal_2).setClickable(false);
         findViewById(R.id.personal_pic).setClickable(false);
         findViewById(R.id.username).setClickable(false);
@@ -471,7 +433,36 @@ public class me extends BaseActivity {
     }
 
 
+    private void setItem1(){
 
+        HealthCheckUpTable healthCheckUpTable = LitePal.where("phone = ?",
+                MainActivity.mPhone).findFirst(HealthCheckUpTable.class);
+
+        if(healthCheckUpTable == null){
+            return;
+        }
+
+        String weight = healthCheckUpTable.getUser_weight() + "kg";
+        String diastolic = healthCheckUpTable.getUser_diastolic_blood_pressure() + "mmHg";
+        String systolic = healthCheckUpTable.getUser_systolic_lood_pressure() + "mmHg";
+        String heartbeats = healthCheckUpTable.getUser_heartbeats_per_minute() + "/min";
+        String urination = healthCheckUpTable.getUser_number_of_urination_per_day() + "/day";
+        String sleepTime = healthCheckUpTable.getUser_daily_sleep_time() + "/day";
+
+        TextView text1 = findViewById(R.id.me_list1_2);
+        TextView text2 = findViewById(R.id.me_list2_2);
+        TextView text3 = findViewById(R.id.me_list3_2);
+        TextView text4 = findViewById(R.id.me_list4_2);
+        TextView text5 = findViewById(R.id.me_list5_2);
+        TextView text6 = findViewById(R.id.me_list6_2);
+
+        text1.setText(weight);
+        text2.setText(diastolic);
+        text3.setText(systolic);
+        text4.setText(heartbeats);
+        text5.setText(urination);
+        text6.setText(sleepTime);
+    }
 
 
 

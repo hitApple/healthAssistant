@@ -36,8 +36,8 @@ public class VideoCall extends BaseActivity {
 
 
 
-    private static final long appID = 3774117024L;  // 请通过官网注册获取，格式为 123456789L
-    private static final String appSign = "7a7110bdb45b750adc3c16848b4b5bfa78a5be44df35b3417d38d2c3c66286b4";
+    private static final long appID = 2403036570L;  // 请通过官网注册获取，格式为 123456789L
+    private static final String appSign = "9964d2ed05c7194043660b97a15b2aa85706c64f6bd6d5256c1dfd524f5efa4c";
     private static ZegoExpressEngine engine;
 
     private String userID = null;

@@ -21,14 +21,7 @@
             tools:context=".ContactBaiduMap">
 
 
-            <Button
-                android:id="@+id/search"
-                app:layout_constraintRight_toRightOf="@id/search_text_view"
-                app:layout_constraintTop_toTopOf="@id/search_text_view"
-                app:layout_constraintBottom_toBottomOf="@id/search_text_view"
-                android:layout_width="80dp"
-                android:layout_height="0dp"
-                android:text="搜索"/>
+
 
             <com.baidu.mapapi.map.MapView
 
@@ -51,9 +44,22 @@
                 android:paddingEnd="40dp"
                 android:hint="请输入要搜索的城市"
                 android:paddingTop="5dp"
-                android:background="#fff"
+                android:paddingBottom="5dp"
+                android:layout_marginTop="25dp"
+                android:background="#ffffff"
                 android:layout_marginRight="80dp"
                 android:paddingRight="40dp" />
+
+            <ImageView
+                android:id="@+id/search"
+                app:layout_constraintRight_toRightOf="@id/search_text_view"
+                app:layout_constraintTop_toTopOf="@id/search_text_view"
+                app:layout_constraintBottom_toBottomOf="@id/search_text_view"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/search"
+                android:layout_marginEnd="10dp" />
 
             <Button
                 android:id="@+id/search_this"

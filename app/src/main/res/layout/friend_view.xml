@@ -14,7 +14,9 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <include layout="@layout/my_friend_view_title"
-        android:id="@+id/friend_view_tittle"/>
+        android:id="@+id/friend_view_tittle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/friend_view_recycler"

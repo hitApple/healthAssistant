@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,7 +22,7 @@ public class Sign_In extends BaseActivity {
     private EditText password2;
     private EditText vCode;
     private TextView toLogIn;
-    private Button userSignIn;
+    private ImageView userSignIn;
     private Button sendSms;
     private Boolean isSendSms = false;
     private Timer timer;

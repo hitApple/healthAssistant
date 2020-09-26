@@ -6,11 +6,13 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Layout;
 import android.util.DisplayMetrics;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -18,8 +20,10 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.VideoView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -43,8 +47,18 @@ public class HomePage_find extends BaseActivity  {
     private WeatherSearch weatherSearch;
     private Boolean isTF = true;
     private List<String> permissionList = new ArrayList<>();
+
     private static int[] weatherItems;
     public TextView[] weathersTextViews = new TextView[5];
+    private static int[] weatherItems2;
+    public TextView[] weathersTextViews2 = new TextView[5];
+    private static int[] weatherItems3;
+    public TextView[] weathersTextViews3 = new TextView[5];
+    private static int[] healthCheckupLayoutsIds;
+    private ConstraintLayout[] healthCheckUpLayouts = new ConstraintLayout[6];
+
+    private TextView showMore;
+    private boolean isShowMore = false;
 
     @SuppressLint("WrongViewCast")
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,12 +66,33 @@ public class HomePage_find extends BaseActivity  {
         weatherSearch = new WeatherSearch(HomePage_find.this);
         setContentView(R.layout.homepage_find);
 
-        weatherItems = new int[]{R.id.highAndLow, R.id.place, R.id.nowWeather, R.id.directionOfWind,
-                R.id.recommendation};
+        setItem1();
 
-        for (int i = 0; i < weatherItems.length; i++){
-            weathersTextViews[i] = findViewById(weatherItems[i]);
-        }
+        initViews();
+
+        showMore = findViewById(R.id.show_more);
+        showMore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!isShowMore){
+                    ConstraintLayout.LayoutParams layoutParams = new ConstraintLayout.LayoutParams(
+                            ConstraintLayout.LayoutParams.MATCH_PARENT,
+                            ConstraintLayout.LayoutParams.WRAP_CONTENT);
+                    layoutParams.setMargins(0, 30, 0, 0);
+                    findViewById(R.id.homepage_find_health_check_up).setLayoutParams(layoutParams);
+                    showMore.setText("收起");
+                    isShowMore = true;
+                } else{
+                    ConstraintLayout.LayoutParams layoutParams = new ConstraintLayout.LayoutParams(
+                            ConstraintLayout.LayoutParams.MATCH_PARENT,
+                            1150);
+                    layoutParams.setMargins(0, 30, 0, 0);
+                    findViewById(R.id.homepage_find_health_check_up).setLayoutParams(layoutParams);
+                    showMore.setText("展开");
+                    isShowMore = false;
+                }
+            }
+        });
 
         homepage_find_search = findViewById(R.id.homepage_find_search);
         getPermissions();
@@ -74,7 +109,8 @@ public class HomePage_find extends BaseActivity  {
             }
         });
 
-        setItem1();
+
+        findViewById(R.id.exit_login).setVisibility(View.GONE);
 
         homepage = findViewById(R.id.homepage);
         find = findViewById(R.id.find);
@@ -160,7 +196,14 @@ public class HomePage_find extends BaseActivity  {
             }
         });
 
+        VideoView videoView = (VideoView) findViewById(R.id.videoView);
+
+        videoView.setVideoPath("http://ivi.bupt.edu.cn/hls/cctv1hd.m3u8");
+
+        videoView.start();
+
     }
+
 
     private void setItem1(){
 
@@ -171,44 +214,92 @@ public class HomePage_find extends BaseActivity  {
             return;
         }
 
-        String weight = "体重: " +  healthCheckUpTable.getUser_weight();
-        String diastolic = "舒张压: " + healthCheckUpTable.getUser_diastolic_blood_pressure();
-        String systolic = "收缩压: " + healthCheckUpTable.getUser_systolic_lood_pressure();
-        String heartbeats = "心跳次数: " + healthCheckUpTable.getUser_heartbeats_per_minute();
-        String sleepTime = "睡眠时间: " + healthCheckUpTable.getUser_daily_sleep_time();
-        String urination = "小便次数: " + healthCheckUpTable.getUser_number_of_urination_per_day();
+        String[] healthCheckUpTexts = new String[6];
 
-        TextView text1 = findViewById(R.id.item1_text1);
-        TextView text2 = findViewById(R.id.item1_text2);
-        TextView text3 = findViewById(R.id.item1_text3);
-        TextView text4 = findViewById(R.id.item1_text4);
-        TextView text5 = findViewById(R.id.item1_text5);
-        TextView text6 = findViewById(R.id.item1_text6);
+        healthCheckUpTexts[0] = healthCheckUpTable.getUser_weight() + "kg";
+        healthCheckUpTexts[1] = healthCheckUpTable.getUser_diastolic_blood_pressure() + "mmHg";
+        healthCheckUpTexts[2] = healthCheckUpTable.getUser_systolic_lood_pressure() + "mmHg";
+        healthCheckUpTexts[3] = healthCheckUpTable.getUser_heartbeats_per_minute() + "/min";
+        healthCheckUpTexts[4] = healthCheckUpTable.getUser_number_of_urination_per_day() + "/day";
+        healthCheckUpTexts[5] = healthCheckUpTable.getUser_daily_sleep_time() + "/day";
 
-        text1.setText(weight);
-        text2.setText(diastolic);
-        text3.setText(systolic);
-        text4.setText(heartbeats);
-        text5.setText(sleepTime);
-        text6.setText(urination);
+        final int[] healthCheckUpTextViewIds = new int[]{R.id.me_list1_2, R.id.me_list2_2,
+                R.id.me_list3_2, R.id.me_list4_2, R.id.me_list5_2, R.id.me_list6_2};
+
+        TextView[] healthCheckUpTextViews = new TextView[6];
+
+        for (int i = 0; i < healthCheckUpTextViews.length; i ++ ){
+            healthCheckUpTextViews[i] = findViewById(healthCheckUpTextViewIds[i]);
+            healthCheckUpTextViews[i].setText(healthCheckUpTexts[i]);
+        }
+
+        final int[] healthCheckUpIds = new int[]{R.id.check_out1, R.id.check_out2, R.id.check_out3,
+                R.id.check_out4, R.id.check_out5, R.id.check_out6};
+
     }
 
-    /**
-     * 退出程序
-     */
+    private void initViews(){
+        healthCheckupLayoutsIds = new int[]{R.id.me_list1, R.id.me_list2, R.id.me_list3,
+                R.id.me_list4, R.id.me_list5, R.id.me_list6};
 
-/*    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            Intent home = new Intent(Intent.ACTION_MAIN);
-            home.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            home.addCategory(Intent.CATEGORY_HOME);
-            startActivity(home);
-            return true;
+        for (int i = 0; i < healthCheckUpLayouts.length; i++){
+            healthCheckUpLayouts[i] = findViewById(healthCheckupLayoutsIds[i]);
+            healthCheckUpLayouts[i].setAlpha(0);
         }
-        return super.onKeyDown(keyCode, event);
-    }*/
+
+        weatherItems = new int[]{R.id.highAndLow, R.id.place, R.id.nowWeather, R.id.directionOfWind,
+                R.id.recommendation};
+        weatherItems2 = new int[]{R.id.highAndLow2, R.id.place2, R.id.nowWeather2, R.id.directionOfWind2,
+                R.id.recommendation2};
+        weatherItems3 = new int[]{R.id.highAndLow3, R.id.place3, R.id.nowWeather3, R.id.directionOfWind3,
+                R.id.recommendation3};
+        for (int i = 0; i < weatherItems.length; i++){
+            weathersTextViews[i] = findViewById(weatherItems[i]);
+            weathersTextViews2[i] = findViewById(weatherItems2[i]);
+            weathersTextViews3[i] = findViewById(weatherItems3[i]);
+        }
+
+        new Thread(){
+            @Override
+            public void run() {
+                super.run();
+                try {
+                    sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                for (int i = 0; i < healthCheckUpLayouts.length; i++){
+                    final int temp = i;
+                    HomePage_find.this.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            ObjectAnimator.ofFloat(healthCheckUpLayouts[temp],
+                                    "alpha", 0, 1)
+                                    .setDuration(1000)
+                                    .start();
+                        }
+                    });
+                    try {
+                        sleep(500);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+            }
+        }.start();
+//        MainActivity.this.runOnUiThread(new Runnable() {
+//            @Override
+//            public void run() {
+//                ObjectAnimator.ofFloat(bgImage,
+//                        "alpha", 1, 0)
+//                        .setDuration(1000)
+//                        .start();
+//            }
+//        });
+    }
+
     long boo = 0;
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
@@ -217,10 +308,6 @@ public class HomePage_find extends BaseActivity  {
                         Toast.LENGTH_SHORT).show();
                 boo = System.currentTimeMillis();
             } else {
-//                Intent home = new Intent(Intent.ACTION_MAIN);
-//                home.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//                home.addCategory(Intent.CATEGORY_HOME);
-//                startActivity(home);
                 ActivityCollector.finishAll();
                 return true;
             }

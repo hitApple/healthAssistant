@@ -2,18 +2,29 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="350dp"
-    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_height="410dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="20dp">
-
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="今天"
+        android:textColor="#FC0625EC"
+        android:textStyle="bold"
+        android:textSize="35dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        tools:ignore="MissingConstraints" />
     <TextView
         android:id="@+id/highAndLow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="最高/低温： "
         android:textSize="30dp"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"
+        app:layout_constraintTop_toBottomOf="@id/title"/>
     <TextView
         android:id="@+id/place"
         android:layout_width="wrap_content"
@@ -21,7 +32,7 @@
         tools:ignore="MissingConstraints"
         android:textSize="25dp"
         android:text="地点："
-        app:layout_constraintTop_toBottomOf="@+id/highAndLow"/>
+        app:layout_constraintTop_toBottomOf="@id/highAndLow"/>
     <TextView
         android:id="@+id/nowWeather"
         android:layout_width="wrap_content"
@@ -29,7 +40,7 @@
         tools:ignore="MissingConstraints"
         android:textSize="25dp"
         android:text="天气："
-        app:layout_constraintTop_toBottomOf="@+id/place"/>
+        app:layout_constraintTop_toBottomOf="@id/place"/>
     <TextView
         android:id="@+id/directionOfWind"
         android:layout_width="wrap_content"
@@ -37,7 +48,7 @@
         tools:ignore="MissingConstraints"
         android:textSize="25dp"
         android:text="风力/风向："
-        app:layout_constraintTop_toBottomOf="@+id/nowWeather"/>
+        app:layout_constraintTop_toBottomOf="@id/nowWeather"/>
     <TextView
         android:id="@+id/recommendation"
         android:layout_width="wrap_content"
@@ -45,31 +56,16 @@
         tools:ignore="MissingConstraints"
         android:textSize="20dp"
         android:text="建议："
-        app:layout_constraintTop_toBottomOf="@+id/directionOfWind"/>
+        app:layout_constraintTop_toBottomOf="@id/directionOfWind"/>
     <ImageView
         android:id="@+id/today"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        tools:ignore="MissingConstraints"
-        app:layout_constraintTop_toBottomOf="@+id/recommendation"
-        android:layout_marginTop="10dp"/>
-    <ImageView
-        android:id="@+id/tomorrow"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        tools:ignore="MissingConstraints"
         app:layout_constraintTop_toBottomOf="@+id/recommendation"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginTop="10dp"/>
-    <ImageView
-        android:id="@+id/dayAfterTomorrow"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        tools:ignore="MissingConstraints"
-        app:layout_constraintTop_toBottomOf="@+id/recommendation"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="10dp"/>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

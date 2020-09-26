@@ -7,7 +7,7 @@
     android:background="#CD136ECD">
 
     <RelativeLayout
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="30dp"
         android:id="@+id/full"
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"

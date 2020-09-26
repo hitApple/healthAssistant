@@ -18,7 +18,7 @@
             android:layout_height="40dp"
             android:layout_marginRight="12dp"
             android:layout_marginLeft="12dp"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="30dp">
             <EditText
                 android:id="@+id/homepage_find_search"
                 app:layout_constraintTop_toTopOf="parent"
@@ -49,7 +49,7 @@
 
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp">
+            android:layout_marginTop="60dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -59,7 +59,7 @@
                 <ScrollView
                     android:id="@+id/homepage_find_item1"
                     android:layout_width="match_parent"
-                    android:layout_height="250dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="30dp"
                     android:layout_marginRight="10dp"
@@ -67,7 +67,7 @@
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp">
                         <TextView
@@ -75,64 +75,83 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="个人信息"
-                            android:textSize="30dp"
+                            android:textSize="30sp"
                             android:textColor="#3E65F3"
+                            app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintLeft_toLeftOf="parent"
                             app:layout_constraintRight_toRightOf="parent"
-                            tools:ignore="MissingConstraints" />
-                        <TextView
-                            android:id="@+id/item1_text1"
-                            android:layout_marginTop="40dp"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            app:layout_constraintTop_toTopOf="parent"
-                            android:text="点击个人信息即可添加信息"
-                            android:textSize="24dp"/>
+                             />
 
                         <TextView
-                            android:id="@+id/item1_text2"
-                            android:layout_width="match_parent"
+                            android:id="@+id/show_more"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            app:layout_constraintTop_toBottomOf="@id/item1_text1"
-                            android:text="test"
-                            android:textSize="24dp"/>
+                            android:text="展开"
+                            app:layout_constraintRight_toRightOf="parent"
+                            android:textSize="20sp"
+                            app:layout_constraintBottom_toBottomOf="@id/addInformation"
+                            app:layout_constraintTop_toTopOf="@id/addInformation"/>
 
-                        <TextView
-                            android:id="@+id/item1_text3"
+                        <include
+                            android:id="@+id/homepage_find_health_check_up"
+                            layout="@layout/health_check_up_display"
+                            android:layout_height="400dp"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            app:layout_constraintTop_toBottomOf="@id/item1_text2"
-                            android:text="test"
-                            android:textSize="24dp"/>
+                            />
 
-                        <TextView
-                            android:id="@+id/item1_text4"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            app:layout_constraintTop_toBottomOf="@id/item1_text3"
-                            android:text="test"
-                            android:textSize="24dp"/>
+<!--                        <TextView-->
+<!--                            android:id="@+id/item1_text1"-->
+<!--                            android:layout_marginTop="40dp"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            app:layout_constraintTop_toTopOf="parent"-->
+<!--                            android:text="点击个人信息即可添加信息"-->
+<!--                            android:textSize="24dp"/>-->
 
-                        <TextView
-                            android:id="@+id/item1_text5"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            app:layout_constraintTop_toBottomOf="@id/item1_text4"
-                            android:text="test"
-                            android:textSize="24dp"/>
+<!--                        <TextView-->
+<!--                            android:id="@+id/item1_text2"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            app:layout_constraintTop_toBottomOf="@id/item1_text1"-->
+<!--                            android:text="test"-->
+<!--                            android:textSize="24dp"/>-->
 
-                        <TextView
-                            android:id="@+id/item1_text6"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            app:layout_constraintTop_toBottomOf="@id/item1_text5"
-                            android:text="test"
-                            android:textSize="24dp"/>
+<!--                        <TextView-->
+<!--                            android:id="@+id/item1_text3"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            app:layout_constraintTop_toBottomOf="@id/item1_text2"-->
+<!--                            android:text="test"-->
+<!--                            android:textSize="24dp"/>-->
+
+<!--                        <TextView-->
+<!--                            android:id="@+id/item1_text4"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            app:layout_constraintTop_toBottomOf="@id/item1_text3"-->
+<!--                            android:text="test"-->
+<!--                            android:textSize="24dp"/>-->
+
+<!--                        <TextView-->
+<!--                            android:id="@+id/item1_text5"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            app:layout_constraintTop_toBottomOf="@id/item1_text4"-->
+<!--                            android:text="test"-->
+<!--                            android:textSize="24dp"/>-->
+
+<!--                        <TextView-->
+<!--                            android:id="@+id/item1_text6"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            app:layout_constraintTop_toBottomOf="@id/item1_text5"-->
+<!--                            android:text="test"-->
+<!--                            android:textSize="24dp"/>-->
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </ScrollView>
 
-                <RelativeLayout
+                <ViewFlipper
                     android:id="@+id/homepage_weather"
                     android:layout_width="350dp"
                     android:layout_height="wrap_content"
@@ -140,10 +159,21 @@
                     android:layout_alignLeft="@+id/homepage_find_item1"
                     android:layout_alignRight="@+id/homepage_find_item1"
                     android:layout_marginTop="20dp"
-                    android:background="@drawable/rounded_rect_xml">
-                        <include
-                            layout="@layout/weather"/>
-                </RelativeLayout>
+                    android:background="@drawable/rounded_rect_xml"
+                    android:inAnimation="@anim/right_in"
+                    android:outAnimation="@anim/right_out"
+                    android:autoStart = "true"
+                    android:flipInterval="4000">
+                    <include
+                        android:id="@+id/firstDay"
+                        layout="@layout/weather" />
+                    <include
+                        android:id="@+id/secondDay"
+                        layout="@layout/weather2" />
+                    <include
+                        android:id="@+id/thirdDay"
+                        layout="@layout/weather3"/>
+                </ViewFlipper>
 
 <!--                <TextView
                     android:id="@+id/homepage_weather"
@@ -157,18 +187,24 @@
                     android:text="暂时无法获取当前城市的天气信息"
                     android:textSize="20sp" />-->
 
-                <TextView
-
+                <RelativeLayout
                     android:id="@+id/xinagmu3"
                     android:layout_width="350dp"
                     android:layout_height="250dp"
                     android:layout_alignLeft="@id/homepage_find_item1"
-                    android:layout_alignRight="@+id/homepage_find_item1"
-                    android:layout_below="@+id/homepage_weather"
+                    android:layout_alignRight="@id/homepage_find_item1"
+                    android:layout_below="@id/homepage_weather"
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="60dp"
-                    android:background="@drawable/rounded_rect_xml"
-                    android:textSize="30sp" />
+                    android:background="@drawable/rounded_rect_xml">
+
+                        <VideoView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:id="@+id/videoView" />
+
+                </RelativeLayout>
+
             </RelativeLayout>
 
 

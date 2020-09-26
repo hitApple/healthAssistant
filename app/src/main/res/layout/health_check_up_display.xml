@@ -1,0 +1,548 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingTop="30dp">
+    <ScrollView
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/par"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/me_list1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/weight"
+                    android:layout_width="0dp"
+                    android:layout_height="25dp"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/weight"
+                    app:layout_constraintBottom_toBottomOf="@id/me_list1_1"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/me_list1_1" />
+
+                <TextView
+                    android:id="@+id/me_list1_1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:lines="1"
+                    android:text="体重："
+                    android:textSize="25sp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="10dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintLeft_toRightOf="@id/weight"
+                    app:layout_constraintRight_toLeftOf="@id/me_list1_2"
+                    android:layout_marginStart="10dp"
+                    android:textColor="#000000"/>
+
+                <TextView
+                    android:id="@+id/me_list1_2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:lines="1"
+                    android:text="kg"
+                    android:textSize="25sp"
+                    app:layout_constraintTop_toTopOf="@id/me_list1_1"
+                    app:layout_constraintRight_toRightOf="@id/list1_arrow"
+                    app:layout_constraintLeft_toRightOf="@id/me_list1_1"
+                    />
+
+                <ImageView
+                    android:id="@+id/list1_arrow"
+                    android:layout_width="50dp"
+                    android:layout_height="0dp"
+                    android:src="@drawable/arrow_right"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/me_list1_1"
+                    app:layout_constraintBottom_toBottomOf="@id/me_list1_1"/>
+
+                <ImageView
+                    android:id="@+id/check_out1"
+                    android:layout_width="200dp"
+                    android:layout_height="20dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    app:layout_constraintTop_toBottomOf="@id/me_list1_1"
+                    app:layout_constraintRight_toRightOf="parent"
+                    android:src="@drawable/check_out"
+                    android:layout_marginEnd="5dp" />
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    app:layout_constraintLeft_toLeftOf="@id/check_out1"
+                    app:layout_constraintTop_toBottomOf="@id/check_out1"
+                    android:src="@drawable/check_out_triangle"/>
+
+                <!--                <ImageView-->
+                <!--                    android:id="@+id/check_out1"-->
+                <!--                    android:layout_width="200dp"-->
+                <!--                    android:layout_height="20dp"-->
+                <!--                    android:layout_marginRight="5dp"-->
+                <!--                    android:layout_marginTop="5dp"-->
+                <!--                    app:layout_constraintTop_toBottomOf="@id/me_list1_1"-->
+                <!--                    app:layout_constraintRight_toRightOf="parent"-->
+                <!--                    android:src="@drawable/check_out"-->
+                <!--                    android:layout_marginEnd="5dp" />-->
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+            <View
+                android:id="@+id/hr_1"
+                app:layout_constraintTop_toBottomOf="@id/me_list1"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="#DC838383"/>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/me_list2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/hr_1">
+
+                <ImageView
+                    android:id="@+id/diastolic"
+                    android:layout_width="0dp"
+                    android:layout_height="25dp"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/pressure_low"
+                    app:layout_constraintBottom_toBottomOf="@id/me_list2_1"
+                    app:layout_constraintTop_toTopOf="@id/me_list2_1"
+                    app:layout_constraintLeft_toLeftOf="parent"/>
+
+                <TextView
+                    android:id="@+id/me_list2_1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:lines="1"
+                    android:text="舒张压："
+                    android:textSize="25sp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="10dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintLeft_toRightOf="@id/diastolic"
+                    app:layout_constraintRight_toLeftOf="@id/me_list2_2"
+                    android:textColor="#000000"/>
+
+                <TextView
+                    android:id="@+id/me_list2_2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:lines="1"
+                    android:text="mmHg"
+                    android:textSize="25sp"
+                    app:layout_constraintRight_toRightOf="@id/list2_arrow"
+                    app:layout_constraintTop_toTopOf="@id/me_list2_1"
+                    app:layout_constraintLeft_toRightOf="@id/me_list2_1"
+                    />
+
+                <ImageView
+                    android:id="@+id/list2_arrow"
+                    android:layout_width="50dp"
+                    android:layout_height="0dp"
+                    android:src="@drawable/arrow_right"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/me_list2_1"
+                    app:layout_constraintBottom_toBottomOf="@id/me_list2_1"/>
+                <ImageView
+                    android:id="@+id/check_out2"
+                    android:layout_width="200dp"
+                    android:layout_height="20dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    app:layout_constraintTop_toBottomOf="@id/me_list2_1"
+                    app:layout_constraintRight_toRightOf="parent"
+                    android:src="@drawable/check_out"
+                    android:layout_marginEnd="5dp" />
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    app:layout_constraintLeft_toLeftOf="@id/check_out2"
+                    app:layout_constraintTop_toBottomOf="@id/check_out2"
+                    android:src="@drawable/check_out_triangle"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <View
+                android:id="@+id/hr_2"
+                app:layout_constraintTop_toBottomOf="@id/me_list2"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="#DC838383"/>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/me_list3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/hr_2">
+
+                <ImageView
+                    android:id="@+id/systolic"
+                    android:layout_width="0dp"
+                    android:layout_height="25dp"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/pressure_high"
+                    app:layout_constraintBottom_toBottomOf="@id/me_list3_1"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/me_list3_1" />
+
+                <TextView
+                    android:id="@+id/me_list3_1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:lines="1"
+                    android:text="收缩压："
+                    android:textColor="#000000"
+                    android:textSize="25sp"
+                    app:layout_constraintLeft_toRightOf="@id/systolic"
+                    app:layout_constraintRight_toLeftOf="@id/me_list3_2"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/me_list3_2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:lines="1"
+                    android:text="mmHg"
+                    android:textSize="25sp"
+                    app:layout_constraintLeft_toRightOf="@id/me_list3_1"
+                    app:layout_constraintRight_toRightOf="@id/list3_arrow"
+                    app:layout_constraintTop_toTopOf="@id/me_list3_1" />
+
+                <ImageView
+                    android:id="@+id/list3_arrow"
+                    android:layout_width="50dp"
+                    android:layout_height="0dp"
+                    android:src="@drawable/arrow_right"
+                    app:layout_constraintBottom_toBottomOf="@id/me_list3_1"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/me_list3_1" />
+
+                <ImageView
+                    android:id="@+id/check_out3"
+                    android:layout_width="200dp"
+                    android:layout_height="20dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    app:layout_constraintTop_toBottomOf="@id/me_list3_1"
+                    app:layout_constraintRight_toRightOf="parent"
+                    android:src="@drawable/check_out"
+                    android:layout_marginEnd="5dp" />
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    app:layout_constraintLeft_toLeftOf="@id/check_out3"
+                    app:layout_constraintTop_toBottomOf="@id/check_out3"
+                    android:src="@drawable/check_out_triangle"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:id="@+id/hr_3"
+                app:layout_constraintTop_toBottomOf="@id/me_list3"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="#DC838383"/>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/me_list4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/hr_3">
+
+                <ImageView
+                    android:id="@+id/heartbeats_times"
+                    android:layout_width="0dp"
+                    android:layout_height="25dp"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/heart_beats"
+                    app:layout_constraintBottom_toBottomOf="@id/me_list4_1"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/me_list4_1" />
+
+                <TextView
+                    android:id="@+id/me_list4_1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:lines="1"
+                    android:text="心跳次数："
+                    android:textSize="25sp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="10dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintLeft_toRightOf="@id/heartbeats_times"
+                    app:layout_constraintRight_toLeftOf="@id/me_list4_2"
+                    android:textColor="#000000"/>
+
+                <TextView
+                    android:id="@+id/me_list4_2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:lines="1"
+                    android:text="/min"
+                    android:textSize="25sp"
+                    app:layout_constraintRight_toRightOf="@id/list4_arrow"
+                    app:layout_constraintTop_toTopOf="@id/me_list4_1"
+                    app:layout_constraintLeft_toRightOf="@id/me_list4_1"
+                    />
+
+                <ImageView
+                    android:id="@+id/list4_arrow"
+                    android:layout_width="50dp"
+                    android:layout_height="0dp"
+                    android:src="@drawable/arrow_right"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/me_list4_1"
+                    app:layout_constraintBottom_toBottomOf="@id/me_list4_1"/>
+
+                <ImageView
+                    android:id="@+id/check_out4"
+                    android:layout_width="200dp"
+                    android:layout_height="20dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    app:layout_constraintTop_toBottomOf="@id/me_list4_1"
+                    app:layout_constraintRight_toRightOf="parent"
+                    android:src="@drawable/check_out"
+                    android:layout_marginEnd="5dp" />
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    app:layout_constraintLeft_toLeftOf="@id/check_out4"
+                    app:layout_constraintTop_toBottomOf="@id/check_out4"
+                    android:src="@drawable/check_out_triangle"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:id="@+id/hr_4"
+                app:layout_constraintTop_toBottomOf="@id/me_list4"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="#DC838383"/>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/me_list5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/hr_4">
+
+                <ImageView
+                    android:id="@+id/pee_times"
+                    android:layout_width="0dp"
+                    android:layout_height="25dp"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/pee"
+                    app:layout_constraintBottom_toBottomOf="@id/me_list5_1"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/me_list5_1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:lines="1"
+                    android:text="小便次数："
+                    android:textColor="#000000"
+                    android:textSize="25sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintLeft_toRightOf="@id/pee_times"
+                    app:layout_constraintRight_toLeftOf="@id/me_list5_2"
+                    android:layout_marginStart="10dp" />
+
+                <TextView
+                    android:id="@+id/me_list5_2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:lines="1"
+                    android:text="/day"
+                    android:textSize="25sp"
+                    app:layout_constraintRight_toRightOf="@id/list5_arrow"
+                    app:layout_constraintTop_toTopOf="@id/me_list5_1"
+                    app:layout_constraintLeft_toRightOf="@id/me_list5_1"
+                    />
+
+                <ImageView
+                    android:id="@+id/list5_arrow"
+                    android:layout_width="50dp"
+                    android:layout_height="0dp"
+                    android:src="@drawable/arrow_right"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/me_list5_1"
+                    app:layout_constraintBottom_toBottomOf="@id/me_list5_1"/>
+
+                <ImageView
+                    android:id="@+id/check_out5"
+                    android:layout_width="200dp"
+                    android:layout_height="20dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    app:layout_constraintTop_toBottomOf="@id/me_list5_1"
+                    app:layout_constraintRight_toRightOf="parent"
+                    android:src="@drawable/check_out"
+                    android:layout_marginEnd="5dp" />
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    app:layout_constraintLeft_toLeftOf="@id/check_out5"
+                    app:layout_constraintTop_toBottomOf="@id/check_out5"
+                    android:src="@drawable/check_out_triangle"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:id="@+id/hr_5"
+                app:layout_constraintTop_toBottomOf="@id/me_list5"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="#DC838383"/>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/me_list6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/hr_5">
+
+                <ImageView
+                    android:id="@+id/sleep_hours"
+                    android:layout_width="32dp"
+                    android:layout_height="20dp"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/sleep"
+                    app:layout_constraintBottom_toBottomOf="@id/me_list6_1"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/me_list6_1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:lines="1"
+                    android:text="睡眠时间："
+                    android:textSize="25sp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="10dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintLeft_toRightOf="@id/sleep_hours"
+                    app:layout_constraintRight_toLeftOf="@id/me_list6_2"
+                    android:textColor="#000000"
+                    android:layout_marginStart="10dp" />
+
+                <TextView
+                    android:id="@+id/me_list6_2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:lines="1"
+                    android:text="/day"
+                    android:textSize="25sp"
+                    app:layout_constraintRight_toRightOf="@id/list6_arrow"
+                    app:layout_constraintTop_toTopOf="@id/me_list6_1"
+                    app:layout_constraintLeft_toRightOf="@id/me_list6_1"
+                    />
+
+                <ImageView
+                    android:id="@+id/list6_arrow"
+                    android:layout_width="50dp"
+                    android:layout_height="0dp"
+                    android:src="@drawable/arrow_right"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/me_list6_1"
+                    app:layout_constraintBottom_toBottomOf="@id/me_list6_1"/>
+
+                <ImageView
+                    android:id="@+id/check_out6"
+                    android:layout_width="200dp"
+                    android:layout_height="20dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    app:layout_constraintTop_toBottomOf="@id/me_list6_1"
+                    app:layout_constraintRight_toRightOf="parent"
+                    android:src="@drawable/check_out"
+                    android:layout_marginEnd="5dp" />
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    app:layout_constraintLeft_toLeftOf="@id/check_out6"
+                    app:layout_constraintTop_toBottomOf="@id/check_out6"
+                    android:src="@drawable/check_out_triangle"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:id="@+id/hr_6"
+                app:layout_constraintTop_toBottomOf="@id/me_list6"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="5dp"
+                android:background="#DC838383"/>
+            <Button
+                android:id="@+id/exit_login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:lines="2"
+                android:text="退出登录"
+                android:textSize="20sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/hr_6" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/exit_login"
+                android:lines="5"
+                android:text=""
+                android:visibility="invisible"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

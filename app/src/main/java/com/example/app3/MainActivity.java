@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.DisplayMetrics;
@@ -47,8 +48,8 @@ public class MainActivity extends BaseActivity {
 
     private boolean isPaused = false;
 
-    private Button SignIn;
-    private Button LogIn;
+    private ImageView SignIn;
+    private ImageView LogIn;
 
     private ImageView eyeview_on;
     private ImageView eyeview_off;
@@ -76,6 +77,7 @@ public class MainActivity extends BaseActivity {
     private Timer bgTimer;
     private BGChangeTimerTask timerTask;
     public static String mPicPath;
+    private int currentId = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,12 +86,16 @@ public class MainActivity extends BaseActivity {
         // 全屏
         getWindow().setFlags(WindowManager.LayoutParams. FLAG_FULLSCREEN ,WindowManager.LayoutParams. FLAG_FULLSCREEN);*/
         setContentView(R.layout.activity_main);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        }
 
         importDatabases();
         Connector.getDatabase();
         mPicPath = getApplicationContext().getFilesDir().getAbsolutePath() + "/avatar" + "/avatar_" + MainActivity.mPhone + ".jpg";
         bgImage = findViewById(R.id.main_activity_bg);
-        bgImage.setImageResource(bgIds[new Random().nextInt(4)]);
+        currentId = new Random().nextInt(4);
+        bgImage.setImageResource(bgIds[currentId]);
         user = findViewById(R.id.user);
         password =  findViewById(R.id.password);
 
@@ -201,12 +207,6 @@ public class MainActivity extends BaseActivity {
             vflp_help.addView(getImageView(resId[i]));
         }*/
 
-        findViewById(R.id.go_SignIn).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,Sign_In.class));
-            }
-        });
         findViewById(R.id.go_LogIn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -364,9 +364,6 @@ public class MainActivity extends BaseActivity {
 
     class BGChangeTimerTask extends TimerTask {
 
-
-        int currentId = -1;
-
         @Override
         public void run() {
             while (true){
@@ -417,8 +414,9 @@ public class MainActivity extends BaseActivity {
                         Random random = new Random();
                         int getId = 0;
                         while (true){
-                            getId = random.nextInt(5);
+                            getId = random.nextInt(4);
                             if (getId != currentId){
+                                currentId = getId;
                                 break;
                             }
                         }

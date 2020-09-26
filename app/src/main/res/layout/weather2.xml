@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="20dp">
+    <TextView
+        android:id="@+id/title2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="明天"
+        android:textColor="#FC0625EC"
+        android:textStyle="bold"
+        android:textSize="35sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent" />
+    <TextView
+        android:id="@+id/highAndLow2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="最高/低温： "
+        android:textSize="30sp"
+        tools:ignore="MissingConstraints"
+        app:layout_constraintTop_toBottomOf="@id/title2"/>
+    <TextView
+        android:id="@+id/place2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints"
+        android:textSize="25sp"
+        android:text="地点："
+        app:layout_constraintTop_toBottomOf="@id/highAndLow2"/>
+    <TextView
+        android:id="@+id/nowWeather2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints"
+        android:textSize="25sp"
+        android:text="天气："
+        app:layout_constraintTop_toBottomOf="@id/place2"/>
+    <TextView
+        android:id="@+id/directionOfWind2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints"
+        android:textSize="25sp"
+        android:text="风力/风向："
+        app:layout_constraintTop_toBottomOf="@id/nowWeather2"/>
+    <TextView
+        android:id="@+id/recommendation2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints"
+        android:textSize="20sp"
+        android:text="建议："
+        app:layout_constraintTop_toBottomOf="@id/directionOfWind2"/>
+
+    <ImageView
+        android:id="@+id/tomorrow2"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        tools:ignore="MissingConstraints"
+        app:layout_constraintTop_toBottomOf="@id/recommendation2"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="10dp"/>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

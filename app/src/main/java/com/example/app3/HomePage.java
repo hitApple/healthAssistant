@@ -6,9 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Paint;
 import android.graphics.Point;
-import android.media.Image;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -169,7 +167,7 @@ public class HomePage extends BaseActivity {
         homepage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(HomePage.this,HomePage_find.class));
+                startActivity(new Intent(HomePage.this, HomePage_find.class));
             }
         });
 
@@ -186,13 +184,10 @@ public class HomePage extends BaseActivity {
                     isTF = true;
                     plus.animate().rotation(-90);
                     /*                findViewById(R.id.plus_ui2).setVisibility(View.VISIBLE);*/
-                    DisplayMetrics metric = new DisplayMetrics();
-                    getWindowManager().getDefaultDisplay().getMetrics(metric);
-                    int screenH = metric.heightPixels;
                     findViewById(R.id.plus_ui2).clearAnimation();
                     ObjectAnimator.ofFloat(findViewById(R.id.plus_ui2),
                             "translationY",
-                            (float) (screenH/2))
+                            (float) (MainActivity.mScreenHeight/2))
                             .setDuration(500)
                             .start();
 
@@ -200,13 +195,11 @@ public class HomePage extends BaseActivity {
                     isTF = false;
                     plus.animate().rotation(45);
                     //               findViewById(R.id.plus_ui2).setVisibility(View.VISIBLE);
-                    DisplayMetrics metric = new DisplayMetrics();
-                    getWindowManager().getDefaultDisplay().getMetrics(metric);
-                    int screenH = metric.heightPixels;
+
                     findViewById(R.id.plus_ui2).clearAnimation();
                     ObjectAnimator.ofFloat(findViewById(R.id.plus_ui2),
                             "translationY",
-                            (float) (-screenH/2))
+                            (float) (-MainActivity.mScreenHeight/2))
                             .setDuration(500)
                             .start();
 
@@ -217,7 +210,7 @@ public class HomePage extends BaseActivity {
         link.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(HomePage.this,ContactBaiduMap.class));
+                startActivity(new Intent(HomePage.this, ContactBaiduMap.class));
             }
         });
         me.setOnClickListener(new View.OnClickListener() {
