@@ -8,6 +8,7 @@ import android.os.PowerManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -46,12 +47,13 @@ public class VideoCall extends BaseActivity {
     private String stream2 = null;
     private boolean recv = false;
 
-    private Button muteButton;
-    private Button microButton;
+    private ImageView muteButton;
+    private ImageView exitButton;
     private EditText videoDescription;
-    private Button changeButton;
+    private ImageView changeButton;
 
     private boolean useFrontCamera = true;
+    private boolean isMute = false;
     private PowerManager.WakeLock mWakeLock;
 
     @Override
@@ -109,8 +111,9 @@ public class VideoCall extends BaseActivity {
                     engine.startPreview(new ZegoCanvas(findViewById(R.id.my_camera)));
                     engine.startPlayingStream(stream2,
                             new ZegoCanvas(findViewById(R.id.other_side_camera)));
-                    microButton.setVisibility(View.VISIBLE);
+                    exitButton.setVisibility(View.VISIBLE);
                     changeButton.setVisibility(View.VISIBLE);
+                    muteButton.setVisibility(View.VISIBLE);
                     submitButton.setVisibility(View.GONE);
                     videoDescription.setVisibility(View.GONE);
                     new Thread(){
@@ -140,19 +143,23 @@ public class VideoCall extends BaseActivity {
         muteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                engine.muteMicrophone(false );
-                muteButton.setVisibility(View.GONE);
-                microButton.setVisibility(View.VISIBLE);
+                if (isMute){
+                    engine.muteMicrophone(false);
+                    muteButton.setImageResource(R.drawable.mute_off);
+                    isMute = false;
+                } else {
+                    engine.muteMicrophone(true);
+                    muteButton.setImageResource(R.drawable.mute_on);
+                    isMute = true;
+                }
             }
         });
 
-        microButton = findViewById(R.id.micro);
-        microButton.setOnClickListener(new View.OnClickListener() {
+        exitButton = findViewById(R.id.exit_video);
+        exitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                engine.muteMicrophone(true);
-                muteButton.setVisibility(View.VISIBLE);
-                microButton.setVisibility(View.GONE);
+                finish();
             }
         });
 
@@ -162,9 +169,11 @@ public class VideoCall extends BaseActivity {
             public void onClick(View view) {
                 if (useFrontCamera){
                     engine.useFrontCamera(false);
+                    changeButton.setImageResource(R.drawable.camera_behind);
                     useFrontCamera = false;
                 } else {
                     engine.useFrontCamera(true);
+                    changeButton.setImageResource(R.drawable.camera_front);
                     useFrontCamera = true;
                 }
             }
@@ -177,8 +186,9 @@ public class VideoCall extends BaseActivity {
             engine.startPreview(new ZegoCanvas(findViewById(R.id.my_camera)));
             engine.startPlayingStream(stream2,
                     new ZegoCanvas(findViewById(R.id.other_side_camera)));
-            microButton.setVisibility(View.VISIBLE);
+            exitButton.setVisibility(View.VISIBLE);
             changeButton.setVisibility(View.VISIBLE);
+            muteButton.setVisibility(View.VISIBLE);
             submitButton.setVisibility(View.GONE);
         }
     }

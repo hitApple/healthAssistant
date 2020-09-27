@@ -79,6 +79,16 @@ public class me extends BaseActivity {
 
         setItem1();
 
+        final int[] healthCheckUpTrianglesIds = new int[]{R.id.check_out1_1, R.id.check_out2_1,
+                R.id.check_out3_1, R.id.check_out4_1, R.id.check_out5_1, R.id.check_out6_1};
+        final int[] healthCheckUpIds = new int[]{R.id.check_out1, R.id.check_out2,
+                R.id.check_out3, R.id.check_out4, R.id.check_out5, R.id.check_out6};
+
+        for (int i = 0; i < healthCheckUpIds.length; i++){
+            findViewById(healthCheckUpIds[i]).setVisibility(View.GONE);
+            findViewById(healthCheckUpTrianglesIds[i]).setVisibility(View.GONE);
+        }
+
         homepage = findViewById(R.id.homepage);
         find = findViewById(R.id.find);
         plus = findViewById(R.id.plus);

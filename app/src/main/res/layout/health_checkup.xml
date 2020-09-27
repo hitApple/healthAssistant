@@ -20,7 +20,7 @@
             android:id="@+id/gobackfull"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#9B30FF"
+            android:background="#31A1FA"
             android:paddingTop="20dp">
             <ImageView
                 android:layout_width="50dp"
@@ -65,7 +65,7 @@
                             android:layout_height="150dp"
                             android:id="@+id/head_person"
                             android:layout_centerHorizontal="true"
-                            android:background="@drawable/headpic"/>
+                            android:background="@drawable/me_man"/>
                     </RelativeLayout>
 
 
@@ -211,6 +211,25 @@
                         android:background="@drawable/user_age_background">
 
                     </TextView>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="80dp"
+                        android:text="目标消耗卡路里（每天）"
+                        android:textSize="28dp"
+                        android:textStyle="italic"
+                        android:typeface="serif" />
+
+                    <EditText
+                        android:id="@+id/user_cal"
+                        android:layout_width="150dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="right"
+                        android:background="@drawable/user_age_background"
+                        android:maxLines="1"
+                        android:maxLength="4"
+                        android:hint="推荐400"
+                        android:text=""
+                        android:textSize="25dp" />
                     <!--                <EditText
                                         android:id="@+id/user_city"
                                         android:layout_width="250dp"

@@ -18,6 +18,7 @@ public class HealthCheckUpTable extends LitePalSupport {
     public String user_number_of_urination_per_day;
     public String user_daily_sleep_time;
     public String user_what_are_the_current_diseases;
+    public String user_cal;
 
     public String getPhone() {
         return phone;
@@ -32,6 +33,7 @@ public class HealthCheckUpTable extends LitePalSupport {
             String birthday,
             String sex,
             String place,
+            String user_cal,
             String bloodtype,
             String user_systolic_lood_pressure,
             String user_diastolic_blood_pressure,
@@ -46,6 +48,7 @@ public class HealthCheckUpTable extends LitePalSupport {
         this.birthday = birthday;
         this.sex = sex;
         this.place = place;
+        this.user_cal = user_cal;
         this.bloodtype = bloodtype;
         this.user_systolic_lood_pressure = user_systolic_lood_pressure;
         this.user_diastolic_blood_pressure = user_diastolic_blood_pressure;
@@ -59,6 +62,13 @@ public class HealthCheckUpTable extends LitePalSupport {
     }
 
 
+    public String getUser_Cal() {
+        return user_cal;
+    }
+
+    public void setUser_Cal(String name) {
+        this.user_cal = user_cal;
+    }
     public byte[] getPic() {
         return pic;
     }

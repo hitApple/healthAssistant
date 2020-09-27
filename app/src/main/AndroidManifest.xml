@@ -32,6 +32,14 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
+
+        <activity android:name=".VideoTV">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <activity android:name=".CalorieResult">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />

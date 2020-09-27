@@ -48,13 +48,19 @@ public class HealthCheckUp extends BaseActivity {
     private List<String> reasonList = new ArrayList<>();
     private int year1, monthOfYear1, dayOfMonth1;
     private String sex;
-    private  CircleImageView head_person;
+    private CircleImageView head_person;
+    private boolean firstLogin = false;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.health_checkup);
 /*        mProvince = (TextView)findViewById(R.id.province);
         mCity = (TextView)findViewById(R.id.city);
         mCounty = (TextView)findViewById(R.id.county);*/
+        firstLogin = false;
+        Intent intent = getIntent();
+        if (intent != null && intent.getExtras() != null){
+            firstLogin = intent.getBooleanExtra("firstLogin", true);
+        }
 
         head_person = findViewById(R.id.head_person);
         if(new File(MainActivity.mPicPath).exists()) {
@@ -177,10 +183,18 @@ public class HealthCheckUp extends BaseActivity {
         if( DateList!=null &&  DateList.size()>0 &&  DateList.get(0)!=null){
             HealthCheckUpTable sin = DateList.get(0);
 
-            ((CircleImageView)findViewById(R.id.head_person)).setImageURI(Uri.parse(me.picPath));
+            if(sin.sex != ""){
+                if(sin.sex.equals("男")){
+                    ((RadioButton)findViewById(R.id.boy)).setChecked(true);
+                }else{
+                    ((RadioButton)findViewById(R.id.girl)).setChecked(true);
+                }
+            }
+            ((CircleImageView)findViewById(R.id.head_person)).setImageURI(Uri.parse(MainActivity.mPicPath));
             ((EditText)findViewById(R.id.user_name)).setText(sin.getName());
             ((TextView)findViewById(R.id.user_time)).setText(sin.getBirthday());
             ((TextView)findViewById(R.id.province_city_county)).setText(sin.getPlace());
+            ((TextView)findViewById(R.id.user_cal)).setText(sin.getUser_Cal());
             ((EditText)findViewById(R.id.user_blood_type)).setText(sin.getBloodtype());
             ((EditText)findViewById(R.id.user_systolic_lood_pressure)).setText(sin.getUser_systolic_lood_pressure());
             ((EditText)findViewById(R.id.user_diastolic_blood_pressure)).setText(sin.getUser_diastolic_blood_pressure());
@@ -210,6 +224,7 @@ public class HealthCheckUp extends BaseActivity {
                 ((EditText)findViewById(R.id.user_name)).getText().toString(),
                 ((TextView)findViewById(R.id.user_time)).getText().toString(), sex,
                 ((TextView)findViewById(R.id.province_city_county)).getText().toString(),
+                ((TextView)findViewById(R.id.user_cal)).getText().toString(),
                 ((EditText)findViewById(R.id.user_blood_type)).getText().toString(),
                 ((EditText)findViewById(R.id.user_systolic_lood_pressure)).getText().toString(),
                 ((EditText)findViewById(R.id.user_diastolic_blood_pressure)).getText().toString(),
@@ -222,7 +237,14 @@ public class HealthCheckUp extends BaseActivity {
 
         healthCheckUpTable.save();
         Toast.makeText(HealthCheckUp.this, "保存完毕!", Toast.LENGTH_SHORT).show();
-        finish();
+        if (firstLogin){
+            Intent intent = new Intent(HealthCheckUp.this, HomePage_find.class);
+            intent.putExtra("phone", MainActivity.mPhone);
+            finish();
+            startActivity(intent);
+        } else {
+            finish();
+        }
     }
 
     public byte[] getBitmapByte(Bitmap bitmap){

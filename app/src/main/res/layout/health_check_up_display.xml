@@ -80,6 +80,7 @@
                     android:layout_marginEnd="5dp" />
 
                 <ImageView
+                    android:id="@+id/check_out1_1"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     app:layout_constraintLeft_toLeftOf="@id/check_out1"
@@ -174,6 +175,7 @@
                     android:layout_marginEnd="5dp" />
 
                 <ImageView
+                    android:id="@+id/check_out2_1"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     app:layout_constraintLeft_toLeftOf="@id/check_out2"
@@ -257,6 +259,7 @@
                     android:layout_marginEnd="5dp" />
 
                 <ImageView
+                    android:id="@+id/check_out3_1"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     app:layout_constraintLeft_toLeftOf="@id/check_out3"
@@ -339,6 +342,7 @@
                     android:layout_marginEnd="5dp" />
 
                 <ImageView
+                    android:id="@+id/check_out4_1"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     app:layout_constraintLeft_toLeftOf="@id/check_out4"
@@ -421,6 +425,7 @@
                     android:layout_marginEnd="5dp" />
 
                 <ImageView
+                    android:id="@+id/check_out5_1"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     app:layout_constraintLeft_toLeftOf="@id/check_out5"
@@ -504,6 +509,7 @@
                     android:layout_marginEnd="5dp" />
 
                 <ImageView
+                    android:id="@+id/check_out6_1"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     app:layout_constraintLeft_toLeftOf="@id/check_out6"

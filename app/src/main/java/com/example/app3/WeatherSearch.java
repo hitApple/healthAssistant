@@ -90,7 +90,7 @@ public class WeatherSearch {
                 homePageFind.weathersTextViews[1].setText("地点：" + city);
                 homePageFind.weathersTextViews[2].setText("天气：" + resultArray[0][4]);
                 homePageFind.weathersTextViews[3].setText("风向/风力：" + resultArray[0][3] + "/" + resultArray[0][2]);
-                homePageFind.weathersTextViews[4].setText("建议" + resultArray[3][0]);
+                homePageFind.weathersTextViews[4].setText("建议：" + resultArray[3][0]);
 
                 weatherchoose(resultArray[0][4], 1);
 //                weatherchoose("雷阵雨", 1);

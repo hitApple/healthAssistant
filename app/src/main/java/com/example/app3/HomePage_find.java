@@ -10,14 +10,18 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.Layout;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.KeyEvent;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupMenu;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
@@ -31,6 +35,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import org.litepal.LitePal;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.List;
 
@@ -59,8 +64,11 @@ public class HomePage_find extends BaseActivity  {
 
     private TextView showMore;
     private boolean isShowMore = false;
+    public static String PATH = "";
+    private VideoView videoView;
 
-    @SuppressLint("WrongViewCast")
+    private static final String TAG = "HomePage_find";
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         weatherSearch = new WeatherSearch(HomePage_find.this);
@@ -69,6 +77,16 @@ public class HomePage_find extends BaseActivity  {
         setItem1();
 
         initViews();
+
+//        final ScrollView scrollView = findViewById(R.id.homepage_find_scroll);
+//        scrollView.post(new Runnable() {
+//
+//            @Override
+//            public void run() {
+//                // TODO Auto-generated method stub
+//                scrollView.fullScroll(ScrollView.FOCUS_UP);
+//            }
+//        });
 
         showMore = findViewById(R.id.show_more);
         showMore.setOnClickListener(new View.OnClickListener() {
@@ -93,6 +111,10 @@ public class HomePage_find extends BaseActivity  {
                 }
             }
         });
+
+        findViewById(R.id.addInformation).setFocusable(true);
+        findViewById(R.id.addInformation).setFocusableInTouchMode(true);
+        findViewById(R.id.addInformation).requestFocus();
 
         homepage_find_search = findViewById(R.id.homepage_find_search);
         getPermissions();
@@ -196,11 +218,103 @@ public class HomePage_find extends BaseActivity  {
             }
         });
 
-        VideoView videoView = (VideoView) findViewById(R.id.videoView);
+        final TextView btn_pop = findViewById(R.id.chooseTY);
 
-        videoView.setVideoPath("http://ivi.bupt.edu.cn/hls/cctv1hd.m3u8");
+        btn_pop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PopupMenu popup = new PopupMenu(HomePage_find.this,btn_pop);
+                popup.getMenuInflater().inflate(R.menu.menu_pop, popup.getMenu());
+                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
 
-        videoView.start();
+                        switch (item.getItemId()){
+                            case R.id.TY1:
+                                PATH = "http://ivi.bupt.edu.cn/hls/cctv1hd.m3u8";
+                                break;
+                            case R.id.TY2:
+                                PATH = "http://ivi.bupt.edu.cn/hls/cctv2hd.m3u8";
+                                break;
+                            case R.id.TY3:
+                                PATH = "http://ivi.bupt.edu.cn/hls/cctv3hd.m3u8";
+                                break;
+                            case R.id.TY4:
+                                PATH = "http://ivi.bupt.edu.cn/hls/cctv4hd.m3u8";
+                                break;
+                            case R.id.TY5:
+                                PATH = "http://ivi.bupt.edu.cn/hls/cctv5phd.m3u8";
+                                break;
+                            case R.id.TY6:
+                                PATH = "http://ivi.bupt.edu.cn/hls/cctv6hd.m3u8";
+                                break;
+                            case R.id.TY7:
+                                PATH = "http://ivi.bupt.edu.cn/hls/cctv7hd.m3u8";
+                                break;
+                            case R.id.TY8:
+                                PATH = "http://ivi.bupt.edu.cn/hls/cctv8hd.m3u8";
+                                break;
+                            case R.id.TY9:
+                                PATH = "http://ivi.bupt.edu.cn/hls/cctv9hd.m3u8";
+                                break;
+                            case R.id.TY10:
+                                PATH = "http://ivi.bupt.edu.cn/hls/cctv10hd.m3u8";
+                                break;
+                            case R.id.TY11:
+                                PATH = "http://ivi.bupt.edu.cn/hls/cctv12hd.m3u8";
+                                break;
+                            case R.id.TY12:
+                                PATH = "http://ivi.bupt.edu.cn/hls/cctv14hd.m3u8";
+                                break;
+                            case R.id.TY13:
+                                PATH = "http://ivi.bupt.edu.cn/hls/cctv17hd.m3u8";
+                                break;
+                            case R.id.TY14:
+                                PATH = "http://ivi.bupt.edu.cn/hls/cgtnhd.m3u8";
+                                break;
+                            case R.id.TY15:
+                                PATH = "http://ivi.bupt.edu.cn/hls/cgtndochd.m3u8";
+                                break;
+                            case R.id.TY16:
+                                PATH = "http://ivi.bupt.edu.cn/hls/chchd.m3u8";
+                                break;
+
+                        }
+                        return true;
+                    }
+                });
+                popup.show();
+            }
+        });
+
+        videoView = (VideoView) findViewById(R.id.videoView);
+        findViewById(R.id.startTV).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!PATH.equals("")){
+                    findViewById(R.id.startTV).setVisibility(View.GONE);
+                    findViewById(R.id.stopTV).setVisibility(View.VISIBLE);
+                    videoView.setVideoPath(PATH);
+                    videoView.start();
+                }
+            }
+        });
+        findViewById(R.id.stopTV).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!PATH.equals("")){
+                    findViewById(R.id.startTV).setVisibility(View.VISIBLE);
+                    findViewById(R.id.stopTV).setVisibility(View.GONE);
+                    videoView.pause();
+                }
+            }
+        });
+        findViewById(R.id.quanping).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(HomePage_find.this,VideoTV.class));
+            }
+        });
 
     }
 
@@ -210,18 +324,53 @@ public class HomePage_find extends BaseActivity  {
         HealthCheckUpTable healthCheckUpTable = LitePal.where("phone = ?",
                 MainActivity.mPhone).findFirst(HealthCheckUpTable.class);
 
-        if(healthCheckUpTable == null){
-            return;
-        }
-
         String[] healthCheckUpTexts = new String[6];
+        final int[] info = new int[8];
+        final boolean isNull;
+        boolean isNull1 = true;
+        if(healthCheckUpTable == null){
+            for(int i = 0; i < healthCheckUpTexts.length; i++){
+                healthCheckUpTexts[i] = "未填写";
+            }
+        } else {
+            for(int i = 0; i < healthCheckUpTexts.length; i++){
+                healthCheckUpTexts[i] = "未填写";
+                }
+            try {
+                  int age = Calendar.getInstance().get(Calendar.YEAR) -
+                        Integer.parseInt(healthCheckUpTable.getBirthday().split("/")[0]);
+                    info[0] = age;
+                } catch (NumberFormatException ignored) {}
+            try {
+                 info[1] = Integer.parseInt(healthCheckUpTable.getUser_height());
+              } catch (NumberFormatException ignored) {}
+            try {
+                 info[2] = Integer.parseInt(healthCheckUpTable.getUser_weight());
+                 healthCheckUpTexts[0] = healthCheckUpTable.getUser_weight() + "kg";
+            } catch (NumberFormatException ignored) {}
+            try {
+                info[3] = Integer.parseInt(healthCheckUpTable.getUser_diastolic_blood_pressure());
+                healthCheckUpTexts[1] = healthCheckUpTable.getUser_diastolic_blood_pressure() + "mmHg";
+            } catch (NumberFormatException ignored){}
+            try {
+                info[4] = Integer.parseInt(healthCheckUpTable.getUser_systolic_lood_pressure());
+                healthCheckUpTexts[2] = healthCheckUpTable.getUser_systolic_lood_pressure() + "mmHg";
+            } catch (NumberFormatException ignored){}
+            try {
+                info[5] = Integer.parseInt(healthCheckUpTable.getUser_heartbeats_per_minute());
+                healthCheckUpTexts[3] = healthCheckUpTable.getUser_heartbeats_per_minute() + "/min";
+            } catch (NumberFormatException ignored){}
+            try {
+                info[6] = Integer.parseInt(healthCheckUpTable.getUser_number_of_urination_per_day());
+                healthCheckUpTexts[4] = healthCheckUpTable.getUser_number_of_urination_per_day() + "/day";
+            } catch (NumberFormatException ignored){}
+            try {
+                info[7] = Integer.parseInt(healthCheckUpTable.getUser_daily_sleep_time());
+                healthCheckUpTexts[5] = healthCheckUpTable.getUser_daily_sleep_time() + "h/day";
+            } catch (NumberFormatException ignored){}
 
-        healthCheckUpTexts[0] = healthCheckUpTable.getUser_weight() + "kg";
-        healthCheckUpTexts[1] = healthCheckUpTable.getUser_diastolic_blood_pressure() + "mmHg";
-        healthCheckUpTexts[2] = healthCheckUpTable.getUser_systolic_lood_pressure() + "mmHg";
-        healthCheckUpTexts[3] = healthCheckUpTable.getUser_heartbeats_per_minute() + "/min";
-        healthCheckUpTexts[4] = healthCheckUpTable.getUser_number_of_urination_per_day() + "/day";
-        healthCheckUpTexts[5] = healthCheckUpTable.getUser_daily_sleep_time() + "/day";
+        }
+        isNull = false;
 
         final int[] healthCheckUpTextViewIds = new int[]{R.id.me_list1_2, R.id.me_list2_2,
                 R.id.me_list3_2, R.id.me_list4_2, R.id.me_list5_2, R.id.me_list6_2};
@@ -233,8 +382,78 @@ public class HomePage_find extends BaseActivity  {
             healthCheckUpTextViews[i].setText(healthCheckUpTexts[i]);
         }
 
-        final int[] healthCheckUpIds = new int[]{R.id.check_out1, R.id.check_out2, R.id.check_out3,
-                R.id.check_out4, R.id.check_out5, R.id.check_out6};
+        final int[] healthCheckUpTrianglesIds = new int[]{R.id.check_out1_1, R.id.check_out2_1,
+                R.id.check_out3_1, R.id.check_out4_1, R.id.check_out5_1, R.id.check_out6_1};
+        final ImageView[] healthCheckUpTriangles = new ImageView[6];
+        for (int i = 0; i < healthCheckUpTriangles.length; i++){
+            healthCheckUpTriangles[i] = findViewById(healthCheckUpTrianglesIds[i]);
+        }
+        new Thread(){
+            @Override
+            public void run() {
+                super.run();
+
+                try {
+                    sleep(4000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                final float checkOutSize = findViewById(R.id.check_out1).getWidth();
+                if (!isNull){
+                    final int[] checkResults = checkHealth(info);
+                    for (int i = 0; i < healthCheckUpTriangles.length; i++){
+                        final int temp = i;
+                        HomePage_find.this.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (checkResults[temp] == -1){
+                                    ObjectAnimator.ofFloat(healthCheckUpTriangles[temp],
+                                            "translationX", 0, checkOutSize / 6 - 20)
+                                            .setDuration(1000)
+                                            .start();
+                                } else if (checkResults[temp] == 1){
+                                    ObjectAnimator.ofFloat(healthCheckUpTriangles[temp],
+                                            "translationX", 0, (checkOutSize / 6) * 5 - 20)
+                                            .setDuration(1000)
+                                            .start();
+                                } else {
+                                    ObjectAnimator.ofFloat(healthCheckUpTriangles[temp],
+                                            "translationX", 0, checkOutSize / 2 - 20)
+                                            .setDuration(1000)
+                                            .start();
+                                }
+
+                            }
+                        });
+                        try {
+                            Thread.sleep(300);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                } else {
+                    for (int i = 0; i < healthCheckUpTriangles.length; i++){
+                        final int temp = i;
+                        HomePage_find.this.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                ObjectAnimator.ofFloat(healthCheckUpTriangles[temp],
+                                        "translationX", 0, checkOutSize / 2 - 20)
+                                        .setDuration(1000)
+                                        .start();
+                            }
+                        });
+                        try {
+                            Thread.sleep(300);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+
+
+            }
+        }.start();
 
     }
 
@@ -298,6 +517,84 @@ public class HomePage_find extends BaseActivity  {
 //                        .start();
 //            }
 //        });
+    }
+
+    private int[] checkHealth(int[] info){
+        int[] results = new int[6];
+        int age = info[0];
+        double height = (double) info[1] / (double) 100;
+        double BMI = info[2] / (Math.pow(info[1] / 100, 2));
+        if (info[2] == 0 || info[1] == 0){
+            results[0] = 0;
+        } else if (BMI < 18.5){
+            results[0] = -1;
+        } else if (BMI >= 24){
+            results[0] = 1;
+        } else{
+            results[0] = 0;
+        }
+
+        if (info[3] == 0){
+            results[1] = 0;
+        } else if (info[3] < 60){
+            results[1] = -1;
+        } else if (info[3] > 89){
+            results[1] = 1;
+        } else {
+            results[1] = 0;
+        }
+
+        if (info[4] == 0){
+            results[2] = 0;
+        } else if (info[4] < 90){
+            results[2] = -1;
+        } else if (info[4] > 139){
+            results[2] = 1;
+        } else {
+            results[2] = 0;
+        }
+
+
+        if (info[5] == 0){
+            results[3] = 0;
+        } else if (age <= 5){
+            if (info[5] < 100){
+                results[3] = -1;
+            } else if (info[5] > 140){
+                results[3] = 1;
+            } else{
+                results[3] = 0;
+            }
+        } else{
+            if (info[5] < 60){
+                results[3] = -1;
+            } else if (info[5] > 100){
+                results[3] = 1;
+            } else{
+                results[3] = 0;
+            }
+        }
+
+        if (info[6] == 0){
+            results[4] = 0;
+        } else if (info[6] < 6){
+            results[4] = -1;
+        } else if (info[6] > 8){
+            results[4] = 1;
+        } else {
+            results[4] = 0;
+        }
+
+        if (info[7] == 0){
+            results[5] = 0;
+        } else if (info[7] < 7){
+            results[5] = -1;
+        } else if (info[7] > 9){
+            results[5] = 1;
+        } else {
+            results[5] = 0;
+        }
+        return results;
     }
 
     long boo = 0;

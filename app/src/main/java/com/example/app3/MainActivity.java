@@ -318,10 +318,41 @@ public class MainActivity extends BaseActivity {
             mPhone = user.getText().toString();
             startService(new Intent(MainActivity.this, LoginStatusService.class));
             Toast.makeText(MainActivity.this, result[0], Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(MainActivity.this, HomePage_find.class);
-            intent.putExtra("phone", user.getText().toString());
-            finish();
-            startActivity(intent);
+            SharedPreferences preferences = getSharedPreferences("user_info",   MODE_PRIVATE);
+            if (preferences.getBoolean("firstLogin", true)){
+                SharedPreferences.Editor editor = getSharedPreferences("user_info", MODE_PRIVATE).edit();
+                editor.putBoolean("firstLogin", false);
+                editor.apply();
+                android.app.AlertDialog.Builder dialog = new android.app.AlertDialog.Builder(MainActivity.this);
+                dialog.setTitle("首次登录");
+                dialog.setMessage("检测到您为首次登录,是否立即填写您的个人健康信息,以方便填写?");
+                dialog.setCancelable(true);
+                dialog.setPositiveButton("接受", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Intent intent = new Intent(MainActivity.this, HealthCheckUp.class);
+                        intent.putExtra("firstLogin", true);
+                        finish();
+                        startActivity(intent);
+                    }
+                });
+                dialog.setNegativeButton("拒绝", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Intent intent = new Intent(MainActivity.this, HomePage_find.class);
+                        intent.putExtra("phone", user.getText().toString());
+                        finish();
+                        startActivity(intent);
+                    }
+                });
+                dialog.show();
+
+            } else {
+                Intent intent = new Intent(MainActivity.this, HomePage_find.class);
+                finish();
+                startActivity(intent);
+            }
+
 
         }
     }

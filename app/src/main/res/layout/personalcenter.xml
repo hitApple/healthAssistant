@@ -69,15 +69,16 @@
                     android:id="@+id/username"
                     android:layout_width="270dp"
                     android:layout_height="wrap_content"
-                    android:hint="点击这里输入昵称"
+                    android:hint="输入昵称"
                     android:paddingLeft="40dp"
                     android:paddingTop="13dp"
                     android:paddingBottom="13dp"
                     android:layout_marginTop="20dp"
                     android:paddingRight="40dp"
                     android:layout_toRightOf="@id/personal_pic"
-                    android:textSize="22dp"
-                    android:background="@drawable/name"/>
+                    android:textSize="22sp"
+                    android:background="@drawable/name_border"
+                    android:layout_toEndOf="@id/personal_pic" />
             </RelativeLayout>
 
             <RelativeLayout
