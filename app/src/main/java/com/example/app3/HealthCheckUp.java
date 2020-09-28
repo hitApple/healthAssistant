@@ -96,17 +96,15 @@ public class HealthCheckUp extends BaseActivity {
                             @Override
                             public void onDateSet(DatePicker view, int year,
                                                   int monthOfYear, int dayOfMonth) {
-                                System.out.println("年-->" + year + "月-->"
-                                        + monthOfYear + "日-->" + dayOfMonth);
                                 year1 = year;
                                 monthOfYear1 = monthOfYear;
                                 dayOfMonth1 = dayOfMonth;
-                                ((TextView)findViewById(R.id.user_time)).setText(year + "/" + monthOfYear + "/"
+                                ((TextView)findViewById(R.id.user_time)).setText(year + "/" + (monthOfYear+1) + "/"
                                         + dayOfMonth);
                             }
                         },
                         calendar.get(Calendar.YEAR), calendar
-                        .get(Calendar.MONTH), calendar
+                        .get(Calendar.MONTH)+1, calendar
                         .get(Calendar.DAY_OF_MONTH));
                 dialog.show();
             }
@@ -183,7 +181,7 @@ public class HealthCheckUp extends BaseActivity {
         if( DateList!=null &&  DateList.size()>0 &&  DateList.get(0)!=null){
             HealthCheckUpTable sin = DateList.get(0);
 
-            if(sin.sex != ""){
+            if(sin != null && sin.sex != null && !sin.sex.trim().equals("")){
                 if(sin.sex.equals("男")){
                     ((RadioButton)findViewById(R.id.boy)).setChecked(true);
                 }else{

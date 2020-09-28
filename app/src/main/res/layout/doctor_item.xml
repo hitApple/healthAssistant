@@ -36,7 +36,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/doctor_department"
-        android:paddingBottom="10dp"/>
+        />
 
     <TextView
         android:id="@+id/doctor_login_status"
@@ -45,5 +45,14 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:text="离线" />
+
+    <View
+        app:layout_constraintTop_toBottomOf="@id/doctor_description"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:background="#DC838383"
+        app:layout_goneMarginBottom="10dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

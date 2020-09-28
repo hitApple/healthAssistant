@@ -24,7 +24,7 @@
 
     <item android:id="@+id/TY12" android:title="CCTV-14高清" />
 
-    <item android:id="@+id/TY13" android:title="CCTV-17高清" />
+    <item android:id="@+id/TY13" android:title="CCTV-13高清" />
 
     <item android:id="@+id/TY14" android:title="CGTN高清" />
 

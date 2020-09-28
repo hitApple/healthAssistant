@@ -260,8 +260,23 @@ public class me extends BaseActivity {
                 ((TextView)findViewById(R.id.username)).setText(((EditText)findViewById(R.id.editName)).getText());
                 String str = ((EditText)findViewById(R.id.editName)).getText().toString();
                 findViewById(R.id.setUerName).setVisibility(View.GONE);
+                HealthCheckUpTable table = new HealthCheckUpTable();
+                table.setName(str);
+                table.updateAll("phone = ?", MainActivity.mPhone);
             }
         });
+
+        HealthCheckUpTable healthCheckUpTable = LitePal.
+                where("phone = ?", MainActivity.mPhone).
+                findFirst(HealthCheckUpTable.class);
+
+        TextView userName = findViewById(R.id.username);
+        if (healthCheckUpTable != null && healthCheckUpTable.getName() != null){
+            userName.setText(healthCheckUpTable.getName());
+
+        }
+
+        initPlus();
 
     }
 
@@ -472,10 +487,58 @@ public class me extends BaseActivity {
         text4.setText(heartbeats);
         text5.setText(urination);
         text6.setText(sleepTime);
+
+        final int[] listArrowsIds = new int[]{R.id.list1_arrow, R.id.list2_arrow, R.id.list3_arrow,
+                R.id.list4_arrow, R.id.list5_arrow, R.id.list6_arrow};
+        ImageView[] listArrows = new ImageView[6];
+        for (int i = 0; i < listArrows.length; i++){
+            listArrows[i] = findViewById(listArrowsIds[i]);
+            listArrows[i].setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startActivity(new Intent(me.this, HealthCheckUp.class));
+                }
+            });
+        }
     }
 
 
+    private void initPlus(){
+        findViewById(R.id.plus_friend).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(me.this, FriendView.class));
+            }
+        });
 
+        findViewById(R.id.plus_calorie).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(me.this, CalorieView.class));
+            }
+        });
+
+        findViewById(R.id.plus_tv).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(me.this, VideoTV.class));
+            }
+        });
+
+        findViewById(R.id.plus_hospital).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(me.this, FavouritesHospitalView.class));
+            }
+        });
+
+        findViewById(R.id.plus_report).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(me.this, HealthCheckUp.class));
+            }
+        });
+    }
 
 
 

@@ -1,41 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="400dp"
     android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/buttonwhite">
     <ImageView
-        android:id="@+id/healthcheckup"
+        android:id="@+id/plus_friend"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="50dp"
-        android:background="@drawable/healthcheckup"/>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="@id/plus_calorie"
+        app:layout_constraintHorizontal_bias="0.1"
+        android:background="@drawable/plus_friend"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/plus_friend"
+        app:layout_constraintLeft_toLeftOf="@id/plus_friend"
+        app:layout_constraintRight_toRightOf="@id/plus_friend"
+        android:text="我的朋友"
+        android:textSize="16sp"
+        android:textColor="#000000"/>
 
     <ImageView
-        android:id="@+id/healthreport"
+        android:id="@+id/plus_calorie"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:layout_alignTop="@+id/healthcheckup"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="50dp"
-        android:background="@drawable/healthreport" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="@id/plus_friend"
+        app:layout_constraintHorizontal_bias="0.9"
+        android:background="@drawable/plus_calorie" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/plus_calorie"
+        app:layout_constraintLeft_toLeftOf="@id/plus_calorie"
+        app:layout_constraintRight_toRightOf="@id/plus_calorie"
+        android:text="卡路里记录"
+        android:textSize="16sp"
+        android:textColor="#000000"/>
 
     <ImageView
-        android:id="@+id/symptomconsultation"
+        android:id="@+id/plus_tv"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:layout_marginLeft="50dp"
-        android:layout_below="@+id/healthcheckup"
-        android:layout_marginTop="50dp"
-        android:background="@drawable/symptomconsultation" />
+        android:src="@drawable/plus_tv"
+        app:layout_constraintTop_toBottomOf="@id/plus_friend"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="16dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/plus_tv"
+        app:layout_constraintLeft_toLeftOf="@id/plus_tv"
+        app:layout_constraintRight_toRightOf="@id/plus_tv"
+        android:text="新闻直播"
+        android:textSize="16sp"
+        android:textColor="#000000"/>
 
     <ImageView
-        android:id="@+id/symptomprediction"
+        android:id="@+id/plus_hospital"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:layout_alignTop="@id/symptomconsultation"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="50dp"
-        android:background="@drawable/symptomprediction" />
+        app:layout_constraintTop_toBottomOf="@id/plus_friend"
+        app:layout_constraintRight_toRightOf="@id/plus_report"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintHorizontal_bias="0.1"
+        android:layout_marginTop="96dp"
+        android:background="@drawable/plus_hospital" />
 
-</RelativeLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/plus_hospital"
+        app:layout_constraintLeft_toLeftOf="@id/plus_hospital"
+        app:layout_constraintRight_toRightOf="@id/plus_hospital"
+        android:text="医院书签"
+        android:textSize="16sp"
+        android:textColor="#000000"/>
+
+    <ImageView
+        android:id="@+id/plus_report"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        app:layout_constraintTop_toTopOf="@id/plus_hospital"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="@id/plus_hospital"
+        app:layout_constraintHorizontal_bias="0.9"
+        android:background="@drawable/plus_report" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/plus_report"
+        app:layout_constraintLeft_toLeftOf="@id/plus_report"
+        app:layout_constraintRight_toRightOf="@id/plus_report"
+        android:text="健康报告"
+        android:textSize="16sp"
+        android:textColor="#000000"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

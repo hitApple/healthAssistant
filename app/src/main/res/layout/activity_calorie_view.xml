@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".CalorieView"
-    android:background="@drawable/homepage_background">
+    android:background="#CD136ECD">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -51,10 +51,10 @@
 
                 <ImageView
                     android:id="@+id/calorie_view_calendar"
-                    android:layout_width="25dp"
-                    android:layout_height="35dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/calorie_tittle_text"
+                    app:layout_constraintBottom_toBottomOf="@id/calorie_tittle_text"
                     android:src="@drawable/calendar"/>
 
 
@@ -66,20 +66,18 @@
                 android:layout_height="match_parent"
                 app:layout_constraintTop_toBottomOf="@id/open_gallery"
                 app:layout_constraintLeft_toLeftOf="parent"
-                android:layout_marginTop="100dp"
+                android:layout_marginTop="120dp"
                 android:background="@drawable/rect_background">
-
 
 
                 <EditText
                     android:id="@+id/calorie_display1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    android:layout_marginTop="30dp"
+                    android:hint="名称"
                     android:textSize="25sp"
-                    android:hint="名称"/>
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <EditText
                     android:id="@+id/calorie_display2"
@@ -165,21 +163,21 @@
 
 
 
-            <Button
+            <ImageView
                 android:id="@+id/open_gallery"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintBottom_toBottomOf="@id/open_camera"
-                android:text="上传图片"/>
+                android:src="@drawable/image"/>
 
-            <Button
+            <ImageView
                 android:id="@+id/open_camera"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintBottom_toTopOf="@id/constraint_content"
-                android:text="拍照"/>
+                android:src="@drawable/camera"/>
 
             <ProgressBar
                 android:id="@+id/waiting_calorie_server"

@@ -212,6 +212,8 @@ public class ContactBaiduMap extends BaseActivity {
 
             }
         });
+
+        initPlus();
     }
 
     @Override
@@ -639,7 +641,42 @@ public class ContactBaiduMap extends BaseActivity {
         return false;
     }
 
+    private void initPlus(){
+        findViewById(R.id.plus_friend).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ContactBaiduMap.this, FriendView.class));
+            }
+        });
 
+        findViewById(R.id.plus_calorie).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ContactBaiduMap.this, CalorieView.class));
+            }
+        });
+
+        findViewById(R.id.plus_tv).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ContactBaiduMap.this, VideoTV.class));
+            }
+        });
+
+        findViewById(R.id.plus_hospital).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ContactBaiduMap.this, FavouritesHospitalView.class));
+            }
+        });
+
+        findViewById(R.id.plus_report).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ContactBaiduMap.this, HealthCheckUp.class));
+            }
+        });
+    }
 
 
     /****************************************监听器相关*********************************************/

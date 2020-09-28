@@ -191,7 +191,7 @@
                 <RelativeLayout
                     android:id="@+id/xinagmu3"
                     android:layout_width="350dp"
-                    android:layout_height="330dp"
+                    android:layout_height="270dp"
                     android:paddingTop="10dp"
 
                     android:layout_alignLeft="@id/homepage_find_item1"
@@ -207,7 +207,7 @@
                             android:id="@+id/chooseTY"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="选择电视频道"
+                            android:text="新闻频道(可更换)"
                             android:textSize="20sp"/>
 
                         <VideoView
@@ -276,10 +276,10 @@
     <include
         layout="@layout/plus2"
         android:id="@+id/plus_ui2"
-        android:layout_width="wrap_content"
+        android:layout_width="400dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
-        android:layout_marginBottom="-270dp"
+        android:layout_marginBottom="-290dp"
         android:layout_alignParentBottom="true"/>
 </RelativeLayout>

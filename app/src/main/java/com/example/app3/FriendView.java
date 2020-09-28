@@ -152,7 +152,7 @@ public class FriendView extends BaseActivity {
         List<Friend> contactList = new ArrayList<>();
 
         Friend friendTest = new Friend();
-        friendTest.setName("测试选项");
+        friendTest.setName("测试人员1");
         friendTest.setTel("15600000000");
         contactList.add(friendTest);
 

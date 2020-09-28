@@ -12,6 +12,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -40,8 +41,19 @@ public class DoctorsOfHospital extends BaseActivity {
 
         Doctor doctor = new Doctor("张广权", "15600000000", "骨科",
                 "我是骨科相关的医生张广权，点击信息即可与我通话", "离线");
+        Doctor[] doctors = new Doctor[5];
+        doctors[0] = new Doctor("张广权", "15600000000", "骨科",
+                "我是骨科相关的医生张广权，点击信息即可与我通话", "离线");
+        doctors[1] = new Doctor("赵信光", "15600000001", "眼科",
+                "我是眼科相关的医生赵信光，点击信息即可与我通话", "离线");
+        doctors[2] = new Doctor("王高坪", "15600000002", "放射科",
+                "我是放射科相关的医生王高坪，点击信息即可与我通话", "离线");
+        doctors[3] = new Doctor("刘东方", "15600000003", "牙科",
+                "我是牙科相关的医生刘东方，点击信息即可与我通话", "离线");
+        doctors[4] = new Doctor("郎溪萍", "15600000004", "内科",
+                "我是内科相关的医生郎溪萍，点击信息即可与我通话", "离线");
         testDoctorList = new ArrayList<>();
-        testDoctorList.add(doctor);
+        Collections.addAll(testDoctorList, doctors);
         doctorRecyclerView = (RecyclerView) findViewById(R.id.doctors_list);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         doctorRecyclerView.setLayoutManager(layoutManager);

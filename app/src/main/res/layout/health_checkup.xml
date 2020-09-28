@@ -72,7 +72,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="姓名"
+                        android:text="昵称"
                         android:textSize="28dp"
                         android:textStyle="italic"
                         android:typeface="serif" />
@@ -213,9 +213,17 @@
                     </TextView>
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="80dp"
+                        android:layout_height="wrap_content"
                         android:text="目标消耗卡路里（每天）"
-                        android:textSize="28dp"
+                        android:textSize="28sp"
+                        android:textStyle="italic"
+                        android:typeface="serif" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="推荐800~1200"
+                        android:textSize="28sp"
                         android:textStyle="italic"
                         android:typeface="serif" />
 
@@ -227,7 +235,7 @@
                         android:background="@drawable/user_age_background"
                         android:maxLines="1"
                         android:maxLength="4"
-                        android:hint="推荐400"
+
                         android:text=""
                         android:textSize="25dp" />
                     <!--                <EditText

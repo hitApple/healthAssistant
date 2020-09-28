@@ -120,6 +120,7 @@ public class MainActivity extends BaseActivity {
             findViewById(R.id.full).setVisibility(View.VISIBLE);
             editor.putBoolean("isFirst", false);
         } else{
+            findViewById(R.id.main_activity_skip).setVisibility(View.VISIBLE);
             findViewById(R.id.guide).setVisibility(View.VISIBLE);
             findViewById(R.id.full).setVisibility(View.GONE);
             editor.putBoolean("isFirst", false);
@@ -155,6 +156,13 @@ public class MainActivity extends BaseActivity {
         SignIn.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 startActivity(new Intent(MainActivity.this,Sign_In.class));
+            }
+        });
+
+        findViewById(R.id.main_activity_find).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, FindPassword.class));
             }
         });
 
@@ -212,6 +220,15 @@ public class MainActivity extends BaseActivity {
             public void onClick(View v) {
                 vflp_help.setVisibility(View.GONE);
                 findViewById(R.id.full).setVisibility(View.VISIBLE);
+                findViewById(R.id.main_activity_skip).setVisibility(View.GONE);
+            }
+        });
+        findViewById(R.id.main_activity_skip).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                vflp_help.setVisibility(View.GONE);
+                findViewById(R.id.full).setVisibility(View.VISIBLE);
+                findViewById(R.id.main_activity_skip).setVisibility(View.GONE);
             }
         });
         bgTimer = new Timer();

@@ -19,6 +19,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 
+
 public class VideoTV extends BaseActivity {
 
     public static String PATH = HomePage_find.PATH;
@@ -35,76 +36,12 @@ public class VideoTV extends BaseActivity {
         Glide.with(this).load(R.drawable.donghua2).asGif().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(jiazaidonghua);
 
 
-        btn_pop  = findViewById(R.id.chooseTV2);
 
-        btn_pop.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                PopupMenu popup = new PopupMenu(VideoTV.this,btn_pop);
-                popup.getMenuInflater().inflate(R.menu.menu_pop, popup.getMenu());
-                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
 
-                        switch (item.getItemId()){
-                            case R.id.TY1:
-                                PATH = "http://ivi.bupt.edu.cn/hls/cctv1hd.m3u8";
-                                break;
-                            case R.id.TY2:
-                                PATH = "http://ivi.bupt.edu.cn/hls/cctv2hd.m3u8";
-                                break;
-                            case R.id.TY3:
-                                PATH = "http://ivi.bupt.edu.cn/hls/cctv3hd.m3u8";
-                                break;
-                            case R.id.TY4:
-                                PATH = "http://ivi.bupt.edu.cn/hls/cctv4hd.m3u8";
-                                break;
-                            case R.id.TY5:
-                                PATH = "http://ivi.bupt.edu.cn/hls/cctv5phd.m3u8";
-                                break;
-                            case R.id.TY6:
-                                PATH = "http://ivi.bupt.edu.cn/hls/cctv6hd.m3u8";
-                                break;
-                            case R.id.TY7:
-                                PATH = "http://ivi.bupt.edu.cn/hls/cctv7hd.m3u8";
-                                break;
-                            case R.id.TY8:
-                                PATH = "http://ivi.bupt.edu.cn/hls/cctv8hd.m3u8";
-                                break;
-                            case R.id.TY9:
-                                PATH = "http://ivi.bupt.edu.cn/hls/cctv9hd.m3u8";
-                                break;
-                            case R.id.TY10:
-                                PATH = "http://ivi.bupt.edu.cn/hls/cctv10hd.m3u8";
-                                break;
-                            case R.id.TY11:
-                                PATH = "http://ivi.bupt.edu.cn/hls/cctv12hd.m3u8";
-                                break;
-                            case R.id.TY12:
-                                PATH = "http://ivi.bupt.edu.cn/hls/cctv14hd.m3u8";
-                                break;
-                            case R.id.TY13:
-                                PATH = "http://ivi.bupt.edu.cn/hls/cctv17hd.m3u8";
-                                break;
-                            case R.id.TY14:
-                                PATH = "http://ivi.bupt.edu.cn/hls/cgtnhd.m3u8";
-                                break;
-                            case R.id.TY15:
-                                PATH = "http://ivi.bupt.edu.cn/hls/cgtndochd.m3u8";
-                                break;
-                            case R.id.TY16:
-                                PATH = "http://ivi.bupt.edu.cn/hls/chchd.m3u8";
-                                break;
-
-                        }
-                        return true;
-                    }
-                });
-                popup.show();
-            }
-        });
+        jiazaidonghua.setVisibility(View.GONE);
         videoView = (VideoView) findViewById(R.id.videoView2);
-        findViewById(R.id.startTV2).setOnClickListener(new View.OnClickListener() {
+        final ImageView start = findViewById(R.id.startTV2);
+        start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(PATH != ""){
@@ -122,17 +59,19 @@ public class VideoTV extends BaseActivity {
                     findViewById(R.id.startTV2).setVisibility(View.VISIBLE);
                     findViewById(R.id.stopTV2).setVisibility(View.GONE);
                     videoView.pause();
-                    videoView.start();
                 }
             }
         });
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);//设置videoView全屏播放
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);//设置videoView横屏播放
 
+        int height_01 = MainActivity.mScreenHeight;
+        int width_01 =  MainActivity.mScreenHeight;
+
         RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) videoView
                 .getLayoutParams(); // 取控当前的布局参数
-        layoutParams.height = MainActivity.mScreenHeight;//设置 当控件的高强
-        layoutParams.width = MainActivity.mScreenWidth;
+        layoutParams.height = height_01;//设置 当控件的高强
+        layoutParams.width = width_01;
         videoView.setLayoutParams(layoutParams); // 使设置好的布局参数应用到控件
         if(!PATH.equals("")){
             findViewById(R.id.startTV2).setVisibility(View.GONE);
@@ -140,25 +79,136 @@ public class VideoTV extends BaseActivity {
             videoView.setVideoPath(PATH);
             videoView.start();
         }
+        btn_pop  = findViewById(R.id.chooseTV2);
 
-//        findViewById(R.id.quanping2).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);//设置videoView全屏播放
-//                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);//设置videoView横屏播放
-//
-//                RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) videoView
-//                        .getLayoutParams(); // 取控当前的布局参数
-//                layoutParams.height = MainActivity.mScreenHeight;//设置 当控件的高强
-//                layoutParams.width = MainActivity.mScreenWidth;
-//                videoView.setLayoutParams(layoutParams); // 使设置好的布局参数应用到控件
-//                findViewById(R.id.chooseTV2).setVisibility(View.GONE);
-//                findViewById(R.id.startTV2).setVisibility(View.GONE);
-//                findViewById(R.id.stopTV2).setVisibility(View.VISIBLE);
-//                videoView.setVideoPath(PATH);
-//                videoView.start();
-//            }
-//        });
+        findViewById(R.id.video_tv_back).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
+        btn_pop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PopupMenu popup = new PopupMenu(VideoTV.this,btn_pop);
+                popup.getMenuInflater().inflate(R.menu.menu_pop, popup.getMenu());
+                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        TextView textView = findViewById(R.id.chooseTY);
+                        switch (item.getItemId()){
+                            case R.id.TY1:
+                                PATH = "http://ivi.bupt.edu.cn/hls/cctv1hd.m3u8";
+                                textView.setText("CCTV-1");
+
+                                break;
+                            case R.id.TY2:
+                                PATH = "http://ivi.bupt.edu.cn/hls/cctv2hd.m3u8";
+                                textView.setText("CCTV-2");
+
+                                break;
+                            case R.id.TY3:
+                                PATH = "http://ivi.bupt.edu.cn/hls/cctv3hd.m3u8";
+                                textView.setText("CCTV-3");
+
+                                break;
+                            case R.id.TY4:
+                                PATH = "http://ivi.bupt.edu.cn/hls/cctv4hd.m3u8";
+                                textView.setText("CCTV-4");
+
+                                break;
+                            case R.id.TY5:
+                                PATH = "http://ivi.bupt.edu.cn/hls/cctv5phd.m3u8";
+                                textView.setText("CCTV-5");
+
+                                break;
+                            case R.id.TY6:
+                                PATH = "http://ivi.bupt.edu.cn/hls/cctv6hd.m3u8";
+                                textView.setText("CCTV-6");
+
+                                break;
+                            case R.id.TY7:
+                                PATH = "http://ivi.bupt.edu.cn/hls/cctv7hd.m3u8";
+                                textView.setText("CCTV-7");
+
+                                break;
+                            case R.id.TY8:
+                                PATH = "http://ivi.bupt.edu.cn/hls/cctv8hd.m3u8";
+                                textView.setText("CCTV-8");
+
+                                break;
+                            case R.id.TY9:
+                                PATH = "http://ivi.bupt.edu.cn/hls/cctv9hd.m3u8";
+                                textView.setText("CCTV-9");
+
+                                break;
+                            case R.id.TY10:
+                                PATH = "http://ivi.bupt.edu.cn/hls/cctv10hd.m3u8";
+                                textView.setText("CCTV-10");
+
+                                break;
+                            case R.id.TY11:
+                                PATH = "http://ivi.bupt.edu.cn/hls/cctv12hd.m3u8";
+                                textView.setText("CCTV-12");
+
+                                break;
+                            case R.id.TY12:
+                                PATH = "http://ivi.bupt.edu.cn/hls/cctv14hd.m3u8";
+                                textView.setText("CCTV-14");
+
+                                break;
+                            case R.id.TY13:
+                                PATH = "http://cctvalih5ca.v.myalicdn.com/live/cctv13_2/index.m3u8";
+                                textView.setText("CCTV-13");
+
+                                break;
+                            case R.id.TY14:
+                                PATH = "http://ivi.bupt.edu.cn/hls/cgtnhd.m3u8";
+                                textView.setText("CGTN");
+
+                                break;
+                            case R.id.TY15:
+                                PATH = "http://ivi.bupt.edu.cn/hls/cgtndochd.m3u8";
+                                textView.setText("CGTN DOC");
+
+                                break;
+                            case R.id.TY16:
+                                PATH = "http://ivi.bupt.edu.cn/hls/chchd.m3u8";
+                                textView.setText("CHC高清");
+
+                                break;
+
+                        }
+
+                        start.performClick();
+                        return true;
+                    }
+                });
+                popup.show();
+            }
+        });
+
+/*        findViewById(R.id.quanping2).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);//设置videoView全屏播放
+                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);//设置videoView横屏播放
+
+                int height_01 = MainActivity.mScreenHeight;
+                int width_01 =  MainActivity.mScreenHeight;
+
+                RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) videoView
+                        .getLayoutParams(); // 取控当前的布局参数
+                layoutParams.height = height_01;//设置 当控件的高强
+                layoutParams.width = width_01;
+                videoView.setLayoutParams(layoutParams); // 使设置好的布局参数应用到控件
+                findViewById(R.id.startTV2).setVisibility(View.GONE);
+                findViewById(R.id.stopTV2).setVisibility(View.VISIBLE);
+                videoView.setVideoPath(PATH);
+                videoView.start();
+            }
+        });*/
 
         videoView.setOnInfoListener(new MediaPlayer.OnInfoListener(){
             @Override

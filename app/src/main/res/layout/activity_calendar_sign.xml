@@ -23,14 +23,7 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="60dp"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="6dp"
-                android:text="已累计签到3次  连续签到3次可领取礼包"
-                android:textColor="#ffe55a"
-                android:textSize="12sp" />
+
 
             <RelativeLayout
                 android:id="@+id/rl_sign_k"
@@ -66,15 +59,7 @@
                     android:textSize="15sp" />
 
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="18dp"
-                    android:text="每次签到可得5红包（可惜没钱）"
-                    android:textColor="#ff280e"
-                    android:textSize="12sp" />
+
             </RelativeLayout>
 
             <LinearLayout

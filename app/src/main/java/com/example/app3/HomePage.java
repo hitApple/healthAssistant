@@ -237,7 +237,7 @@ public class HomePage extends BaseActivity {
             }
         }.start();
 
-
+        initPlus();
 
     }
 
@@ -515,6 +515,43 @@ public class HomePage extends BaseActivity {
                 imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
             }
         }
+    }
+
+    private void initPlus(){
+        findViewById(R.id.plus_friend).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(HomePage.this, FriendView.class));
+            }
+        });
+
+        findViewById(R.id.plus_calorie).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(HomePage.this, CalorieView.class));
+            }
+        });
+
+        findViewById(R.id.plus_tv).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(HomePage.this, VideoTV.class));
+            }
+        });
+
+        findViewById(R.id.plus_hospital).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(HomePage.this, FavouritesHospitalView.class));
+            }
+        });
+
+        findViewById(R.id.plus_report).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(HomePage.this, HealthCheckUp.class));
+            }
+        });
     }
 
 }

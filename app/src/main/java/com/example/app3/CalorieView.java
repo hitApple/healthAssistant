@@ -226,6 +226,7 @@ public class CalorieView extends BaseActivity {
                 finish();
             }
         });
+        findViewById(R.id.rl_sign_k).setVisibility(View.INVISIBLE);
 
     }
     private void initView() {
@@ -272,7 +273,12 @@ public class CalorieView extends BaseActivity {
 
             @Override
             public void onDateItemClick(DateEntity dateEntity) {
-                Toast.makeText(CalorieView.this, "点击日期 " + dateEntity.date, Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(CalorieView.this, CalorieResult.class);
+                intent.putExtra("year", dateEntity.year);
+                intent.putExtra("month", dateEntity.month);
+                intent.putExtra("day", dateEntity.day);
+                Log.d("WTF", "onDateItemClick: " + dateEntity.year);
+                startActivity(intent);
             }
         });
 

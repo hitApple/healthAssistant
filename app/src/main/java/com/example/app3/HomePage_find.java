@@ -64,7 +64,7 @@ public class HomePage_find extends BaseActivity  {
 
     private TextView showMore;
     private boolean isShowMore = false;
-    public static String PATH = "";
+    public static String PATH = "http://cctvalih5ca.v.myalicdn.com/live/cctv13_2/index.m3u8";
     private VideoView videoView;
 
     private static final String TAG = "HomePage_find";
@@ -218,77 +218,13 @@ public class HomePage_find extends BaseActivity  {
             }
         });
 
-        final TextView btn_pop = findViewById(R.id.chooseTY);
+        initPlus();
 
-        btn_pop.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                PopupMenu popup = new PopupMenu(HomePage_find.this,btn_pop);
-                popup.getMenuInflater().inflate(R.menu.menu_pop, popup.getMenu());
-                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
 
-                        switch (item.getItemId()){
-                            case R.id.TY1:
-                                PATH = "http://ivi.bupt.edu.cn/hls/cctv1hd.m3u8";
-                                break;
-                            case R.id.TY2:
-                                PATH = "http://ivi.bupt.edu.cn/hls/cctv2hd.m3u8";
-                                break;
-                            case R.id.TY3:
-                                PATH = "http://ivi.bupt.edu.cn/hls/cctv3hd.m3u8";
-                                break;
-                            case R.id.TY4:
-                                PATH = "http://ivi.bupt.edu.cn/hls/cctv4hd.m3u8";
-                                break;
-                            case R.id.TY5:
-                                PATH = "http://ivi.bupt.edu.cn/hls/cctv5phd.m3u8";
-                                break;
-                            case R.id.TY6:
-                                PATH = "http://ivi.bupt.edu.cn/hls/cctv6hd.m3u8";
-                                break;
-                            case R.id.TY7:
-                                PATH = "http://ivi.bupt.edu.cn/hls/cctv7hd.m3u8";
-                                break;
-                            case R.id.TY8:
-                                PATH = "http://ivi.bupt.edu.cn/hls/cctv8hd.m3u8";
-                                break;
-                            case R.id.TY9:
-                                PATH = "http://ivi.bupt.edu.cn/hls/cctv9hd.m3u8";
-                                break;
-                            case R.id.TY10:
-                                PATH = "http://ivi.bupt.edu.cn/hls/cctv10hd.m3u8";
-                                break;
-                            case R.id.TY11:
-                                PATH = "http://ivi.bupt.edu.cn/hls/cctv12hd.m3u8";
-                                break;
-                            case R.id.TY12:
-                                PATH = "http://ivi.bupt.edu.cn/hls/cctv14hd.m3u8";
-                                break;
-                            case R.id.TY13:
-                                PATH = "http://ivi.bupt.edu.cn/hls/cctv17hd.m3u8";
-                                break;
-                            case R.id.TY14:
-                                PATH = "http://ivi.bupt.edu.cn/hls/cgtnhd.m3u8";
-                                break;
-                            case R.id.TY15:
-                                PATH = "http://ivi.bupt.edu.cn/hls/cgtndochd.m3u8";
-                                break;
-                            case R.id.TY16:
-                                PATH = "http://ivi.bupt.edu.cn/hls/chchd.m3u8";
-                                break;
-
-                        }
-                        return true;
-                    }
-                });
-                popup.show();
-            }
-        });
 
         videoView = (VideoView) findViewById(R.id.videoView);
-        findViewById(R.id.startTV).setOnClickListener(new View.OnClickListener() {
+        final ImageView start = findViewById(R.id.startTV);
+        start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(!PATH.equals("")){
@@ -313,6 +249,111 @@ public class HomePage_find extends BaseActivity  {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(HomePage_find.this,VideoTV.class));
+            }
+        });
+
+        final TextView btn_pop = findViewById(R.id.chooseTY);
+
+        btn_pop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PopupMenu popup = new PopupMenu(HomePage_find.this,btn_pop);
+                popup.getMenuInflater().inflate(R.menu.menu_pop, popup.getMenu());
+                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        TextView textView = findViewById(R.id.chooseTY);
+
+                        switch (item.getItemId()){
+                            case R.id.TY1:
+                                PATH = "http://ivi.bupt.edu.cn/hls/cctv1hd.m3u8";
+                                textView.setText("CCTV-1");
+
+                                break;
+                            case R.id.TY2:
+                                PATH = "http://ivi.bupt.edu.cn/hls/cctv2hd.m3u8";
+                                textView.setText("CCTV-2");
+
+                                break;
+                            case R.id.TY3:
+                                PATH = "http://ivi.bupt.edu.cn/hls/cctv3hd.m3u8";
+                                textView.setText("CCTV-3");
+
+                                break;
+                            case R.id.TY4:
+                                PATH = "http://ivi.bupt.edu.cn/hls/cctv4hd.m3u8";
+                                textView.setText("CCTV-4");
+
+                                break;
+                            case R.id.TY5:
+                                PATH = "http://ivi.bupt.edu.cn/hls/cctv5phd.m3u8";
+                                textView.setText("CCTV-5");
+
+                                break;
+                            case R.id.TY6:
+                                PATH = "http://ivi.bupt.edu.cn/hls/cctv6hd.m3u8";
+                                textView.setText("CCTV-6");
+
+                                break;
+                            case R.id.TY7:
+                                PATH = "http://ivi.bupt.edu.cn/hls/cctv7hd.m3u8";
+                                textView.setText("CCTV-7");
+
+                                break;
+                            case R.id.TY8:
+                                PATH = "http://ivi.bupt.edu.cn/hls/cctv8hd.m3u8";
+                                textView.setText("CCTV-8");
+
+                                break;
+                            case R.id.TY9:
+                                PATH = "http://ivi.bupt.edu.cn/hls/cctv9hd.m3u8";
+                                textView.setText("CCTV-9");
+
+                                break;
+                            case R.id.TY10:
+                                PATH = "http://ivi.bupt.edu.cn/hls/cctv10hd.m3u8";
+                                textView.setText("CCTV-10");
+
+                                break;
+                            case R.id.TY11:
+                                PATH = "http://ivi.bupt.edu.cn/hls/cctv12hd.m3u8";
+                                textView.setText("CCTV-12");
+
+                                break;
+                            case R.id.TY12:
+                                PATH = "http://ivi.bupt.edu.cn/hls/cctv14hd.m3u8";
+                                textView.setText("CCTV-14");
+
+                                break;
+                            case R.id.TY13:
+                                PATH = "http://cctvalih5ca.v.myalicdn.com/live/cctv13_2/index.m3u8";
+                                textView.setText("CCTV-13");
+
+                                break;
+                            case R.id.TY14:
+                                PATH = "http://ivi.bupt.edu.cn/hls/cgtnhd.m3u8";
+                                textView.setText("CGTN");
+
+                                break;
+                            case R.id.TY15:
+                                PATH = "http://ivi.bupt.edu.cn/hls/cgtndochd.m3u8";
+                                textView.setText("CGTN DOC");
+
+                                break;
+                            case R.id.TY16:
+                                PATH = "http://ivi.bupt.edu.cn/hls/chchd.m3u8";
+                                textView.setText("CHC高清");
+
+                                break;
+
+                        }
+
+                        start.performClick();
+                        return true;
+                    }
+                });
+                popup.show();
+
             }
         });
 
@@ -478,6 +519,19 @@ public class HomePage_find extends BaseActivity  {
             weathersTextViews3[i] = findViewById(weatherItems3[i]);
         }
 
+        final int[] listArrowsIds = new int[]{R.id.list1_arrow, R.id.list2_arrow, R.id.list3_arrow,
+                R.id.list4_arrow, R.id.list5_arrow, R.id.list6_arrow};
+        ImageView[] listArrows = new ImageView[6];
+        for (int i = 0; i < listArrows.length; i++){
+            listArrows[i] = findViewById(listArrowsIds[i]);
+            listArrows[i].setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startActivity(new Intent(HomePage_find.this, HealthCheckUp.class));
+                }
+            });
+        }
+
         new Thread(){
             @Override
             public void run() {
@@ -517,6 +571,43 @@ public class HomePage_find extends BaseActivity  {
 //                        .start();
 //            }
 //        });
+    }
+
+    private void initPlus(){
+        findViewById(R.id.plus_friend).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(HomePage_find.this, FriendView.class));
+            }
+        });
+
+        findViewById(R.id.plus_calorie).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(HomePage_find.this, CalorieView.class));
+            }
+        });
+
+        findViewById(R.id.plus_tv).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(HomePage_find.this, VideoTV.class));
+            }
+        });
+
+        findViewById(R.id.plus_hospital).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(HomePage_find.this, FavouritesHospitalView.class));
+            }
+        });
+
+        findViewById(R.id.plus_report).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(HomePage_find.this, HealthCheckUp.class));
+            }
+        });
     }
 
     private int[] checkHealth(int[] info){

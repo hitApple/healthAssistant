@@ -182,7 +182,7 @@ public class RegisterClient {
             case 23:
                 return ERROR_NO_CODE_MATCH + "\n" + 3;
             default:
-                return "UNKNOWN ERROR!" + "\n" + 9;
+                return "发生未知错误" + "\n" + 9;
         }
     }
 
