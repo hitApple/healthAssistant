@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -231,6 +232,31 @@ public class MainActivity extends BaseActivity {
                 findViewById(R.id.main_activity_skip).setVisibility(View.GONE);
             }
         });
+        findViewById(R.id.main_activity_contact_us).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                android.app.AlertDialog.Builder dialog = new android.app.AlertDialog.Builder(MainActivity.this);
+                dialog.setTitle("联系我们");
+                dialog.setMessage("如果您在使用软件的过程中遇到问题，请练习我们");
+                dialog.setCancelable(true);
+                dialog.setPositiveButton("联系我们", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Intent intent = new Intent(Intent.ACTION_DIAL);
+                        Uri data = Uri.parse("tel:" + "15689712036");
+                        intent.setData(data);
+                        startActivity(intent);
+                    }
+                });
+                dialog.setNegativeButton("我点错了", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+                dialog.show();
+            }
+        });
         bgTimer = new Timer();
 //        timerTask = new BGChangeTimerTask();
 //        bgTimer.schedule(timerTask, 1000L);
@@ -344,7 +370,7 @@ public class MainActivity extends BaseActivity {
                 dialog.setTitle("首次登录");
                 dialog.setMessage("检测到您为首次登录,是否立即填写您的个人健康信息,以方便填写?");
                 dialog.setCancelable(true);
-                dialog.setPositiveButton("接受", new DialogInterface.OnClickListener() {
+                dialog.setPositiveButton("是的", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         Intent intent = new Intent(MainActivity.this, HealthCheckUp.class);
@@ -353,7 +379,7 @@ public class MainActivity extends BaseActivity {
                         startActivity(intent);
                     }
                 });
-                dialog.setNegativeButton("拒绝", new DialogInterface.OnClickListener() {
+                dialog.setNegativeButton("下次再说", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         Intent intent = new Intent(MainActivity.this, HomePage_find.class);
